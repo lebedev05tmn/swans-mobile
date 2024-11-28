@@ -15,7 +15,5 @@ export default function HomeScreen() {
         return null;
     }
 
-    return <LoadingPage />
+    return <LoadingPage />;
 }
-
-

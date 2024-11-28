@@ -11,10 +11,7 @@ const LoadingPage: FC = () => {
             end={{ x: 0.9, y: 0.7 }}
         >
             <View style={styles.content}>
-                <Image
-                    style={styles.image}
-                    source={require('../../assets/swans.svg')}
-                />
+                <Image source={require('../../assets/logo.png')} />
                 <Text style={styles.title}>SWANS</Text>
                 <Text style={styles.textStyle}>
                     Приложение для поиска соулмейта
