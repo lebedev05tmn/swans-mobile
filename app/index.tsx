@@ -3,7 +3,7 @@ import {
     useFonts,
     MontserratAlternates_700Bold,
 } from '@expo-google-fonts/montserrat-alternates';
-import LoadingPage from '../components/LoadingPage';
+import LoadingPage from '../pages/LoadingPage';
 
 //30 строчка рендер шрифта, вместо текста склетон лоудер из глюстака
 

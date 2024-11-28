@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { StyleSheet, View, Text, Image} from 'react-native';
+import { FC } from 'react';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const LoadingPage:FC  = () => {
-    return  (
+const LoadingPage: FC = () => {
+    return (
         <LinearGradient
             colors={['#B18FCF', '#87CEEB']}
             style={styles.gradient}
@@ -20,8 +20,9 @@ const LoadingPage:FC  = () => {
                     Приложение для поиска соулмейта
                 </Text>
             </View>
-        </LinearGradient>)
-}
+        </LinearGradient>
+    );
+};
 
 const styles = StyleSheet.create({
     image: {
@@ -61,4 +62,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoadingPage
+export default LoadingPage;
