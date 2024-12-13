@@ -3,7 +3,7 @@ import {
     useFonts,
     MontserratAlternates_700Bold,
 } from '@expo-google-fonts/montserrat-alternates';
-import LoadingPage from '../pages/LoadingPage';
+import CreateProfilePage from '@/pages/CreateProfilePage/CreateProfile';
 
 export default function HomeScreen() {
     const [loaded] = useFonts({
@@ -14,5 +14,5 @@ export default function HomeScreen() {
         return null;
     }
 
-    return <LoadingPage />;
+    return <CreateProfilePage />;
 }
