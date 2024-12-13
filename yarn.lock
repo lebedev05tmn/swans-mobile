@@ -1295,6 +1295,14 @@
     "@react-native-aria/focus" "^0.2.9"
     "@react-native-aria/interactions" "0.2.13"
 
+"@gluestack-ui/form-control@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/form-control/-/form-control-0.1.19.tgz#7a75b65f5ec89da95c30442750d6f7af71db6868"
+  integrity sha512-6YbPbi/RZrXc5DyVPbxPV17FYaBoEl1yAdSwut8iE6n+yQekjluINrh2q5ZPWF2SGmyo7VSNcL85yeU5I97xHg==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.14"
+    "@react-native-aria/focus" "^0.2.9"
+
 "@gluestack-ui/hooks@0.1.12":
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/hooks/-/hooks-0.1.12.tgz#4a92de73eec7b6ba6fc8e781c23417252993c95c"
@@ -1308,6 +1316,16 @@
     "@gluestack-ui/provider" "^0.1.13"
     "@gluestack-ui/utils" "^0.1.14"
     "@react-native-aria/focus" "^0.2.9"
+
+"@gluestack-ui/input@^0.1.32":
+  version "0.1.32"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.32.tgz#d4d64e43938b2cf9ee3f816fa774d08333305d28"
+  integrity sha512-RWtqpo0p37GYjwBTiMf4fpvKYe32OMa6lxFbDqPqEX1m994D9QwP7iWnDWA/9nr/Mf3eET6dMWbH4/eL4oZr8Q==
+  dependencies:
+    "@gluestack-ui/form-control" "^0.1.19"
+    "@gluestack-ui/utils" "^0.1.14"
+    "@react-native-aria/focus" "^0.2.9"
+    "@react-native-aria/interactions" "0.2.13"
 
 "@gluestack-ui/nativewind-utils@1.0.23":
   version "1.0.23"
@@ -2107,11 +2125,6 @@
   version "0.76.2"
   resolved "https://registry.npmjs.org/@react-native/normalize-colors/-/normalize-colors-0.76.2.tgz"
   integrity sha512-ICoOpaTLPsFQjNLSM00NgQr6wal300cZZonHVSDXKntX+BfkLeuCHRtr/Mn+klTtW+/1v2/2FRm9dXjvyGf9Dw==
-
-"@react-native/normalize-colors@0.76.5":
-  version "0.76.5"
-  resolved "https://registry.yarnpkg.com/@react-native/normalize-colors/-/normalize-colors-0.76.5.tgz#a33560736311aefcf1d3cb594597befe81a9a53c"
-  integrity sha512-6QRLEok1r55gLqj+94mEWUENuU5A6wsr2OoXpyq/CgQ7THWowbHtru/kRGRr6o3AQXrVnZheR60JNgFcpNYIug==
 
 "@react-native/normalize-colors@^0.74.1":
   version "0.74.88"
@@ -4519,14 +4532,6 @@ expo-modules-core@2.0.3:
   integrity sha512-S/Ozg6NhLkMc7k+qSLzOtjCexuimkYXHM/PCZtbn53nkuNYyaLpfVfrsJsRWxLIMe8ftbm6cDrKlN5mJ6lNODg==
   dependencies:
     invariant "^2.2.4"
-
-expo-navigation-bar@~4.0.6:
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/expo-navigation-bar/-/expo-navigation-bar-4.0.6.tgz#c2fdc5207374714b5c2f7fd027b672d464285041"
-  integrity sha512-T0DTTCvMC3PbTRELGbUMcx2OE11er8yxARw0SjrWHJLKMWy0eTCS8bPAgYRQcJuCfffvPAIQAfjr40cMsyRNqw==
-  dependencies:
-    "@react-native/normalize-colors" "0.76.5"
-    debug "^4.3.2"
 
 expo-router@~4.0.2:
   version "4.0.6"
