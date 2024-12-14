@@ -1,19 +1,19 @@
-import CountinueButton from "@/components/ui/CountinueButton/CountinueButton";
 import { StyleSheet, View, Text } from "react-native";
 
 type Props = {
     title: string,
     description: string,
-    InputComponent: JSX.Element,
+    Input: JSX.Element,
+    ContinueButton?: JSX.Element,
 }
 
-const CreateProfileContent: React.FC<Props> = ({ title, description, InputComponent }) => {
+const CreateProfileContent: React.FC<Props> = ({ title, description, Input, ContinueButton }) => {
     return (
         <View style={styles.createProfileContent}>
             <Text style={styles.contentTitle}>{title}</Text>
             <Text style={styles.contentDescription}>{description}</Text>
-            {InputComponent}
-            <CountinueButton />
+            {Input}
+            {ContinueButton}
         </View>
     );
 };

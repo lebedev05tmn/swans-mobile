@@ -1,12 +1,17 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from 'expo-linear-gradient';
 import ArrowLeftIcon from "@/assets/svg/ArrowLeftIcon";
 import ProgressWave from "@/assets/svg/ProgressWave";
-import CreateProfileContent from "@/components/CreateProfileContent/CreateProfileContent";
-
+import pages from "./pages";
+import useStore from './store';
 
 const CreateProfilePage = () => {
+    const previousPage = useStore((state) => state.previousPage);
+    const currentIndex = useStore((state) => state.currentIndex);
+    const CurrentComponent = pages[currentIndex];
+
     return (
         <LinearGradient
                     colors={['#B18FCF', '#87CEEB']}
@@ -16,20 +21,15 @@ const CreateProfilePage = () => {
         >
             <SafeAreaView style={styles.container}>
                     <View style={styles.header}>
-                        <ArrowLeftIcon style={styles.arrowLeftIcon} />
+                        <Pressable
+                            onPress={previousPage}
+                            style={styles.arrowLeftIcon}
+                        >
+                            <ArrowLeftIcon />
+                        </Pressable>
                         <ProgressWave />
                     </View>
-                    <CreateProfileContent
-                        title={"Привет, давай знакомиться"}
-                        description={"Будь собой при выборе имени, привлекает больше внимания."}
-                        InputComponent={
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Имя"
-                                placeholderTextColor="#A3A3A3"
-                            />
-                        }
-                    />
+                    <CurrentComponent />
             </SafeAreaView>
         </LinearGradient>
     );
@@ -53,21 +53,6 @@ const styles = StyleSheet.create({
     arrowLeftIcon: {
         position: 'absolute',
         left: 0,
-    },
-    input: {
-        backgroundColor: '#EDEDED',
-        marginBottom: 28,
-        borderRadius: 8,
-        borderColor: '#D3D3D3',
-        borderWidth: 1,
-        fontSize: 16,
-        lineHeight: 24,
-        paddingHorizontal: 12,
-        paddingVertical: 8,
-        
-    },
-    continueButton: {
-        backgroundColor: '#EDEDED',
     },
 });
 

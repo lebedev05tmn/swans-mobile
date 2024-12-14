@@ -1,9 +1,13 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import ArrowRightIcon from "@/assets/svg/ArrowRightIcon";
 
-const CountinueButton = () => {
+type Props = {
+  onNext: () => void;
+};
+
+const CountinueButton: React.FC<Props> = ({onNext}) => {
     return (
-        <Pressable>
+        <Pressable onPress={onNext}>
             <View style={styles.countinueButton}>
                 <Text style={styles.text}>Продолжить</Text>
                 <ArrowRightIcon />
@@ -22,6 +26,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 28
     },
     text: {
         color: '#404040',
