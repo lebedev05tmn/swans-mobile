@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from 'expo-linear-gradient';
 import ArrowLeftIcon from "@/assets/svg/ArrowLeftIcon";
-import ProgressWave from "@/assets/svg/ProgressWave";
+import ProgressWave from "@/assets/svg/progress.svg";
 import pages from "./pages";
 import useStore from './store';
+
 
 const CreateProfilePage = () => {
     const previousPage = useStore((state) => state.previousPage);
@@ -20,16 +21,16 @@ const CreateProfilePage = () => {
                     end={{ x: 0.9, y: 0.7 }}
         >
             <SafeAreaView style={styles.container}>
-                    <View style={styles.header}>
-                        <Pressable
-                            onPress={previousPage}
-                            style={styles.arrowLeftIcon}
-                        >
-                            <ArrowLeftIcon />
-                        </Pressable>
-                        <ProgressWave />
-                    </View>
-                    <CurrentComponent />
+                <View style={styles.header}>
+                    <Pressable
+                        onPress={previousPage}
+                        style={styles.arrowLeftIcon}
+                    >
+                        <ArrowLeftIcon />
+                    </Pressable>
+                    <ProgressWave width={'64%'} height={'auto'}/>
+                </View>
+                <CurrentComponent />
             </SafeAreaView>
         </LinearGradient>
     );
