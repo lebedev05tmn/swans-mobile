@@ -1,19 +1,17 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import ArrowRightIcon from "@/assets/svg/ArrowRightIcon";
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import ArrowRightIcon from '@/assets/svg/ArrowRightIcon';
+import useContentSwitcher from '@/pages/CreateProfilePage/store';
 
-type Props = {
-  onNext: () => void;
-};
-
-const CountinueButton: React.FC<Props> = ({onNext}) => {
+const CountinueButton = () => {
+    const next = useContentSwitcher(state => state.next)
     return (
-        <Pressable onPress={onNext}>
+        <Pressable onPress={next}>
             <View style={styles.countinueButton}>
                 <Text style={styles.text}>Продолжить</Text>
                 <ArrowRightIcon />
             </View>
         </Pressable>
-    )
+    );
 };
 
 const styles = StyleSheet.create({
@@ -26,14 +24,14 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 28
+        marginTop: 28,
     },
     text: {
         color: '#404040',
         fontWeight: 500,
         fontSize: 16,
         lineHeight: 19,
-    }
+    },
 });
 
 export default CountinueButton;

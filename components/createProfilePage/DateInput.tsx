@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     dateWrap: {
         flexDirection: 'row',
         gap: 10,
-        flex: 1
+        width: `100%`
     },
     dateCellInput: {
         backgroundColor: '#EDEDED',
@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         paddingVertical: 8,
         height: 40,
-        maxWidth: '100%',
-        textAlign: 'center'
+        width: '100%',
+        textAlign: 'center',
     },
     dateCellText: {
         fontFamily: 'MontserratAlternates_600SemiBold',
@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
     dateCell: {
         alignItems: 'center',
         gap: 3,
-        flex: 1
+        flex: 1,
+        position: 'relative',
     }
 });
 
