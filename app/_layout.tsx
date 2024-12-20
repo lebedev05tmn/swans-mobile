@@ -14,7 +14,7 @@ export default function RootLayout() {
                     navigationBarColor: 'transparent',
                     statusBarTranslucent: true,
                     statusBarBackgroundColor: 'transparent',
-                    statusBarStyle:  'dark',
+                    statusBarStyle: 'dark',
                 }}
             ></Stack>
         </GluestackUIProvider>
