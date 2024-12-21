@@ -1,33 +1,14 @@
 import React from 'react';
-import { useWindowDimensions, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import ArrowLeftIcon from '@/assets/svg/arrowLeftIcon.svg';
 import ProgressWave from '@/assets/svg/progress.svg';
 import useContentSwitcher from './store';
-import contentPages from './ContentPages';
-import Animated, {
-    useSharedValue,
-    useAnimatedStyle,
-    withSpring,
-} from 'react-native-reanimated';
+import ContentSlider from './ContentSlider';
 
 const CreateProfilePage = () => {
-    const screenWidth = useWindowDimensions().width;
-    const { currentIndex, next, prev } = useContentSwitcher();
-    const translateX = useSharedValue(0);
-
-    const animateTransition = (newIndex: number) => {
-        if (newIndex > currentIndex) {
-            translateX.value = withSpring(-screenWidth);
-        } else {
-            translateX.value = withSpring(screenWidth);
-        }
-    };
-
-    const animatedStyle = useAnimatedStyle(() => ({
-        transform: [{ translateX: translateX.value }],
-    }));
+    const { prev } = useContentSwitcher();
 
     return (
         <LinearGradient
@@ -37,21 +18,16 @@ const CreateProfilePage = () => {
             end={{ x: 0.9, y: 0.7 }}
         >
             <SafeAreaView style={styles.container}>
+                
                 <View style={styles.header}>
-                    <Pressable
-                        style={styles.arrowLeftIcon}
-                        onPress={() => {
-                            prev();
-                            animateTransition(currentIndex - 1);
-                        }}
-                    >
+                    <Pressable style={styles.arrowLeftIcon} onPress={prev}>
                         <ArrowLeftIcon />
                     </Pressable>
                     <ProgressWave />
                 </View>
-                <Animated.View style={[animatedStyle]}>
-                    {contentPages[currentIndex]}
-                </Animated.View>
+
+                <ContentSlider />
+
             </SafeAreaView>
         </LinearGradient>
     );
