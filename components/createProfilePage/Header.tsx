@@ -9,7 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useEffect } from 'react';
 import contentPages from '@/pages/CreateProfilePage/ContentPages';
-import ProgressWaveAnimated from '@/assets/svg/ProgressWaveAnimated';
+import ProgressWaveAnimated from '@/assets/svg/progressWaveActive.svg';
 
 const Header = () => {
     const currentIndex = useContentSwitcher((state) => state.currentIndex);
