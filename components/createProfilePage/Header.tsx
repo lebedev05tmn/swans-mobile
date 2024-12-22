@@ -1,7 +1,6 @@
 import { Pressable, View, StyleSheet } from 'react-native';
 import ArrowLeftIcon from '@/assets/svg/arrowLeftIcon.svg';
 import ProgressWaveBackground from '@/assets/svg/progressWaveBackground.svg';
-import ProgressWaveActive from '@/assets/svg/progressWaveActive.svg';
 import useContentSwitcher from '@/pages/CreateProfilePage/store';
 import Animated, {
     Easing,
@@ -10,6 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useEffect } from 'react';
 import contentPages from '@/pages/CreateProfilePage/ContentPages';
+import ProgressWaveAnimated from '@/assets/svg/ProgressWaveAnimated';
 
 const Header = () => {
     const { prev, currentIndex, activeIndex, halfSwitchTime, isFirstRender } =
@@ -45,12 +45,10 @@ const Header = () => {
             <ProgressWaveBackground style={styles.progress} />
 
             <Animated.View
-                style={{ width, height: 17, position: 'absolute', left: 50 }}
+                style={{ width, height: 17, position: 'absolute', left: 50, overflow: 'hidden' }}
             >
-                <ProgressWaveActive
+                <ProgressWaveAnimated
                     style={{
-                        position: 'absolute',
-                        left: 0,
                         width: '100%',
                     }}
                 />
