@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import ArrowRightIcon from '@/assets/svg/ArrowRightIcon';
 import useContentSwitcher from '@/pages/CreateProfilePage/store';
+import ArrowRightIcon from '@/assets/svg/arrowRightIcon.svg';
 
 const CountinueButton = () => {
     const next = useContentSwitcher(state => state.next)
