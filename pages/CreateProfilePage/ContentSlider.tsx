@@ -11,15 +11,16 @@ import Animated, {
 import { useEffect } from 'react';
 
 const ContentSlider = () => {
-    const {
-        currentIndex,
-        isFirstRender,
-        activeIndex,
-        halfSwitchTime,
-        changeActiveIndex,
-        firstRender,
-    } = useContentSwitcher();
-
+    const currentIndex = useContentSwitcher((state) => state.currentIndex);
+    const activeIndex = useContentSwitcher((state) => state.activeIndex);
+    const isFirstRender = useContentSwitcher((state) => state.isFirstRender);
+    const halfSwitchTime = useContentSwitcher((state) => state.halfSwitchTime);
+    const firstRender = useContentSwitcher((state) => state.firstRender);
+    const changeActiveIndex = useContentSwitcher((state) => state.changeActiveIndex);
+    const disableCountinueButton = useContentSwitcher((state) => state.disableCountinueButton);
+    const disableBackButton = useContentSwitcher((state) => state.disableBackButton);
+    const activateCountinueButton = useContentSwitcher((state) => state.activateCountinueButton);
+    const activateBackButton = useContentSwitcher((state) => state.activateBackButton);
     const translateContent = useSharedValue<number>(0);
     const screenWidth = useWindowDimensions().width;
 
@@ -32,8 +33,17 @@ const ContentSlider = () => {
             firstRender();
             return;
         }
+
+        disableCountinueButton();
+        disableBackButton();
+        setTimeout(() => {
+            activateCountinueButton();
+            activateBackButton();
+        }, halfSwitchTime * 2);
+
         const startAnimation = () => {
-            const direction = currentIndex > activeIndex ? screenWidth : -screenWidth;
+            const direction =
+                currentIndex > activeIndex ? screenWidth : -screenWidth;
             translateContent.value = withTiming(
                 -direction,
                 {
@@ -51,7 +61,10 @@ const ContentSlider = () => {
                 },
             );
         };
+
+        
         startAnimation();
+        
     }, [currentIndex]);
 
     return (

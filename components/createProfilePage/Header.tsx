@@ -12,8 +12,12 @@ import contentPages from '@/pages/CreateProfilePage/ContentPages';
 import ProgressWaveAnimated from '@/assets/svg/ProgressWaveAnimated';
 
 const Header = () => {
-    const { prev, currentIndex, activeIndex, halfSwitchTime, isFirstRender } =
-        useContentSwitcher();
+    const currentIndex = useContentSwitcher((state) => state.currentIndex);
+    const activeIndex = useContentSwitcher((state) => state.activeIndex);
+    const isFirstRender = useContentSwitcher((state) => state.isFirstRender);
+    const halfSwitchTime = useContentSwitcher((state) => state.halfSwitchTime);
+    const isBackButtonDisabled = useContentSwitcher((state) => state.isBackButtonDisabled);
+    const prev = useContentSwitcher((state) => state.prev);
     const width = useSharedValue(0);
     const animationTime = halfSwitchTime * 2;
     const progressWidthStep = 253 / (contentPages.length + 1);
@@ -39,7 +43,7 @@ const Header = () => {
 
     return (
         <View style={styles.header}>
-            <Pressable onPress={prev}>
+            <Pressable disabled={ isBackButtonDisabled } onPress={prev}>
                 <ArrowLeftIcon />
             </Pressable>
             <ProgressWaveBackground style={styles.progress} />

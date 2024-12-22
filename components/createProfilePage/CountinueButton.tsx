@@ -3,13 +3,13 @@ import useContentSwitcher from '@/pages/CreateProfilePage/store';
 import ArrowRightIcon from '@/assets/svg/arrowRightIcon.svg';
 
 const CountinueButton = () => {
-    const next = useContentSwitcher(state => state.next)
+    const next = useContentSwitcher((state) => state.next);
+    const isCountinueButtonDisabled = useContentSwitcher((state) => state.isCountinueButtonDisabled);
+
     return (
-        <Pressable onPress={next}>
-            <View style={styles.countinueButton}>
-                <Text style={styles.text}>Продолжить</Text>
-                <ArrowRightIcon />
-            </View>
+        <Pressable style={styles.countinueButton} onPress={next} disabled={isCountinueButtonDisabled}>
+            <Text style={styles.text}>Продолжить</Text>
+            <ArrowRightIcon />
         </Pressable>
     );
 };

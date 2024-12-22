@@ -6,35 +6,48 @@ interface ContentSwitcherState {
     activeIndex: number;
     halfSwitchTime: number;
     isFirstRender: boolean;
+    isCountinueButtonDisabled: boolean;
+    isBackButtonDisabled: boolean;
     next: () => void;
     prev: () => void;
     firstRender: () => void;
     changeActiveIndex: () => void;
+    disableCountinueButton: () => void;
+    disableBackButton: () => void;
+    activateCountinueButton: () => void;
+    activateBackButton: () => void;
 }
 
 const useContentSwitcher = create<ContentSwitcherState>((set, get) => ({
     currentIndex: 0,
     activeIndex: 0,
     halfSwitchTime: 300,
+    isCountinueButtonDisabled: false,
+    isBackButtonDisabled: false,
     isFirstRender: true,
     next: () => {
-        const { currentIndex } = get();
-        const nextIndex = Math.min(currentIndex + 1, contentPages.length - 1);
+        set((state) => {
+            const nextIndex = Math.min(
+                state.currentIndex + 1,
+                contentPages.length - 1,
+            );
 
-        set({
-            currentIndex: nextIndex,
+            return { currentIndex: nextIndex };
         });
     },
     prev: () => {
-        const { currentIndex } = get();
-        const prevIndex = Math.max(currentIndex - 1, 0);
+        set((state) => {
+            const prevIndex = Math.max(state.currentIndex - 1, 0);
 
-        set({
-            currentIndex: prevIndex,
+            return { currentIndex: prevIndex };
         });
     },
     firstRender: () => set({ isFirstRender: false }),
     changeActiveIndex: () => set({ activeIndex: get().currentIndex }),
+    disableCountinueButton: () => set({ isCountinueButtonDisabled: true }),
+    disableBackButton: () => set({ isBackButtonDisabled: true }),
+    activateCountinueButton: () => set({ isCountinueButtonDisabled: false }),
+    activateBackButton: () => set({ isBackButtonDisabled: false }),
 }));
 
 export default useContentSwitcher;
