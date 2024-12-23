@@ -1,19 +1,19 @@
-import AboutTextInput from '@/src/components/createProfilePage/AboutTextInput';
-import ButtonChoice from '@/src/components/createProfilePage/ButtonChoice';
-import CountinueButton from '@/src/components/createProfilePage/CountinueButton';
-import DateInput from '@/src/components/createProfilePage/DateInput';
-import NameInput from '@/src/components/createProfilePage/NameInput';
-import PlaceInput from '@/src/components/createProfilePage/PlaceInput';
+import AboutTextInput from '@/src/components/createProfilePage/aboutTextInput';
+import ButtonChoice from '@/src/components/createProfilePage/choiceButton';
+import CountinueButton from '@/src/components/createProfilePage/nextButton';
+import DateInput from '@/src/components/createProfilePage/dateInput';
+import NameInput from '@/src/components/createProfilePage/nameInput';
+import PlaceInput from '@/src/components/createProfilePage/placeInput';
 import { StyleSheet, View, Text } from 'react-native';
 
-interface ContentPage {
+type TContentComponent = {
     title: string;
     description: string;
     input: JSX.Element;
     countinueButton: boolean;
-}
+};
 
-const data: ContentPage[] = [
+const dataCreateProfileContent: TContentComponent[] = [
     {
         title: 'Привет, давай знакомиться',
         description: 'Будь собой при выборе имени, привлекает больше внимания.',
@@ -65,15 +65,17 @@ const styles = StyleSheet.create({
     },
 });
 
-const contentPages = data.map((item: ContentPage) => {
-    return (
-        <View>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-            {item.input}
-            {item.countinueButton && <CountinueButton />}
-        </View>
-    );
-});
+const createProfileBodyComponents: JSX.Element[] = dataCreateProfileContent.map(
+    (item: TContentComponent) => {
+        return (
+            <View>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.description}>{item.description}</Text>
+                {item.input}
+                {item.countinueButton && <CountinueButton />}
+            </View>
+        );
+    },
+);
 
-export default contentPages;
+export default createProfileBodyComponents;

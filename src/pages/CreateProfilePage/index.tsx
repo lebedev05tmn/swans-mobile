@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import ContentSlider from './ContentSlider';
-import Header from '@/src/components/createProfilePage/Header';
+import CreateProfileSlider from '@/src/components/createProfilePage/createProfileSlider';
+import Header from '@/src/components/createProfilePage/header';
 
 const CreateProfilePage = () => {
     return (
@@ -16,7 +16,7 @@ const CreateProfilePage = () => {
             <SafeAreaView style={styles.container}>
                 <Header />
 
-                <ContentSlider />
+                <CreateProfileSlider />
             </SafeAreaView>
         </LinearGradient>
     );
