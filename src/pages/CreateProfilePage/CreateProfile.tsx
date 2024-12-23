@@ -3,10 +3,9 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import ContentSlider from './ContentSlider';
-import Header from '@/components/createProfilePage/Header';
+import Header from '@/src/components/createProfilePage/Header';
 
 const CreateProfilePage = () => {
-
     return (
         <LinearGradient
             colors={['#B18FCF', '#87CEEB']}

@@ -1,9 +1,9 @@
-import AboutTextInput from '@/components/createProfilePage/AboutTextInput';
-import ButtonChoice from '@/components/createProfilePage/ButtonChoice';
-import CountinueButton from '@/components/createProfilePage/CountinueButton';
-import DateInput from '@/components/createProfilePage/DateInput';
-import NameInput from '@/components/createProfilePage/NameInput';
-import PlaceInput from '@/components/createProfilePage/PlaceInput';
+import AboutTextInput from '@/src/components/createProfilePage/AboutTextInput';
+import ButtonChoice from '@/src/components/createProfilePage/ButtonChoice';
+import CountinueButton from '@/src/components/createProfilePage/CountinueButton';
+import DateInput from '@/src/components/createProfilePage/DateInput';
+import NameInput from '@/src/components/createProfilePage/NameInput';
+import PlaceInput from '@/src/components/createProfilePage/PlaceInput';
 import { StyleSheet, View, Text } from 'react-native';
 
 interface ContentPage {

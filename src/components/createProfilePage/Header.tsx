@@ -1,14 +1,14 @@
 import { Pressable, View, StyleSheet } from 'react-native';
 import ArrowLeftIcon from '@/assets/svg/arrowLeftIcon.svg';
 import ProgressWaveBackground from '@/assets/svg/progressWaveBackground.svg';
-import useContentSwitcher from '@/pages/CreateProfilePage/store';
+import useContentSwitcher from '@/src/pages/CreateProfilePage/store';
 import Animated, {
     Easing,
     useSharedValue,
     withTiming,
 } from 'react-native-reanimated';
 import { useEffect } from 'react';
-import contentPages from '@/pages/CreateProfilePage/ContentPages';
+import contentPages from '@/src/pages/CreateProfilePage/ContentPages';
 import ProgressWaveAnimated from '@/assets/svg/progressWaveActive.svg';
 
 const Header = () => {
