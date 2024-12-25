@@ -6,7 +6,7 @@ import {
     MontserratAlternates_500Medium,
     MontserratAlternates_400Regular,
 } from '@expo-google-fonts/montserrat-alternates';
-import LoadingPage from '../pages/LoadingPage';
+import CreateProfilePage from '@/src/pages/CreateProfilePage';
 
 export default function HomeScreen() {
     const [loaded] = useFonts({
@@ -20,5 +20,5 @@ export default function HomeScreen() {
         return null;
     }
 
-    return <LoadingPage />;
+    return <CreateProfilePage />;
 }

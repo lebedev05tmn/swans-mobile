@@ -1,0 +1,1 @@
+export const ANIMATION_TIME: number = 300;
