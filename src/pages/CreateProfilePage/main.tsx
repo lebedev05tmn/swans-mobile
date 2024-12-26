@@ -11,7 +11,13 @@ type TContentComponent = {
     description: string;
     input: JSX.Element;
     countinueButton: boolean;
+    validationRules?: string[];
 };
+
+const enum rules {
+    require = 'require',
+    letters = 'letters',
+}
 
 const dataCreateProfileContent: TContentComponent[] = [
     {
@@ -19,22 +25,25 @@ const dataCreateProfileContent: TContentComponent[] = [
         description: 'Будь собой при выборе имени, привлекает больше внимания.',
         input: <NameInput />,
         countinueButton: true,
+        validationRules: [rules.require, rules.letters],
     },
     {
         title: 'Где живем, там и ищем',
         description: 'Выбери свой город, чтобы найти ближайщих соулмейтов',
         input: <PlaceInput />,
         countinueButton: true,
+        validationRules: [rules.require],
     },
     {
         title: 'Выбери дату рождения',
         description: 'Используй настояющую, ее потом поменять нельзя',
         input: <DateInput />,
         countinueButton: true,
+        validationRules: [rules.require],
     },
     {
         title: 'Стань солцем среди планет',
-        description: 'Сделай свой "слоган", который выделит тебя среди всех',
+        description: 'Сделай свой \"слоган\", который выделит тебя среди всех',
         input: <AboutTextInput />,
         countinueButton: true,
     },
@@ -45,6 +54,19 @@ const dataCreateProfileContent: TContentComponent[] = [
         countinueButton: false,
     },
 ];
+
+const createProfileBodyComponents: JSX.Element[] = dataCreateProfileContent.map(
+    (item: TContentComponent) => {
+        return (
+            <View>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.description}>{item.description}</Text>
+                {item.input}
+                {item.countinueButton && <CountinueButton />}
+            </View>
+        );
+    },
+);
 
 const styles = StyleSheet.create({
     title: {
@@ -64,18 +86,5 @@ const styles = StyleSheet.create({
         marginBottom: 12,
     },
 });
-
-const createProfileBodyComponents: JSX.Element[] = dataCreateProfileContent.map(
-    (item: TContentComponent) => {
-        return (
-            <View>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.description}>{item.description}</Text>
-                {item.input}
-                {item.countinueButton && <CountinueButton />}
-            </View>
-        );
-    },
-);
 
 export default createProfileBodyComponents;

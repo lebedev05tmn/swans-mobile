@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import contentPages from './createProfileBodyComponents';
+import contentPages from './main';
 
 type TCreateProfileState = {
     nextIndex: number;
@@ -10,7 +10,7 @@ type TCreateProfileState = {
 };
 
 type TCreateProfileActions = {
-    action: {
+    actions: {
         next: () => void;
         prev: () => void;
         firstRender: () => void;
@@ -31,7 +31,7 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
     isNextButtonDisabled: false,
     isPreviousButtonDisabled: false,
 
-    action: {
+    actions: {
         next: () => {
             set((state) => {
                 const nextIndex = Math.min(

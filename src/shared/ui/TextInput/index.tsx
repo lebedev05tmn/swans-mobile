@@ -12,12 +12,11 @@ const Input = ({ customStyles, placeholder, placeholderTextColor, inputMode }: I
     return (
         <TextInput
             style={{ ...styles.textInput, ...customStyles }}
-            placeholder={placeholder || 'Введите текст'}
-            placeholderTextColor={placeholderTextColor || '#A3A3A3'}
-            inputMode={inputMode || 'text'}
+            placeholder={placeholder ?? 'Введите текст'}
+            placeholderTextColor={placeholderTextColor ?? '#A3A3A3'}
+            inputMode={inputMode ?? 'text'}
         />
     );
 };
 
 export default Input;
-

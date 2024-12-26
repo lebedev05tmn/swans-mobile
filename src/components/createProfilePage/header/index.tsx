@@ -7,7 +7,7 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated';
 import { useEffect } from 'react';
-import createProfileBodyComponents from '@/src/pages/CreateProfilePage/createProfileBodyComponents';
+import createProfileBodyComponents from '@/src/pages/CreateProfilePage/main';
 import { ANIMATION_TIME } from '@/src/shared/config/config';
 import { ArrowLeft } from 'lucide-react-native';
 
@@ -19,7 +19,7 @@ const Header = () => {
         (state) => state.isPreviousButtonDisabled,
     );
 
-    const prev = useCreateProfileStore((state) => state.action.prev);
+    const prev = useCreateProfileStore((state) => state.actions.prev);
 
     const width = useSharedValue(0);
     const animationTime = ANIMATION_TIME * 2;

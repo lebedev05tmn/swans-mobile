@@ -1,5 +1,5 @@
 import { useWindowDimensions } from 'react-native';
-import createProfileBodyComponents from '@/src/pages/CreateProfilePage/createProfileBodyComponents';
+import createProfileBodyComponents from '@/src/pages/CreateProfilePage/main';
 import useCreateProfileStore from '@/src/pages/CreateProfilePage/store';
 import Animated, {
     Easing,
@@ -23,7 +23,7 @@ const BodySlider = (): JSX.Element => {
         disableBackButton,
         activateCountinueButton,
         activateBackButton,
-    } = useCreateProfileStore().action;
+    } = useCreateProfileStore((state) => state.actions);
 
     const translateContent = useSharedValue<number>(0);
     const { width: screenWidth } = useWindowDimensions();

@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react-native';
 import Button from '@/src/shared/ui/Button';
 
 const NextButton = () => {
-    const next = createProfileStore((state) => state.action.next);
+    const next = createProfileStore((state) => state.actions.next);
     const isNextButtonDisabled = createProfileStore(
         (state) => state.isNextButtonDisabled,
     );
