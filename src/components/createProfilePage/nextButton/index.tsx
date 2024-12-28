@@ -10,15 +10,14 @@ const NextButton = () => {
     );
 
     return (
-        <Button 
-            customStyles={styles.nextButton} 
-            onPress={next} 
+        <Button
+            style={styles.nextButton}
+            onPress={next}
             disabled={isNextButtonDisabled}
         >
             <Text style={styles.text}>Продолжить</Text>
             <ArrowRight color={'#404040'} size={18} />
         </Button>
-        
     );
 };
 

@@ -7,7 +7,7 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated';
 import { useEffect } from 'react';
-import createProfileBodyComponents from '@/src/pages/CreateProfilePage/main';
+import createProfileBodyComponents from '@/src/pages/CreateProfilePage/content';
 import { ANIMATION_TIME } from '@/src/shared/config/config';
 import { ArrowLeft } from 'lucide-react-native';
 

@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
+        gap: 8,
     },
 });
 

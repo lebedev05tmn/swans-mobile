@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import BodySlider from '@/src/components/createProfilePage/BodySlider';
 import Header from '@/src/components/createProfilePage/header';
 
-const CreateProfilePage = () => {
+const CreateProfilePage: FC = () => {
     return (
         <LinearGradient
             colors={['#B18FCF', '#87CEEB']}

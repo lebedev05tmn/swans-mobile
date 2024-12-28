@@ -1,9 +1,9 @@
 import { create } from 'zustand';
-import contentPages from './main';
 
 type TCreateProfileState = {
     nextIndex: number;
     currentIndex: number;
+    pages: number;
     isFirstRender: boolean;
     isNextButtonDisabled: boolean;
     isPreviousButtonDisabled: boolean;
@@ -26,6 +26,7 @@ type TCreateProfileStore = TCreateProfileState & TCreateProfileActions;
 
 const createProfileStore = create<TCreateProfileStore>((set) => ({
     nextIndex: 0,
+    pages: 5,
     currentIndex: 0,
     isFirstRender: true,
     isNextButtonDisabled: false,
@@ -36,7 +37,7 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
             set((state) => {
                 const nextIndex = Math.min(
                     state.nextIndex + 1,
-                    contentPages.length - 1,
+                    state.pages - 1,
                 );
 
                 return { nextIndex: nextIndex };

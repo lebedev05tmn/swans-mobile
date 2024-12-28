@@ -1,15 +1,20 @@
-import { StyleSheet, View, Pressable, Text } from "react-native";
+import { StyleSheet, View, Pressable, Text } from 'react-native';
+import { useRouter } from 'expo-router';
 
 type Props = {
-    text: string,
-}
+    text: string;
+};
 
-const Btn: React.FC<Props> = ({text}) => {
+const Btn: React.FC<Props> = ({ text }) => {
+    const router = useRouter();
     return (
-        <Pressable>
-            <View style={styles.button}>
-                <Text style={styles.text}>{text}</Text>
-            </View>
+        <Pressable
+            style={styles.button}
+            onPress={() => {
+                router.push('/choose');
+            }}
+        >
+            <Text style={styles.text}>{text}</Text>
         </Pressable>
     );
 };
@@ -17,15 +22,15 @@ const Btn: React.FC<Props> = ({text}) => {
 const ButtonChoice = () => {
     return (
         <View style={styles.buttonsWrap}>
-            <Btn text={'Мужчина'}/>
-            <Btn text={'Женщина'}/>
+            <Btn text={'Мужчина'} />
+            <Btn text={'Женщина'} />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     buttonsWrap: {
-        gap: 13
+        gap: 13,
     },
     button: {
         height: 50,
@@ -42,7 +47,7 @@ const styles = StyleSheet.create({
         fontWeight: 500,
         fontSize: 16,
         lineHeight: 19,
-    }
+    },
 });
 
 export default ButtonChoice;
