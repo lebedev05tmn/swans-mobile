@@ -1,1 +1,1 @@
-export const ANIMATION_TIME: number = 300;
+export const ANIMATION_TIME: number = 400;
