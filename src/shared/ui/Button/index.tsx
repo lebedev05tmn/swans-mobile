@@ -1,22 +1,23 @@
-import { Pressable, PressableProps, ViewStyle } from 'react-native';
+import { TouchableOpacity, ViewStyle } from 'react-native';
 import styles from './styles';
 
 type TButton = {
     children: React.ReactNode;
-    customStyles?: ViewStyle;
+    style?: ViewStyle;
     disabled?: boolean;
-    onPress?: PressableProps['onPress'];
+    onPress?: (() => void);
 };
 
-const Button = ({ children, customStyles, onPress, disabled }: TButton) => {
+const Button = ({ children, style, onPress, disabled }: TButton) => {
     return (
-        <Pressable
+        <TouchableOpacity
             onPress={onPress}
             disabled={disabled}
-            style={{ ...styles.button, ...customStyles }}
+            activeOpacity={0.7}
+            style={{ ...styles.button, ...style }}
         >
             {children}
-        </Pressable>
+        </TouchableOpacity>
     );
 };
 

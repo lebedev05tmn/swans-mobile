@@ -6,6 +6,7 @@ module.exports = function (config) {
     ...config,
     expo: {
       ...config.expo,
+      entryPoint: './src/app',
       extra: {
         assets: ['./assets/fonts/MontserratAlternates-Bold.ttf'],
       },
