@@ -6,7 +6,6 @@ import {
     MontserratAlternates_500Medium,
     MontserratAlternates_400Regular,
 } from '@expo-google-fonts/montserrat-alternates';
-import '@/global.css';
 import LoadingPage from '../pages/LoadingPage';
 
 export default function RootLayout() {
