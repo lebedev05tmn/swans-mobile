@@ -17,7 +17,7 @@ const MainSlider = (): JSX.Element => {
     const isFirstRender = useCreateProfileStore((state) => state.isFirstRender);
 
     const {
-        firstRender,
+        unsetFirstRender,
         changeActiveIndex,
         disableCountinueButton,
         disableBackButton,
@@ -33,10 +33,7 @@ const MainSlider = (): JSX.Element => {
     }));
 
     useEffect(() => {
-        if (isFirstRender) {
-            firstRender();
-            return;
-        }
+        if (isFirstRender) return;
 
         disableCountinueButton();
         disableBackButton();

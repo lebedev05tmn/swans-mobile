@@ -1,24 +1,18 @@
 import { StyleSheet, View, Text } from 'react-native';
 import Button from '@/src/shared/ui/Button';
 import useCreateProfileStore from '@/src/shared/stores/createProfile/store';
-
+import { ANIMATION_TIME } from '@/src/shared/config/config';
 
 const ButtonChoice = () => {
-    const { toggleFooterVision, toggleHeaderVision, toggleChooseInterests } = useCreateProfileStore((state) => state.actions);
-
-    const togglePage = () => {
-        toggleFooterVision();
-        toggleHeaderVision();
-        // toggleChooseInterests();
-    };
+    const { toggleContent } = useCreateProfileStore((state) => state.actions);
 
     return (
         <View style={styles.buttonsWrap}>
-            <Button onPress={togglePage}>
+            <Button onPress={toggleContent}>
                 <Text style={styles.text}>Женщина</Text>
             </Button>
 
-            <Button onPress={togglePage}>
+            <Button onPress={toggleContent}>
                 <Text style={styles.text}>Мужчина</Text>
             </Button>
         </View>

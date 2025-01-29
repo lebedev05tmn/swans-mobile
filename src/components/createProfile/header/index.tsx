@@ -21,14 +21,9 @@ const Header = () => {
 
     useEffect(() => {
         const startAnimation = () => {
-            let direction = 1;
-
-            if (nextIndex < currentIndex && !isFirstRender) {
-                direction = -1;
-            }
 
             width.value = withTiming(
-                width.value + direction * progressWidthStep,
+                progressWidthStep * (nextIndex + 1),
                 {
                     duration: animationTime,
                     easing: Easing.inOut(Easing.cubic),

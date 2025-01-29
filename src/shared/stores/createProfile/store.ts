@@ -7,8 +7,6 @@ type TCreateProfileState = {
     isFirstRender: boolean;
     isNextButtonDisabled: boolean;
     isPreviousButtonDisabled: boolean;
-    isFooterVisible: boolean;
-    isHeaderVisible: boolean;
     isChooseInterestsActive: boolean;
 };
 
@@ -16,15 +14,14 @@ type TCreateProfileActions = {
     actions: {
         next: () => void;
         prev: () => void;
-        firstRender: () => void;
+        setFirstRender: () => void;
+        unsetFirstRender: () => void;
         changeActiveIndex: () => void;
         disableCountinueButton: () => void;
         disableBackButton: () => void;
         activateCountinueButton: () => void;
         activateBackButton: () => void;
-        toggleFooterVision: () => void;
-        toggleHeaderVision: () => void;
-        toggleChooseInterests: () => void;
+        toggleContent: () => void;
     };
 };
 
@@ -37,8 +34,6 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
     isFirstRender: true,
     isNextButtonDisabled: false,
     isPreviousButtonDisabled: false,
-    isFooterVisible: true,
-    isHeaderVisible: true,
     isChooseInterestsActive: false,
     actions: {
         next: () => {
@@ -58,16 +53,15 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
                 return { nextIndex: nextIndex };
             });
         },
-        firstRender: () => set({ isFirstRender: false }),
+        setFirstRender: () => set(state => ({ isFirstRender: true })),
+        unsetFirstRender: () => set(state => ({ isFirstRender: false })),
         changeActiveIndex: () =>
             set((state) => ({ currentIndex: state.nextIndex })),
         disableCountinueButton: () => set({ isNextButtonDisabled: true }),
         disableBackButton: () => set({ isPreviousButtonDisabled: true }),
         activateCountinueButton: () => set({ isNextButtonDisabled: false }),
         activateBackButton: () => set({ isPreviousButtonDisabled: false }),
-        toggleFooterVision: () => set((state) => ({ isFooterVisible: !state.isFooterVisible })),
-        toggleHeaderVision: () => set((state) => ({ isHeaderVisible: !state.isHeaderVisible })),
-        toggleChooseInterests: () => set((state) => ({ isChooseInterestsActive: !state.isChooseInterestsActive })),
+        toggleContent: () => set((state) => ({ isChooseInterestsActive: !state.isChooseInterestsActive })),
     },
 }));
 

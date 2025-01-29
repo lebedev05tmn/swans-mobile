@@ -1,10 +1,9 @@
-import React, { FC } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import React, { FC, useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import BodySlider from '@/src/components/createProfile/mainSlider';
 import Header from '@/src/components/createProfile/header';
-import { ArrowLeft } from 'lucide-react-native';
 import createProfileStore from '@/src/shared/stores/createProfile/store';
 import SeaFooter from '@/src/assets/svg/seaFooter.svg';
 import Animated, {
@@ -15,24 +14,22 @@ import Animated, {
 } from 'react-native-reanimated';
 import { ANIMATION_TIME } from '@/src/shared/config/config';
 import ChooseInterests from '@/src/components/createProfile/chooseInterests/index';
+import BackButton from '@/src/components/createProfile/backButton';
+import { Dimensions } from 'react-native';
 
 const CreateProfilePage: FC = () => {
-    const prev = createProfileStore((state) => state.actions.prev);
-    const isPreviousButtonDisabled = createProfileStore(
-        (state) => state.isPreviousButtonDisabled,
-    );
-    const isHeaderVisible = createProfileStore(
-        (state) => state.isHeaderVisible,
-    );
-    const isFooterVisible = createProfileStore(
-        (state) => state.isFooterVisible,
-    );
+    const { prev, toggleContent, setFirstRender, unsetFirstRender } =
+        createProfileStore((state) => state.actions);
     const isChooseInterestsActive = createProfileStore(
         (state) => state.isChooseInterestsActive,
     );
+    const [page, setPage] = useState(isChooseInterestsActive); // false - slider, true - chooseInterests
+    const isFirstRender = createProfileStore((state) => state.isFirstRender);
+    const displayWidth = Dimensions.get('window').width;
 
-    const translateFooter = useSharedValue<number>(275);
+    const translateFooter = useSharedValue<number>(60);
     const translateHeader = useSharedValue<number>(0);
+    const translateContent = useSharedValue<number>(0);
 
     const animatedFooterStyles = useAnimatedStyle(() => ({
         transform: [{ translateY: translateFooter.value }],
@@ -40,34 +37,84 @@ const CreateProfilePage: FC = () => {
     const animatedHeaderStyles = useAnimatedStyle(() => ({
         transform: [{ translateY: translateHeader.value }],
     }));
+    const translateContentStyles = useAnimatedStyle(() => ({
+        transform: [{ translateX: translateContent.value }],
+    }));
 
-    React.useEffect(() => {
-        if (isFooterVisible) {
-            translateFooter.value = withTiming(25, {
+    const switchOnInterests = () => {
+        translateContent.value = withTiming(-displayWidth, {
+            duration: ANIMATION_TIME,
+            easing: Easing.in(Easing.cubic),
+        });
+
+        translateHeader.value = withTiming(-300, {
+            duration: ANIMATION_TIME,
+            easing: Easing.in(Easing.cubic),
+        });
+
+        translateFooter.value = withTiming(310, {
+            duration: ANIMATION_TIME,
+            easing: Easing.in(Easing.cubic),
+        });
+
+        setTimeout(() => {
+            translateContent.value = displayWidth;
+            setPage(!page);
+
+            translateContent.value = withTiming(0, {
                 duration: ANIMATION_TIME,
                 easing: Easing.out(Easing.cubic),
             });
-        } else {
-            translateFooter.value = withTiming(275, {
-                duration: ANIMATION_TIME,
-                easing: Easing.in(Easing.cubic),
-            });
-        }
-    }, [isFooterVisible]);
+        }, ANIMATION_TIME);
+    };
 
-    React.useEffect(() => {
-        if (isHeaderVisible) {
+    const switchOnSlider = () => {
+        setFirstRender();
+
+        translateContent.value = withTiming(displayWidth, {
+            duration: ANIMATION_TIME,
+            easing: Easing.in(Easing.cubic),
+        });
+
+        setTimeout(() => {
             translateHeader.value = withTiming(0, {
                 duration: ANIMATION_TIME,
                 easing: Easing.out(Easing.cubic),
             });
-        } else {
-            translateHeader.value = withTiming(-300, {
+
+            translateFooter.value = withTiming(60, {
                 duration: ANIMATION_TIME,
-                easing: Easing.in(Easing.cubic),
+                easing: Easing.out(Easing.cubic),
             });
+            translateContent.value = -displayWidth;
+
+            setPage(!page);
+
+            translateContent.value = withTiming(0, {
+                duration: ANIMATION_TIME,
+                easing: Easing.out(Easing.cubic),
+            });
+
+            setTimeout(() => unsetFirstRender(), 0);
+        }, ANIMATION_TIME);
+    };
+
+    const back = () => {
+        toggleContent();
+    };
+
+    useEffect(() => {
+        if (isFirstRender) {
+            unsetFirstRender();
+            return;
         }
-    }, [isHeaderVisible]);
+
+        if (isChooseInterestsActive) {
+            switchOnInterests();
+        } else {
+            switchOnSlider();
+        }
+    }, [isChooseInterestsActive]);
 
     return (
         <LinearGradient
@@ -77,25 +124,32 @@ const CreateProfilePage: FC = () => {
             end={{ x: 0.9, y: 0.7 }}
         >
             <SafeAreaView style={styles.container}>
-                <View style={{ flex: 1 }}>
-                    <TouchableOpacity
-                        disabled={isPreviousButtonDisabled}
-                        onPress={prev}
-                        style={styles.prevButton}
-                    >
-                        <ArrowLeft color={'#CECECE'} size={24} />
-                    </TouchableOpacity>
+                {page ? (
+                    <View style={{ flex: 1 }}>
+                        <BackButton onPress={back} />
 
-                    <Animated.View style={animatedHeaderStyles}>
-                        <Header />
-                    </Animated.View>
+                        <Animated.View
+                            style={[translateContentStyles, { flex: 1 }]}
+                        >
+                            <ChooseInterests />
+                        </Animated.View>
+                    </View>
+                ) : (
+                    <View style={{ flex: 1 }}>
+                        <BackButton onPress={prev} />
 
-                    {isChooseInterestsActive ? (
-                        <ChooseInterests />
-                    ) : (
-                        <BodySlider />
-                    )}
-                </View>
+                        <Animated.View style={animatedHeaderStyles}>
+                            <Header />
+                        </Animated.View>
+
+                        <Animated.View
+                            style={translateContentStyles}
+                        >
+                            <BodySlider />
+                        </Animated.View>
+                    </View>
+                )}
+
                 <Animated.View style={animatedFooterStyles}>
                     <SeaFooter
                         style={{

@@ -5,7 +5,7 @@ type TButton = {
     children: React.ReactNode;
     style?: ViewStyle;
     disabled?: boolean;
-    onPress?: (() => void);
+    onPress?: () => void;
 };
 
 const Button = ({ children, style, onPress, disabled }: TButton) => {
@@ -13,7 +13,7 @@ const Button = ({ children, style, onPress, disabled }: TButton) => {
         <TouchableOpacity
             onPress={onPress}
             disabled={disabled}
-            activeOpacity={0.7}
+            activeOpacity={0.75}
             style={{ ...styles.button, ...style }}
         >
             {children}

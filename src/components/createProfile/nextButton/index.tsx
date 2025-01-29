@@ -11,7 +11,7 @@ const NextButton = () => {
 
     return (
         <Button
-            style={styles.nextButton}
+            style={{...styles.nextButton, ...(isNextButtonDisabled && styles.disabled)}}
             onPress={next}
             disabled={isNextButtonDisabled}
         >
@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
     nextButton: {
         gap: 8,
         marginTop: 28,
+    },
+    disabled: {
+        opacity: 0.75,
     },
     text: {
         color: '#404040',
