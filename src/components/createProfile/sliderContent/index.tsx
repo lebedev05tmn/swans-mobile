@@ -4,6 +4,7 @@ import dataCreateProfileContent, {
 } from '@/src/shared/data/createProfile/data';
 import { View, Text } from 'react-native';
 import styles from './style';
+import ChooseInterests from '../chooseInterests';
 
 const createProfileBodyComponents: JSX.Element[] = dataCreateProfileContent.map(
     (item: TContentComponent) => {
@@ -18,4 +19,11 @@ const createProfileBodyComponents: JSX.Element[] = dataCreateProfileContent.map(
     },
 );
 
+createProfileBodyComponents.push(<ChooseInterests />);
+
+export const page = createProfileBodyComponents.length;
+
 export default createProfileBodyComponents;
+
+
+

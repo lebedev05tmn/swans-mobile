@@ -12,12 +12,11 @@ import { ANIMATION_TIME } from '@/src/shared/config/config';
 
 const Header = () => {
     const nextIndex = useCreateProfileStore((state) => state.nextIndex);
-    const currentIndex = useCreateProfileStore((state) => state.currentIndex);
-    const isFirstRender = useCreateProfileStore((state) => state.isFirstRender);
+    const pages = useCreateProfileStore((state) => state.pages);
 
     const width = useSharedValue(0);
     const animationTime = ANIMATION_TIME * 2;
-    const progressWidthStep = 253 / createProfileBodyComponents.length;
+    const progressWidthStep = 253 / (pages - 1);
 
     useEffect(() => {
         const startAnimation = () => {

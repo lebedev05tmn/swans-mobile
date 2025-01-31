@@ -5,7 +5,7 @@ import SubmitButton from './SubmitButton/index';
 
 const ChooseInterests = () => {
     return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
             <Text style={styles.title}>Выбери свои{'\n'} интересы</Text>
             <ChooseInterestsContent />
             <SubmitButton />
@@ -16,6 +16,10 @@ const ChooseInterests = () => {
 export default ChooseInterests;
 
 const styles = StyleSheet.create({
+    container: {
+        height: '100%',
+        width: '100%',
+    },
     title: {
         fontFamily: 'MontserratAlternates_700Bold',
         fontWeight: 700,

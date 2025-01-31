@@ -1,18 +1,26 @@
 import { StyleSheet, View, Text } from 'react-native';
 import Button from '@/src/shared/ui/Button';
 import useCreateProfileStore from '@/src/shared/stores/createProfile/store';
-import { ANIMATION_TIME } from '@/src/shared/config/config';
-
 const ButtonChoice = () => {
-    const { toggleContent } = useCreateProfileStore((state) => state.actions);
+    const { toggleContent, next } = useCreateProfileStore(
+        (state) => state.actions,
+    );
+    const isNextButtonDisabled = useCreateProfileStore(
+        (state) => state.isNextButtonDisabled,
+    );
+
+    const swithContent = () => {
+        toggleContent();
+        next();
+    };
 
     return (
         <View style={styles.buttonsWrap}>
-            <Button onPress={toggleContent}>
+            <Button onPress={swithContent} disabled={isNextButtonDisabled}>
                 <Text style={styles.text}>Женщина</Text>
             </Button>
 
-            <Button onPress={toggleContent}>
+            <Button onPress={swithContent} disabled={isNextButtonDisabled}>
                 <Text style={styles.text}>Мужчина</Text>
             </Button>
         </View>

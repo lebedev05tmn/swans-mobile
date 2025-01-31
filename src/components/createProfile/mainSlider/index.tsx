@@ -10,6 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useEffect } from 'react';
 import { ANIMATION_TIME } from '@/src/shared/config/config';
+import { page } from '@/src/components/createProfile/sliderContent';
 
 const MainSlider = (): JSX.Element => {
     const nextIndex = useCreateProfileStore((state) => state.nextIndex);
@@ -18,7 +19,7 @@ const MainSlider = (): JSX.Element => {
 
     const {
         unsetFirstRender,
-        changeActiveIndex,
+        changeCurrentIndex,
         disableCountinueButton,
         disableBackButton,
         activateCountinueButton,
@@ -33,7 +34,10 @@ const MainSlider = (): JSX.Element => {
     }));
 
     useEffect(() => {
-        if (isFirstRender) return;
+        if (isFirstRender) {
+            unsetFirstRender();
+            return;
+        }
 
         disableCountinueButton();
         disableBackButton();
@@ -44,30 +48,32 @@ const MainSlider = (): JSX.Element => {
 
         const startAnimation = () => {
             const direction =
-                nextIndex > currentIndex ? screenWidth : -screenWidth;
-            translateContent.value = withTiming(
-                -direction,
-                {
-                    duration: ANIMATION_TIME,
-                    easing: Easing.in(Easing.cubic),
-                },
-                () => {
-                    runOnJS(changeActiveIndex)();
+                nextIndex > currentIndex
+                    ? screenWidth * 1.1
+                    : -screenWidth * 1.1;
 
-                    translateContent.value = direction;
-                    translateContent.value = withTiming(0, {
-                        duration: ANIMATION_TIME,
-                        easing: Easing.out(Easing.cubic),
-                    });
-                },
-            );
+            translateContent.value = withTiming(-direction, {
+                duration: ANIMATION_TIME,
+                easing: Easing.in(Easing.cubic),
+            });
+
+            setTimeout(() => {
+                changeCurrentIndex();
+
+                translateContent.value = direction;
+                
+                translateContent.value = withTiming(0, {
+                    duration: ANIMATION_TIME,
+                    easing: Easing.out(Easing.cubic),
+                });
+            }, ANIMATION_TIME);
         };
 
         startAnimation();
     }, [nextIndex]);
 
     return (
-        <Animated.View style={animatedStyles}>
+        <Animated.View style={[animatedStyles, { flex: 1 }]}>
             {createProfileBodyComponents[currentIndex]}
         </Animated.View>
     );
