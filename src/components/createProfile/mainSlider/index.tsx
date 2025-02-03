@@ -3,14 +3,13 @@ import createProfileBodyComponents from '@/src/components/createProfile/sliderCo
 import useCreateProfileStore from '@/src/shared/stores/createProfile/store';
 import Animated, {
     Easing,
-    runOnJS,
     useAnimatedStyle,
     useSharedValue,
+    withSpring,
     withTiming,
 } from 'react-native-reanimated';
 import { useEffect } from 'react';
 import { ANIMATION_TIME } from '@/src/shared/config/config';
-import { page } from '@/src/components/createProfile/sliderContent';
 
 const MainSlider = (): JSX.Element => {
     const nextIndex = useCreateProfileStore((state) => state.nextIndex);
@@ -62,9 +61,8 @@ const MainSlider = (): JSX.Element => {
 
                 translateContent.value = direction;
                 
-                translateContent.value = withTiming(0, {
-                    duration: ANIMATION_TIME,
-                    easing: Easing.out(Easing.cubic),
+                translateContent.value = withSpring(0, {
+                    damping: 15,
                 });
             }, ANIMATION_TIME);
         };

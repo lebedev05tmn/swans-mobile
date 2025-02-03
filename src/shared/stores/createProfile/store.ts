@@ -1,5 +1,16 @@
 import { create } from 'zustand';
-import { page } from '@/src/components/createProfile/sliderContent';
+
+type TForm = {
+    user_id: number;
+    user_name: string;
+    birth_date: string;
+    sex: string;
+    images: string[];
+    short_desc: string;
+    long_desc: string;
+    categories: string[];
+    geolocation: number[];
+}
 
 type TCreateProfileState = {
     nextIndex: number;
@@ -10,6 +21,7 @@ type TCreateProfileState = {
     isNextButtonDisabled: boolean;
     isPreviousButtonDisabled: boolean;
     isChooseInterestsActive: boolean;
+    form: any;
 };
 
 type TCreateProfileActions = {
@@ -39,9 +51,19 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
     isNextButtonDisabled: false,
     isPreviousButtonDisabled: false,
     isChooseInterestsActive: false,
+    form: {
+        user_id: 0,
+        user_name: '',
+        birth_date: '',
+        sex: '',
+        images: ['string'],
+        short_desc: '',
+        long_desc: '',
+        categories: [''],
+        geolocation: [0],
+    },
     actions: {
-        next: () =>
-            set((state) => ({nextIndex: state.nextIndex + 1})),
+        next: () => set((state) => ({ nextIndex: state.nextIndex + 1 })),
 
         prev: () =>
             set((state) => ({ nextIndex: Math.max(state.nextIndex - 1, 0) })),
