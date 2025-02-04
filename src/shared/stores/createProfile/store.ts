@@ -58,7 +58,7 @@ type TCreateProfileStore = TCreateProfileState & TCreateProfileActions;
 const createProfileStore = create<TCreateProfileStore>((set) => ({
     nextIndex: 0,
     currentIndex: 0,
-    pages: 6,
+    pages: 7,
     currentPage: false, // false - slider, true - chooseInterests
     isFirstRender: true,
     isNextButtonDisabled: false,

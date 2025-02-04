@@ -37,12 +37,14 @@ const CreateProfilePage: FC = () => {
 
     useEffect(() => {
         if (nextIndex === pages - 1 && currentIndex === pages - 2) {
-            translateFooter.value = withTiming(300, {
+            translateHeader.value = withTiming(-300, {
                 duration: ANIMATION_TIME,
                 easing: Easing.in(Easing.cubic),
             });
+        }
 
-            translateHeader.value = withTiming(-300, {
+        if (nextIndex === pages - 2 && currentIndex === pages - 3) {
+            translateFooter.value = withTiming(300, {
                 duration: ANIMATION_TIME,
                 easing: Easing.in(Easing.cubic),
             });
@@ -50,12 +52,16 @@ const CreateProfilePage: FC = () => {
 
         if (currentIndex === pages - 1 && nextIndex === pages - 2) {
             setTimeout(() => {
-                translateFooter.value = withTiming(60, {
+                translateHeader.value = withTiming(0, {
                     duration: ANIMATION_TIME,
                     easing: Easing.out(Easing.cubic),
                 });
+            }, ANIMATION_TIME);
+        }
 
-                translateHeader.value = withTiming(0, {
+        if (currentIndex === pages - 2 && nextIndex === pages - 3) {
+            setTimeout(() => {
+                translateFooter.value = withTiming(60, {
                     duration: ANIMATION_TIME,
                     easing: Easing.out(Easing.cubic),
                 });
