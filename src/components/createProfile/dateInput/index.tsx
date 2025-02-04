@@ -12,6 +12,7 @@ type Props = {
     inputRef?: React.RefObject<TextInput>;
     onSubmitEditing?: () => void;
     onFocus?: () => void;
+    onChangeText?: (text: string) => void;
 };
 
 const DateInputCell: React.FC<Props> = ({
@@ -22,6 +23,7 @@ const DateInputCell: React.FC<Props> = ({
     inputRef,
     onSubmitEditing,
     onFocus,
+    onChangeText,
 }) => {
     return (
         <View style={styles.dateCell}>
@@ -36,13 +38,14 @@ const DateInputCell: React.FC<Props> = ({
                 value={value}
                 onSubmitEditing={onSubmitEditing}
                 onFocus={onFocus}
+                onChangeText={onChangeText}
             />
         </View>
     );
 };
 
 const DateInput = () => {
-    const { hideDatePicker, setBirthDate, showDatePicker } = createProfileStore(
+    const { hideDatePicker, setBirthDate, showDatePicker, setDay, setMonth, setYear } = createProfileStore(
         (state) => state.actions,
     );
     const isDatePickerVisible = createProfileStore(
@@ -67,6 +70,28 @@ const DateInput = () => {
         hideDatePicker();
     };
 
+    const handleFocus = (field: string) => {
+        if (isFirstFocus) {
+            Keyboard.dismiss();
+            showDatePicker();
+            setIsFirstFocus(false);
+        } else {
+            switch (field) {
+                case 'day':
+                    dayInputRef.current?.focus();
+                    break;
+                case 'month':
+                    monthInputRef.current?.focus();
+                    break;
+                case 'year':
+                    yearInputRef.current?.focus();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
     return (
         <View style={styles.dateWrap}>
             <DateInputCell
@@ -75,16 +100,14 @@ const DateInput = () => {
                 placeholderText="01"
                 length={2}
                 inputRef={dayInputRef}
-                onFocus={() => {
-                    if (isFirstFocus) {
-                        Keyboard.dismiss();
-                        showDatePicker();
-                        setIsFirstFocus(false);
-                    } else {
-                        dayInputRef.current?.focus();
+                onFocus={() => handleFocus('day')}
+                onChangeText={(text) => setDay(text)}
+                onSubmitEditing={() => {
+                    if (day.length === 1) {
+                        setDay(`0${day}`);
                     }
+                    handleFocus('month');
                 }}
-                onSubmitEditing={() => monthInputRef.current?.focus()}
             />
             <DateInputCell
                 text="Месяц"
@@ -92,16 +115,14 @@ const DateInput = () => {
                 placeholderText="12"
                 length={2}
                 inputRef={monthInputRef}
-                onFocus={() => {
-                    if (isFirstFocus) {
-                        Keyboard.dismiss();
-                        showDatePicker();
-                        setIsFirstFocus(false);
-                    } else {
-                        monthInputRef.current?.focus();
+                onFocus={() => handleFocus('month')}
+                onChangeText={(text) => setMonth(text)}
+                onSubmitEditing={() => {
+                    if (month.length === 1) {
+                        setMonth(`0${month}`);
                     }
+                    handleFocus('year');
                 }}
-                onSubmitEditing={() => yearInputRef.current?.focus()}
             />
             <DateInputCell
                 text="Год"
@@ -109,15 +130,8 @@ const DateInput = () => {
                 placeholderText="1999"
                 length={4}
                 inputRef={yearInputRef}
-                onFocus={() => {
-                    if (isFirstFocus) {
-                        Keyboard.dismiss();
-                        showDatePicker();
-                        setIsFirstFocus(false);
-                    } else {
-                        yearInputRef.current?.focus();
-                    }
-                }}
+                onChangeText={(text) => setYear(text)}
+                onFocus={() => handleFocus('year')}
             />
 
             <DateTimePickerModal

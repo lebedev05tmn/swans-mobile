@@ -11,7 +11,7 @@ const LongDescriptionInput = () => {
         <Input
             style={styles.aboutTextInput}
             placeholder="Напиши текст до 120 символов..."
-            onChange={(e) => setLongDescription(e.target.value)}
+            onChangeText={(text) => setLongDescription(text)}
             value={longDescription}
             multiline={true}
             maxLength={120}

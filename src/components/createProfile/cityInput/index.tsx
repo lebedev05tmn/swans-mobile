@@ -7,7 +7,7 @@ const CityInput = () => {
 
     return (
         <Input
-            onChange={(e) => setCity(e.target.value)}
+            onChangeText={(text) => setCity(text)}
             value={city}
             placeholder="Город..."
             placeholderTextColor="#A3A3A3"

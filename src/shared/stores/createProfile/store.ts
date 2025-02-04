@@ -11,7 +11,7 @@ type TForm = {
     long_desc: string;
     categories: string[];
     geolocation: number[];
-}
+};
 
 type TCreateProfileState = {
     nextIndex: number;
@@ -45,6 +45,9 @@ type TCreateProfileActions = {
         showDatePicker: () => void;
         hideDatePicker: () => void;
         setBirthDate: (birthDate: string) => void;
+        setDay: (day: string) => void;
+        setMonth: (month: string) => void;
+        setYear: (year: string) => void;
         setLongDesc: (longDesc: string) => void;
         setSex: (sex: string) => void;
     };
@@ -102,7 +105,48 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
         showDatePicker: () => set({ isDatePickerVisible: true }),
         hideDatePicker: () => set({ isDatePickerVisible: false }),
         setBirthDate: (birthDate: string) =>
-            set((state) => ({ form: { ...state.form, birth_date: birthDate } })),
+            set((state) => ({
+                form: { ...state.form, birth_date: birthDate },
+            })),
+        setDay: (day: string) =>
+            set((state) => {
+                const [year, month, _] = state.form.birth_date
+                    ? state.form.birth_date.split('-')
+                    : ['', '', ''];
+                    
+                return {
+                    form: {
+                        ...state.form,
+                        birth_date: `${year}-${month}-${day}`,
+                    },
+                };
+            }),
+        setMonth: (month: string) =>
+            set((state) => {
+                const [year, _, day] = state.form.birth_date
+                    ? state.form.birth_date.split('-')
+                    : ['', '', ''];
+                
+                return {
+                    form: {
+                        ...state.form,
+                        birth_date: `${year}-${month}-${day}`,
+                    },
+                };
+            }),
+        setYear: (year: string) =>
+            set((state) => {
+                const [_, month, day] = state.form.birth_date
+                    ? state.form.birth_date.split('-')
+                    : ['', '', ''];
+
+                return {
+                    form: {
+                        ...state.form,
+                        birth_date: `${year}-${month}-${day}`,
+                    },
+                };
+            }),
         setLongDesc: (longDesc: string) =>
             set((state) => ({ form: { ...state.form, long_desc: longDesc } })),
         setSex: (sex: string) =>

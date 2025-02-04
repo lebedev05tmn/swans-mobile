@@ -7,7 +7,7 @@ const NameInput = () => {
 
     return (
         <Input
-            onChange={(e) => setUserName(e.target.value)}
+            onChangeText={(text) => setUserName(text)}
             value={userName}
             placeholder="Имя"
             placeholderTextColor="#A3A3A3"
