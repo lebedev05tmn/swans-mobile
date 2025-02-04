@@ -1,38 +1,134 @@
+import React, { useRef, useState } from 'react';
+import { StyleSheet, Text, View, TextInput, Keyboard } from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import createProfileStore from '@/src/shared/stores/createProfile/store';
 import Input from '@/src/shared/ui/Input';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 type Props = {
     text: string;
+    value: string;
     placeholderText: string;
-    lenght: number;
+    length: number;
+    inputRef?: React.RefObject<TextInput>;
+    onSubmitEditing?: () => void;
+    onFocus?: () => void;
 };
 
-const DateInputCell: React.FC<Props> = ({ text, placeholderText, lenght }) => {
+const DateInputCell: React.FC<Props> = ({
+    text,
+    value,
+    placeholderText,
+    length,
+    inputRef,
+    onSubmitEditing,
+    onFocus,
+}) => {
     return (
         <View style={styles.dateCell}>
             <Text style={styles.dateCellText}>{text}</Text>
             <Input
+                ref={inputRef}
                 style={styles.dateCellInput}
                 placeholder={placeholderText}
-                placeholderTextColor="#A3A3A3"
                 inputMode="numeric"
                 textAlign="center"
-                maxLength={lenght}
+                maxLength={length}
+                value={value}
+                onSubmitEditing={onSubmitEditing}
+                onFocus={onFocus}
             />
         </View>
     );
 };
 
 const DateInput = () => {
+    const { hideDatePicker, setBirthDate, showDatePicker } = createProfileStore(
+        (state) => state.actions,
+    );
+    const isDatePickerVisible = createProfileStore(
+        (state) => state.isDatePickerVisible,
+    );
+    const birthDate = createProfileStore((state) => state.form.birth_date);
+
+    const [isFirstFocus, setIsFirstFocus] = useState(true);
+    const [year, month, day] = birthDate ? birthDate.split('-') : ['', '', ''];
+
+    const dayInputRef = useRef<TextInput>(null);
+    const monthInputRef = useRef<TextInput>(null);
+    const yearInputRef = useRef<TextInput>(null);
+
+    const handleConfirm = (date: Date) => {
+        const formattedDate = date.toISOString().split('T')[0];
+        setBirthDate(formattedDate);
+        hideDatePicker();
+    };
+
+    const handleCancel = () => {
+        hideDatePicker();
+    };
+
     return (
         <View style={styles.dateWrap}>
-            <DateInputCell text="День" placeholderText="01" lenght={2} />
-            <DateInputCell text="Месяц" placeholderText="12" lenght={2} />
-            <DateInputCell text="Год" placeholderText="1999" lenght={4} />
+            <DateInputCell
+                text="День"
+                value={day}
+                placeholderText="01"
+                length={2}
+                inputRef={dayInputRef}
+                onFocus={() => {
+                    if (isFirstFocus) {
+                        Keyboard.dismiss();
+                        showDatePicker();
+                        setIsFirstFocus(false);
+                    } else {
+                        dayInputRef.current?.focus();
+                    }
+                }}
+                onSubmitEditing={() => monthInputRef.current?.focus()}
+            />
+            <DateInputCell
+                text="Месяц"
+                value={month}
+                placeholderText="12"
+                length={2}
+                inputRef={monthInputRef}
+                onFocus={() => {
+                    if (isFirstFocus) {
+                        Keyboard.dismiss();
+                        showDatePicker();
+                        setIsFirstFocus(false);
+                    } else {
+                        monthInputRef.current?.focus();
+                    }
+                }}
+                onSubmitEditing={() => yearInputRef.current?.focus()}
+            />
+            <DateInputCell
+                text="Год"
+                value={year}
+                placeholderText="1999"
+                length={4}
+                inputRef={yearInputRef}
+                onFocus={() => {
+                    if (isFirstFocus) {
+                        Keyboard.dismiss();
+                        showDatePicker();
+                        setIsFirstFocus(false);
+                    } else {
+                        yearInputRef.current?.focus();
+                    }
+                }}
+            />
+
+            <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                onConfirm={handleConfirm}
+                onCancel={handleCancel}
+            />
         </View>
     );
 };
-
 
 const styles = StyleSheet.create({
     dateWrap: {
@@ -45,6 +141,8 @@ const styles = StyleSheet.create({
         gap: 3,
     },
     dateCellInput: {
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     dateCellText: {
         fontFamily: 'MontserratAlternates_600SemiBold',

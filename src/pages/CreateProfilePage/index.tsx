@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -14,7 +14,11 @@ import Animated, {
 } from 'react-native-reanimated';
 import { ANIMATION_TIME } from '@/src/shared/config/config';
 import BackButton from '@/src/components/createProfile/backButton';
+import useUserLocation from '@/src/shared/hooks/useUserGeolocation';
+
 const CreateProfilePage: FC = () => {
+    useUserLocation();
+
     const { prev } = createProfileStore((state) => state.actions);
 
     const nextIndex = createProfileStore((state) => state.nextIndex);
@@ -70,7 +74,7 @@ const CreateProfilePage: FC = () => {
                 <View style={{ flex: 1 }}>
                     <BackButton onPress={prev} />
 
-                    {(currentIndex === pages - 1) ? null : (
+                    {currentIndex === pages - 1 ? null : (
                         <Animated.View style={animatedHeaderStyles}>
                             <Header />
                         </Animated.View>

@@ -1,8 +1,8 @@
-import AboutTextInput from '@/src/components/createProfile/aboutTextInput';
-import ButtonChoice from '@/src/components/createProfile/choiceButton';
+import AboutTextInput from '@/src/components/createProfile/longDescriptionInput';
+import ButtonChoice from '@/src/components/createProfile/sexInput';
 import DateInput from '@/src/components/createProfile/dateInput';
 import NameInput from '@/src/components/createProfile/nameInput';
-import PlaceInput from '@/src/components/createProfile/placeInput';
+import PlaceInput from '@/src/components/createProfile/cityInput';
 
 const enum rules {
     require = 'require',

@@ -11,6 +11,12 @@ type TInput = {
     maxLength?: number;
     multiline?: boolean;
     textAlignVertical?: any;
+    value?: string;
+    key?: number | string;
+    ref?: any;
+    onChange?: (e: any) => void;
+    onFocus?: () => void;
+    onSubmitEditing?: () => void;
 };
 
 const Input = ({
@@ -23,6 +29,12 @@ const Input = ({
     maxLength,
     multiline,
     textAlignVertical,
+    value,
+    key,
+    ref,
+    onChange,
+    onFocus,
+    onSubmitEditing,
 }: TInput) => {
     return (
         <View style={{ ...styles.inputView, ...style }}>
@@ -35,6 +47,12 @@ const Input = ({
                 textAlignVertical={textAlignVertical ?? 'center'}
                 maxLength={maxLength}
                 multiline={multiline}
+                value={value}
+                key={key}
+                ref={ref}
+                onChange={onChange}
+                onFocus={onFocus}
+                onSubmitEditing={onSubmitEditing}
             />
         </View>
     );

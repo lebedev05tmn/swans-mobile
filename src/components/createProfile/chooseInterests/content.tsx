@@ -11,8 +11,8 @@ enum Icons {
 }
 
 const IconsComponents: Record<string, JSX.Element> = {
-    [Icons.HEART]: <Heart fill={'#000000'} size={12} />,
-    [Icons.PIN]: <MapPin fill={'#000000'} size={12} />,
+    [Icons.HEART]: <Heart fill="#000000" size={12} />,
+    [Icons.PIN]: <MapPin fill="#000000" size={12} />,
 };
 
 const styles = StyleSheet.create({
@@ -29,25 +29,26 @@ const styles = StyleSheet.create({
         columnGap: 11,
     },
     cardTitle: {
-        fontWeight: 600,
+        fontWeight: '600',
         fontFamily: 'MontserratAlternates_600SemiBold',
         color: '#444444',
         fontSize: 12,
         lineHeight: 15,
+        textAlign: 'center',
     },
     content: {
         gap: 10,
     },
 });
 
-const content: JSX.Element[] = data.map((item: TData) => {
+const content: JSX.Element[] = data.map((item: TData, cardIndex: number) => {
     return (
-        <View style={styles.card}>
+        <View key={`card-${cardIndex}`} style={styles.card}>
             <Text style={styles.cardTitle}>{item.title}</Text>
             <View style={styles.pointsWrap}>
-                {item.points.map((point) => {
+                {item.points.map((point, pointIndex) => {
                     return (
-                        <Point>
+                        <Point key={`point-${pointIndex}`}>
                             {IconsComponents[point.icon]}
                             <Text>{point.text}</Text>
                         </Point>

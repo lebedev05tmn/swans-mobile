@@ -1,13 +1,18 @@
 import Input from "@/src/shared/ui/Input";
 import { StyleSheet } from "react-native";
+import createProfileStore from "@/src/shared/stores/createProfile/store";
 
 
-const AboutTextInput = () => {
+const LongDescriptionInput = () => {
+    const longDescription = createProfileStore((state) => state.form.long_desc);
+    const setLongDescription = createProfileStore((state) => state.actions.setLongDesc);
+
     return (
         <Input
             style={styles.aboutTextInput}
             placeholder="Напиши текст до 120 символов..."
-            placeholderTextColor="#A3A3A3"
+            onChange={(e) => setLongDescription(e.target.value)}
+            value={longDescription}
             multiline={true}
             maxLength={120}
             textAlignVertical={"top"}
@@ -22,4 +27,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AboutTextInput;
+export default LongDescriptionInput;

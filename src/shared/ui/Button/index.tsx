@@ -14,7 +14,12 @@ const Button = ({ children, style, onPress, disabled }: TButton) => {
             onPress={onPress}
             disabled={disabled}
             activeOpacity={0.75}
-            style={{ ...styles.button, ...style }}
+            style={{
+                ...styles.button,
+                ...style,
+                opacity: disabled ? 0.75 : 1,
+                pointerEvents: disabled ? 'none' : 'auto',
+            }}
         >
             {children}
         </TouchableOpacity>

@@ -3,6 +3,7 @@ import { create } from 'zustand';
 type TForm = {
     user_id: number;
     user_name: string;
+    city: string;
     birth_date: string;
     sex: string;
     images: string[];
@@ -21,7 +22,8 @@ type TCreateProfileState = {
     isNextButtonDisabled: boolean;
     isPreviousButtonDisabled: boolean;
     isChooseInterestsActive: boolean;
-    form: any;
+    isDatePickerVisible: boolean;
+    form: TForm;
 };
 
 type TCreateProfileActions = {
@@ -37,6 +39,14 @@ type TCreateProfileActions = {
         activateBackButton: () => void;
         toggleContent: () => void;
         toggleCurrentPage: () => void;
+        setUserName: (name: string) => void;
+        setCity: (city: string) => void;
+        setGeolocation: (coords: number[]) => void;
+        showDatePicker: () => void;
+        hideDatePicker: () => void;
+        setBirthDate: (birthDate: string) => void;
+        setLongDesc: (longDesc: string) => void;
+        setSex: (sex: string) => void;
     };
 };
 
@@ -51,16 +61,18 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
     isNextButtonDisabled: false,
     isPreviousButtonDisabled: false,
     isChooseInterestsActive: false,
+    isDatePickerVisible: false,
     form: {
         user_id: 0,
         user_name: '',
+        city: '',
         birth_date: '',
         sex: '',
-        images: ['string'],
+        images: [],
         short_desc: '',
         long_desc: '',
-        categories: [''],
-        geolocation: [0],
+        categories: [],
+        geolocation: [],
     },
     actions: {
         next: () => set((state) => ({ nextIndex: state.nextIndex + 1 })),
@@ -81,6 +93,20 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
             })),
         toggleCurrentPage: () =>
             set((state) => ({ currentPage: !state.currentPage })),
+        setUserName: (name: string) =>
+            set((state) => ({ form: { ...state.form, user_name: name } })),
+        setCity: (city: string) =>
+            set((state) => ({ form: { ...state.form, city } })),
+        setGeolocation: (coords: number[]) =>
+            set((state) => ({ form: { ...state.form, geolocation: coords } })),
+        showDatePicker: () => set({ isDatePickerVisible: true }),
+        hideDatePicker: () => set({ isDatePickerVisible: false }),
+        setBirthDate: (birthDate: string) =>
+            set((state) => ({ form: { ...state.form, birth_date: birthDate } })),
+        setLongDesc: (longDesc: string) =>
+            set((state) => ({ form: { ...state.form, long_desc: longDesc } })),
+        setSex: (sex: string) =>
+            set((state) => ({ form: { ...state.form, sex: sex } })),
     },
 }));
 
