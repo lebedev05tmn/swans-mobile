@@ -10,6 +10,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#FFFFFF',
         borderRadius: 30,
+        borderWidth: 2,
+        borderColor: '#B18FCF',
+    },
+    image: {
+        width: '100%',
+        height: deviceHeight * 0.6,
+        borderRadius: 30,
     },
 });
 

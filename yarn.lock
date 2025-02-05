@@ -4287,6 +4287,18 @@ expo-haptics@~14.0.0:
   resolved "https://registry.npmjs.org/expo-haptics/-/expo-haptics-14.0.0.tgz"
   integrity sha512-5tYJN+2axYF22BtG1elBQAV1aZPUOCtr9sItClfm4jDoekGiPCxZG/nylcA3DVh2bUHMSll4Y98qjFFFhwZ1Cw==
 
+expo-image-loader@~5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/expo-image-loader/-/expo-image-loader-5.0.0.tgz#4f58a21ab26e40d6fccc211b664fd9fe21a5dcb8"
+  integrity sha512-Eg+5FHtyzv3Jjw9dHwu2pWy4xjf8fu3V0Asyy42kO+t/FbvW/vjUixpTjPtgKQLQh+2/9Nk4JjFDV6FwCnF2ZA==
+
+expo-image-picker@~16.0.5:
+  version "16.0.5"
+  resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-16.0.5.tgz#fefb08f1a35980015122499fb388f2cfcbf08485"
+  integrity sha512-Rkc4vihqPN/48PV3QJkrG10Lg5s1LonKmpVnGwBSlHjRR5ngqJH++DYFndgD69hLaWrJukzCYpP3CyTMAAatWg==
+  dependencies:
+    expo-image-loader "~5.0.0"
+
 expo-keep-awake@~14.0.1:
   version "14.0.1"
   resolved "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-14.0.1.tgz"
@@ -7593,15 +7605,14 @@ react-native-css-interop@0.0.36:
     babel-plugin-tester "^11.0.4"
     lightningcss "1.22.0"
 
-react-native-gesture-handler@~2.20.2:
-  version "2.20.2"
-  resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.20.2.tgz"
-  integrity sha512-HqzFpFczV4qCnwKlvSAvpzEXisL+Z9fsR08YV5LfJDkzuArMhBu2sOoSPUF/K62PCoAb+ObGlTC83TKHfUd0vg==
+react-native-gesture-handler@^2.22.1:
+  version "2.22.1"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.22.1.tgz#869d2b5ffd8b19e44a36780b99cbd88826323353"
+  integrity sha512-E0C9D+Ia2UZYevoSV9rTKjhFWEVdR/3l4Z3TUoQrI/wewgzDlmJOrYvGW5aMlPUuQF2vHQOdFfAWhVEqFu4tWw==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
-    prop-types "^15.7.2"
 
 react-native-helmet-async@2.0.4:
   version "2.0.4"

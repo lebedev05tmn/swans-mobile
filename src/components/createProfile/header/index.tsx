@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import ProgressWave from '@/src/assets/svg/progressWave.svg';
 import useCreateProfileStore from '@/src/shared/stores/createProfile/store';
 import Animated, {
@@ -7,27 +7,23 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated';
 import { useEffect } from 'react';
-import createProfileBodyComponents from '@/src/components/createProfile/sliderContent';
 import { ANIMATION_TIME } from '@/src/shared/config/config';
+
+const displayWidth = Dimensions.get('window').width;
 
 const Header = () => {
     const nextIndex = useCreateProfileStore((state) => state.nextIndex);
     const pages = useCreateProfileStore((state) => state.pages);
-
     const width = useSharedValue(0);
     const animationTime = ANIMATION_TIME * 2;
     const progressWidthStep = 253 / (pages - 1);
 
     useEffect(() => {
         const startAnimation = () => {
-
-            width.value = withTiming(
-                progressWidthStep * (nextIndex + 1),
-                {
-                    duration: animationTime,
-                    easing: Easing.inOut(Easing.cubic),
-                },
-            );
+            width.value = withTiming(progressWidthStep * (nextIndex + 1), {
+                duration: animationTime,
+                easing: Easing.inOut(Easing.cubic),
+            });
         };
         startAnimation();
     }, [nextIndex]);
@@ -41,7 +37,7 @@ const Header = () => {
                     width,
                     height: 17,
                     position: 'absolute',
-                    left: 50,
+                    left: displayWidth * 0.15,
                     overflow: 'hidden',
                 }}
             >
@@ -68,7 +64,7 @@ const styles = StyleSheet.create({
     },
     progress: {
         position: 'absolute',
-        left: 50,
+        left: displayWidth * 0.15,
     },
 });
 

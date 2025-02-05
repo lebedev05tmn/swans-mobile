@@ -16,11 +16,11 @@ const data: TData[] = [
             },
             {
                 icon: 'pin',
-                text: 'Близкая локация',
+                text: 'Локация',
             },
             {
                 icon: 'pin',
-                text: 'Близкая локация',
+                text: 'Локация',
             },
             {
                 icon: 'heart',
@@ -37,11 +37,11 @@ const data: TData[] = [
             },
             {
                 icon: 'pin',
-                text: 'Близкая локация',
+                text: 'Локация',
             },
             {
                 icon: 'pin',
-                text: 'Близкая локация',
+                text: 'Локация',
             },
             {
                 icon: 'heart',
@@ -58,11 +58,11 @@ const data: TData[] = [
             },
             {
                 icon: 'pin',
-                text: 'Близкая локация',
+                text: 'Локация',
             },
             {
                 icon: 'pin',
-                text: 'Близкая локация',
+                text: 'Локация',
             },
             {
                 icon: 'heart',
@@ -79,11 +79,11 @@ const data: TData[] = [
             },
             {
                 icon: 'pin',
-                text: 'Близкая локация',
+                text: 'Локация',
             },
             {
                 icon: 'pin',
-                text: 'Близкая локация',
+                text: 'Локация',
             },
             {
                 icon: 'heart',

@@ -17,12 +17,15 @@ type TCreateProfileState = {
     nextIndex: number;
     pages: number;
     currentIndex: number;
+    errorMessage: string;
     currentPage: boolean;
     isFirstRender: boolean;
     isNextButtonDisabled: boolean;
     isPreviousButtonDisabled: boolean;
     isChooseInterestsActive: boolean;
     isDatePickerVisible: boolean;
+    isErrorMessageVisible: boolean;
+    isFieldCorrect: boolean;
     form: TForm;
 };
 
@@ -50,6 +53,12 @@ type TCreateProfileActions = {
         setYear: (year: string) => void;
         setLongDesc: (longDesc: string) => void;
         setSex: (sex: string) => void;
+        setImages: (images: string) => void;
+        showErrorMessage: () => void;
+        hideErrorMessage: () => void;
+        setFieldIsCorrect: () => void;
+        setFieldIsIncorrect: () => void;
+        setErrorMessage: (error: string) => void;
     };
 };
 
@@ -59,12 +68,15 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
     nextIndex: 0,
     currentIndex: 0,
     pages: 7,
+    errorMessage: '',
     currentPage: false, // false - slider, true - chooseInterests
     isFirstRender: true,
     isNextButtonDisabled: false,
     isPreviousButtonDisabled: false,
     isChooseInterestsActive: false,
     isDatePickerVisible: false,
+    isErrorMessageVisible: false,
+    isFieldCorrect: false,
     form: {
         user_id: 0,
         user_name: '',
@@ -113,7 +125,7 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
                 const [year, month, _] = state.form.birth_date
                     ? state.form.birth_date.split('-')
                     : ['', '', ''];
-                    
+
                 return {
                     form: {
                         ...state.form,
@@ -126,7 +138,7 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
                 const [year, _, day] = state.form.birth_date
                     ? state.form.birth_date.split('-')
                     : ['', '', ''];
-                
+
                 return {
                     form: {
                         ...state.form,
@@ -151,6 +163,15 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
             set((state) => ({ form: { ...state.form, long_desc: longDesc } })),
         setSex: (sex: string) =>
             set((state) => ({ form: { ...state.form, sex: sex } })),
+        setImages: (image: string) =>
+            set((state) => ({
+                form: { ...state.form, images: [...state.form.images, image] },
+            })),
+        showErrorMessage: () => set({ isErrorMessageVisible: true }),
+        hideErrorMessage: () => set({ isErrorMessageVisible: false }),
+        setFieldIsCorrect: () => set({ isFieldCorrect: true }),
+        setFieldIsIncorrect: () => set({ isFieldCorrect: false }),
+        setErrorMessage: (error) => set((state) => ({ errorMessage: error })),
     },
 }));
 

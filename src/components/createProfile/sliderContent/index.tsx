@@ -13,6 +13,7 @@ const createProfileBodyComponents: JSX.Element[] = dataCreateProfileContent.map(
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.description}>{item.description}</Text>
                 {item.input}
+
                 {item.countinueButton && <NextButton />}
             </View>
         );
@@ -21,9 +22,4 @@ const createProfileBodyComponents: JSX.Element[] = dataCreateProfileContent.map(
 
 createProfileBodyComponents.push(<ChooseInterests />);
 
-export const page = createProfileBodyComponents.length;
-
 export default createProfileBodyComponents;
-
-
-

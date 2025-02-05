@@ -56,7 +56,6 @@ const dataCreateProfileContent: TContentComponent[] = [
         title: 'Загрузите фото',
         input: <ImageSlider />,
         countinueButton: true,
-        validationRules: [rules.require],
     },
 ];
 

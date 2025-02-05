@@ -1,5 +1,5 @@
 type TValidationRule = {
-    rule: (value: string) => boolean;
+    rule: (value: any) => boolean;
     errorMessage: string;
 };
 
@@ -9,7 +9,7 @@ type TValidationRules = {
 
 const validationRules: TValidationRules = {
     require: {
-        rule: (value) => value.length > 0,
+        rule: (value) => value.trim().length > 0,
         errorMessage: 'Поле обязательно для заполнения',
     },
     letters: {
@@ -18,4 +18,18 @@ const validationRules: TValidationRules = {
     },
 };
 
-export default validationRules;
+const useValidateField = (value: string, rules: string[] | undefined) => {
+    if (!rules) return '';
+
+    for (const ruleKey of rules) {
+        const rule = validationRules[ruleKey];
+
+        if (rule && !rule.rule(value)) {
+            return rule.errorMessage;
+        }
+    }
+
+    return '';
+};
+
+export default useValidateField;
