@@ -8,6 +8,7 @@ import {
     MontserratAlternates_400Regular,
 } from '@expo-google-fonts/montserrat-alternates';
 import LoadingPage from '../pages/LoadingPage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export default function RootLayout() {
     const [fontsLoaded] = useFonts({
@@ -21,18 +22,22 @@ export default function RootLayout() {
         return <LoadingPage />;
     }
 
+    const queryClient = new QueryClient();
+
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
-            <Stack
-                screenOptions={{
-                    headerShown: false,
-                    navigationBarTranslucent: true,
-                    navigationBarColor: 'transparent',
-                    statusBarTranslucent: true,
-                    statusBarBackgroundColor: 'transparent',
-                    statusBarStyle: 'dark',
-                }}
-            />
-        </GestureHandlerRootView>
+        <QueryClientProvider client={queryClient}>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <Stack
+                    screenOptions={{
+                        headerShown: false,
+                        navigationBarTranslucent: true,
+                        navigationBarColor: 'transparent',
+                        statusBarTranslucent: true,
+                        statusBarBackgroundColor: 'transparent',
+                        statusBarStyle: 'dark',
+                    }}
+                />
+            </GestureHandlerRootView>
+        </QueryClientProvider>
     );
 }
