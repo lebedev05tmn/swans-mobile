@@ -6,10 +6,12 @@ import createProfileStore from '@/src/shared/stores/createProfile/store';
 import { TapGestureHandler } from 'react-native-gesture-handler';
 
 const ImageSlider = () => {
-    const { setImages } = createProfileStore((state) => state.actions);
+    const { setImages, setErrorMessage } = createProfileStore((state) => state.actions);
     const images = createProfileStore((state) => state.form.images);
 
     const pickImage = async () => {
+        setErrorMessage('');
+        
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
             allowsEditing: true,

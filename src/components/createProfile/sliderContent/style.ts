@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         marginBottom: 14,
     },
+    titleAlign: {
+        textAlign: 'center',
+    },
     description: {
         fontFamily: 'MontserratAlternates_400Regular',
         fontSize: 18,
@@ -16,7 +19,7 @@ const styles = StyleSheet.create({
         marginBottom: 12,
     },
     errorMessage: {
-        fontFamily: 'MontserratAlternates_400Regular',
+        fontFamily: 'MontserratAlternates_500Medium',
         color: '#FF0000',
         fontSize: 12,
         lineHeight: 14,
@@ -29,6 +32,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginHorizontal: 4,
+    },
+    skipButton: {
+        fontFamily: 'MontserratAlternates_500Medium',
+        fontSize: 14,
+        lineHeight: 16,
+        color: '#404040',
+        textDecorationLine: 'underline',
+        marginTop: 12,
+        textAlign: 'center',
     }
 });
 

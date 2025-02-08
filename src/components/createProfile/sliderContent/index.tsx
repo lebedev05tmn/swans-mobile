@@ -2,7 +2,7 @@ import NextButton from '@/src/components/createProfile/nextButton';
 import dataCreateProfileContent, {
     TContentComponent,
 } from '@/src/shared/data/createProfile/data';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import styles from './style';
 import ChooseInterests from '../chooseInterests';
 import { FC } from 'react';
@@ -13,12 +13,15 @@ const Slide: FC<TContentComponent> = ({
     description,
     input,
     countinueButton,
+    skipButton,
+    textAlign,
 }) => {
     const errorMessage = createProfileStore((state) => state.errorMessage);
+    const next = createProfileStore((state) => state.actions.next);
 
     return (
         <View>
-            <Text style={styles.title}>{title}</Text>
+            <Text style={[styles.title, textAlign]}>{title}</Text>
             <Text style={styles.description}>{description}</Text>
             {input}
             {
@@ -26,8 +29,12 @@ const Slide: FC<TContentComponent> = ({
                     <Text style={styles.errorMessage}>{errorMessage}</Text>
                 </View>
             }
-
             {countinueButton && <NextButton />}
+            {skipButton && (
+                <Pressable onPress={next}>
+                    <Text style={styles.skipButton}>Пропустить</Text>
+                </Pressable>
+            )}
         </View>
     );
 };

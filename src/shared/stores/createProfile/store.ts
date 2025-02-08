@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 type TForm = {
-    user_id: number;
+    user_id: string;
     user_name: string;
     city: string;
     birth_date: string;
@@ -56,7 +56,7 @@ type TCreateProfileActions = {
         setFieldIsCorrect: () => void;
         setFieldIsIncorrect: () => void;
         setErrorMessage: (error: string) => void;
-        setUserId: (id: number) => void;
+        setUserId: (id: string) => void;
     };
 };
 
@@ -76,7 +76,7 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
     isErrorMessageVisible: false,
     isFieldCorrect: false,
     form: {
-        user_id: 100,
+        user_id: '0',
         user_name: '',
         city: '',
         birth_date: '',
@@ -88,10 +88,17 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
         geolocation: [],
     },
     actions: {
-        next: () => set((state) => ({ nextIndex: state.nextIndex + 1 })),
+        next: () =>
+            set((state) => ({
+                nextIndex: state.nextIndex + 1,
+                errorMessage: '',
+            })),
 
         prev: () =>
-            set((state) => ({ nextIndex: Math.max(state.nextIndex - 1, 0) })),
+            set((state) => ({
+                nextIndex: Math.max(state.nextIndex - 1, 0),
+                errorMessage: '',
+            })),
         setFirstRender: () => set({ isFirstRender: true }),
         unsetFirstRender: () => set({ isFirstRender: false }),
         changeCurrentIndex: () =>
@@ -131,7 +138,7 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
         setFieldIsCorrect: () => set({ isFieldCorrect: true }),
         setFieldIsIncorrect: () => set({ isFieldCorrect: false }),
         setErrorMessage: (error) => set((state) => ({ errorMessage: error })),
-        setUserId: (id: number) =>
+        setUserId: (id: string) =>
             set((state) => ({ form: { ...state.form, user_id: id } })),
     },
 }));

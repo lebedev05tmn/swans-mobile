@@ -19,7 +19,9 @@ import useUserLocation from '@/src/shared/hooks/useUserGeolocation';
 const CreateProfilePage: FC = () => {
     useUserLocation();
 
-    const { prev } = createProfileStore((state) => state.actions);
+    const { prev, setErrorMessage } = createProfileStore(
+        (state) => state.actions,
+    );
 
     const nextIndex = createProfileStore((state) => state.nextIndex);
     const currentIndex = createProfileStore((state) => state.currentIndex);

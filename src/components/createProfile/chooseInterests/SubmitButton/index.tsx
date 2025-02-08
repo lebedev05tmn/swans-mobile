@@ -15,10 +15,8 @@ const SubmitButton = () => {
         try {
             const result = await refetch();
             Alert.alert('Ответ от сервера:', JSON.stringify(result.data));
-            console.log('Ответ от сервера:', JSON.stringify(result.data));
         } catch (err: any) {
             Alert.alert('Ошибка при запросе:', err.message);
-            console.log('Ошибка при запросе:', err.message);
         }
     };
 

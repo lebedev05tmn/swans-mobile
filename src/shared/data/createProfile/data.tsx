@@ -4,18 +4,26 @@ import DateInput from '@/src/components/createProfile/dateInput';
 import NameInput from '@/src/components/createProfile/nameInput';
 import CityInput from '@/src/components/createProfile/cityInput';
 import ImageSlider from '@/src/components/createProfile/imageSlider';
+import { TextStyle } from 'react-native';
 
 const enum rules {
     require = 'require',
-    letters = 'letters',
-    age = 'age',
+    onlyLetters = 'onlyLetters',
+    minLength = 'minLength',
+    maxLength = 'maxLength',
+    minAge = 'minAge',
+    maxAge = 'maxAge',
+    imageRequire = 'imageRequire',
+    maxDescriptionLength = 'maxDescriptionLength',
 }
 
 export type TContentComponent = {
     id: string;
     title: string;
+    textAlign?: TextStyle;
     description?: string;
     input: JSX.Element;
+    skipButton?: boolean;
     countinueButton: boolean;
     validationRules?: string[];
 };
@@ -27,7 +35,12 @@ const dataCreateProfileContent: TContentComponent[] = [
         description: 'Будь собой при выборе имени, привлекает больше внимания.',
         input: <NameInput />,
         countinueButton: true,
-        validationRules: [rules.require, rules.letters],
+        validationRules: [
+            rules.require,
+            rules.onlyLetters,
+            rules.minLength,
+            rules.maxLength,
+        ],
     },
     {
         id: 'city',
@@ -35,7 +48,12 @@ const dataCreateProfileContent: TContentComponent[] = [
         description: 'Выбери свой город, чтобы найти ближайщих соулмейтов',
         input: <CityInput />,
         countinueButton: true,
-        validationRules: [rules.require],
+        validationRules: [
+            rules.require,
+            rules.onlyLetters,
+            rules.minLength,
+            rules.maxLength,
+        ],
     },
     {
         id: 'birth_date',
@@ -43,7 +61,7 @@ const dataCreateProfileContent: TContentComponent[] = [
         description: 'Используй настояющую, ее потом поменять нельзя',
         input: <DateInput />,
         countinueButton: true,
-        validationRules: [rules.require, rules.age],
+        validationRules: [rules.require, rules.minAge, rules.maxAge],
     },
     {
         id: 'long_desc',
@@ -51,6 +69,8 @@ const dataCreateProfileContent: TContentComponent[] = [
         description: 'Сделай свой \"слоган\", который выделит тебя среди всех',
         input: <LongDescriptionInput />,
         countinueButton: true,
+        validationRules: [rules.require, rules.maxDescriptionLength],
+        skipButton: true,
     },
     {
         id: 'sex',
@@ -64,6 +84,8 @@ const dataCreateProfileContent: TContentComponent[] = [
         title: 'Загрузите фото',
         input: <ImageSlider />,
         countinueButton: true,
+        textAlign: { textAlign: 'center' },
+        validationRules: [rules.imageRequire],
     },
 ];
 

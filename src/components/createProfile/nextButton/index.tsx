@@ -17,7 +17,7 @@ const NextButton = () => {
     const form = createProfileStore((state) => state.form);
 
     const handleClick = () => {
-        let value = '';
+        let value;
 
         switch (currentIndex) {
             case 0:
@@ -28,6 +28,12 @@ const NextButton = () => {
                 break;
             case 2:
                 value = form.birth_date;
+                break;
+            case 3:
+                value = form.long_desc;
+                break;
+            case 5:
+                value = form.images.length;
                 break;
         }
 
