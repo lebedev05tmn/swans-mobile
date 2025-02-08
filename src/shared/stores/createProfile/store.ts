@@ -56,6 +56,7 @@ type TCreateProfileActions = {
         setFieldIsCorrect: () => void;
         setFieldIsIncorrect: () => void;
         setErrorMessage: (error: string) => void;
+        setUserId: (id: number) => void;
     };
 };
 
@@ -75,15 +76,15 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
     isErrorMessageVisible: false,
     isFieldCorrect: false,
     form: {
-        user_id: 0,
+        user_id: 100,
         user_name: '',
         city: '',
         birth_date: '',
         sex: '',
         images: [],
-        short_desc: '',
+        short_desc: 'Нужно добавить',
         long_desc: '',
-        categories: [],
+        categories: ['Нужно добавить'],
         geolocation: [],
     },
     actions: {
@@ -130,6 +131,8 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
         setFieldIsCorrect: () => set({ isFieldCorrect: true }),
         setFieldIsIncorrect: () => set({ isFieldCorrect: false }),
         setErrorMessage: (error) => set((state) => ({ errorMessage: error })),
+        setUserId: (id: number) =>
+            set((state) => ({ form: { ...state.form, user_id: id } })),
     },
 }));
 

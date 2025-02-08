@@ -15,6 +15,21 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         marginBottom: 12,
     },
+    errorMessage: {
+        fontFamily: 'MontserratAlternates_400Regular',
+        color: '#FF0000',
+        fontSize: 12,
+        lineHeight: 14,
+        position: 'absolute',
+        top: 5,
+    },
+    textWrap: {
+        width: '100%',
+        height: 40,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginHorizontal: 4,
+    }
 });
 
 export default styles;

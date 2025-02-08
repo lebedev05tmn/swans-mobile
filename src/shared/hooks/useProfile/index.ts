@@ -7,7 +7,6 @@ import {
     deleteProfile,
 } from '@/src/shared/config/profileApi';
 
-// Получение всех профилей
 export const useProfiles = () => {
     return useQuery({
         queryKey: ['profiles'],
@@ -15,8 +14,7 @@ export const useProfiles = () => {
     });
 };
 
-// Получение профиля по ID
-export const useProfile = (id: string) => {
+export const useProfileById = (id: string) => {
     return useQuery({
         queryKey: ['profile', id],
         queryFn: () => fetchProfileById(id),
@@ -24,7 +22,6 @@ export const useProfile = (id: string) => {
     });
 };
 
-// Создание профиля
 export const useCreateProfile = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -35,7 +32,6 @@ export const useCreateProfile = () => {
     });
 };
 
-// Обновление профиля
 export const useUpdateProfile = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -47,7 +43,6 @@ export const useUpdateProfile = () => {
     });
 };
 
-// Удаление профиля
 export const useDeleteProfile = () => {
     const queryClient = useQueryClient();
     return useMutation({

@@ -37,6 +37,7 @@ export default function RootLayout() {
                         statusBarStyle: 'dark',
                     }}
                 />
+                
             </GestureHandlerRootView>
         </QueryClientProvider>
     );

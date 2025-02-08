@@ -11,6 +11,7 @@ const enum rules {
 }
 
 export type TContentComponent = {
+    id: string;
     title: string;
     description?: string;
     input: JSX.Element;
@@ -20,6 +21,7 @@ export type TContentComponent = {
 
 const dataCreateProfileContent: TContentComponent[] = [
     {
+        id: 'name',
         title: 'Привет, давай знакомиться',
         description: 'Будь собой при выборе имени, привлекает больше внимания.',
         input: <NameInput />,
@@ -27,6 +29,7 @@ const dataCreateProfileContent: TContentComponent[] = [
         validationRules: [rules.require, rules.letters],
     },
     {
+        id: 'city',
         title: 'Где живем, там и ищем',
         description: 'Выбери свой город, чтобы найти ближайщих соулмейтов',
         input: <CityInput />,
@@ -34,25 +37,28 @@ const dataCreateProfileContent: TContentComponent[] = [
         validationRules: [rules.require],
     },
     {
+        id: 'birth_date',
         title: 'Выбери дату рождения',
         description: 'Используй настояющую, ее потом поменять нельзя',
         input: <DateInput />,
         countinueButton: true,
-        validationRules: [rules.require],
     },
     {
+        id: 'long_desc',
         title: 'Стань солцем среди планет',
         description: 'Сделай свой \"слоган\", который выделит тебя среди всех',
         input: <LongDescriptionInput />,
         countinueButton: true,
     },
     {
+        id: 'sex',
         title: 'Последний этап регистрации',
         description: 'Выберите пол',
         input: <SexInput />,
         countinueButton: false,
     },
     {
+        id: 'images',
         title: 'Загрузите фото',
         input: <ImageSlider />,
         countinueButton: true,

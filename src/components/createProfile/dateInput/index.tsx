@@ -44,7 +44,7 @@ const DateInputCell: React.FC<Props> = ({
 };
 
 const DateInput = () => {
-    const { hideDatePicker, setBirthDate, showDatePicker } = createProfileStore(
+    const { hideDatePicker, setBirthDate, showDatePicker, setErrorMessage } = createProfileStore(
         (state) => state.actions,
     );
     const isDatePickerVisible = createProfileStore(
@@ -67,6 +67,7 @@ const DateInput = () => {
     const handleFocus = () => {
         Keyboard.dismiss();
         showDatePicker();
+        setErrorMessage('');
     };
 
     return (

@@ -5,21 +5,38 @@ import dataCreateProfileContent, {
 import { View, Text } from 'react-native';
 import styles from './style';
 import ChooseInterests from '../chooseInterests';
+import { FC } from 'react';
+import createProfileStore from '@/src/shared/stores/createProfile/store';
 
-const createProfileBodyComponents: JSX.Element[] = dataCreateProfileContent.map(
-    (item: TContentComponent) => {
-        return (
-            <View>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.description}>{item.description}</Text>
-                {item.input}
+const Slide: FC<TContentComponent> = ({
+    title,
+    description,
+    input,
+    countinueButton,
+}) => {
+    const errorMessage = createProfileStore((state) => state.errorMessage);
 
-                {item.countinueButton && <NextButton />}
-            </View>
-        );
-    },
-);
+    return (
+        <View>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.description}>{description}</Text>
+            {input}
+            {
+                <View style={styles.textWrap}>
+                    <Text style={styles.errorMessage}>{errorMessage}</Text>
+                </View>
+            }
 
-createProfileBodyComponents.push(<ChooseInterests />);
+            {countinueButton && <NextButton />}
+        </View>
+    );
+};
+
+const createProfileBodyComponents: JSX.Element[] = [
+    ...dataCreateProfileContent.map((item) => (
+        <Slide key={item.id} {...item} />
+    )),
+    <ChooseInterests />,
+];
 
 export default createProfileBodyComponents;

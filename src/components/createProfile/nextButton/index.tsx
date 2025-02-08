@@ -38,14 +38,8 @@ const NextButton = () => {
 
         setErrorMessage(validationError);
 
-        if (validationError) {
-            Alert.alert('Ошибка', validationError);
-        } else {
-            next();
-        }
+        if (!validationError) next();
     };
-
-
 
     return (
         <Button
@@ -65,7 +59,6 @@ const NextButton = () => {
 const styles = StyleSheet.create({
     nextButton: {
         gap: 8,
-        marginTop: 28,
     },
     disabled: {
         opacity: 0.75,

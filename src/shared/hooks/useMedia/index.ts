@@ -5,8 +5,7 @@ import {
     deleteMedia,
 } from '@/src/shared/config/mediaApi';
 
-// Получение медиафайла по ID
-export const useMedia = (id: string) => {
+export const useMediaById = (id: string) => {
     return useQuery({
         queryKey: ['media', id],
         queryFn: () => fetchMediaById(id),
@@ -14,7 +13,6 @@ export const useMedia = (id: string) => {
     });
 };
 
-// Загрузка медиафайла
 export const useUploadMedia = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -25,7 +23,6 @@ export const useUploadMedia = () => {
     });
 };
 
-// Удаление медиафайла
 export const useDeleteMedia = () => {
     const queryClient = useQueryClient();
     return useMutation({
