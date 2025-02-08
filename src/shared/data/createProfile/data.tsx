@@ -8,6 +8,7 @@ import ImageSlider from '@/src/components/createProfile/imageSlider';
 const enum rules {
     require = 'require',
     letters = 'letters',
+    age = 'age',
 }
 
 export type TContentComponent = {
@@ -42,6 +43,7 @@ const dataCreateProfileContent: TContentComponent[] = [
         description: 'Используй настояющую, ее потом поменять нельзя',
         input: <DateInput />,
         countinueButton: true,
+        validationRules: [rules.require, rules.age],
     },
     {
         id: 'long_desc',

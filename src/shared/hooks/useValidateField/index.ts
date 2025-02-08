@@ -16,6 +16,23 @@ const validationRules: TValidationRules = {
         rule: (value) => /^[A-Za-zА-Яа-я\s]+$/.test(value),
         errorMessage: 'Вводить можно только буквы',
     },
+    age: {
+        rule: (value) => {
+            const birthDate = new Date(value);
+            const today = new Date();
+
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            const dayDiff = today.getDate() - birthDate.getDate();
+
+            if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                age--;
+            }
+
+            return age >= 18;
+        },
+        errorMessage: 'Минимальный возраст 18 лет',
+    },
 };
 
 const useValidateField = (value: string, rules: string[] | undefined) => {
