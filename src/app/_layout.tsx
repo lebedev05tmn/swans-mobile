@@ -1,5 +1,4 @@
 import { Stack } from 'expo-router';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
     useFonts,
     MontserratAlternates_700Bold,
@@ -26,19 +25,16 @@ export default function RootLayout() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <GestureHandlerRootView style={{ flex: 1 }}>
-                <Stack
-                    screenOptions={{
-                        headerShown: false,
-                        navigationBarTranslucent: true,
-                        navigationBarColor: 'transparent',
-                        statusBarTranslucent: true,
-                        statusBarBackgroundColor: 'transparent',
-                        statusBarStyle: 'dark',
-                    }}
-                />
-                
-            </GestureHandlerRootView>
+            <Stack
+                screenOptions={{
+                    headerShown: false,
+                    navigationBarTranslucent: true,
+                    navigationBarColor: 'transparent',
+                    statusBarTranslucent: true,
+                    statusBarBackgroundColor: 'transparent',
+                    statusBarStyle: 'dark',
+                }}
+            />
         </QueryClientProvider>
     );
 }

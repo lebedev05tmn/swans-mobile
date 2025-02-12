@@ -12,11 +12,19 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         borderWidth: 2,
         borderColor: '#B18FCF',
+        overflow: 'hidden',
     },
-    image: {
-        width: '100%',
-        height: deviceHeight * 0.6,
-        borderRadius: 30,
+    managmentButtons: {
+        position: 'absolute',
+        bottom: 25,
+        flexDirection: 'row',
+        gap: 30,
+    },
+    managmentButton: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: '50%',
+        width: 50,
+        height: 50,
     },
 });
 

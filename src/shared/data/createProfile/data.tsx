@@ -3,7 +3,7 @@ import SexInput from '@/src/components/createProfile/sexInput';
 import DateInput from '@/src/components/createProfile/dateInput';
 import NameInput from '@/src/components/createProfile/nameInput';
 import CityInput from '@/src/components/createProfile/cityInput';
-import ImageSlider from '@/src/components/createProfile/imageSlider';
+import ImageSlider from '@/src/components/createProfile/imagesInput';
 import { TextStyle } from 'react-native';
 
 const enum rules {
