@@ -2,7 +2,6 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 const displayWidth = Dimensions.get('window').width;
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -15,20 +14,22 @@ const styles = StyleSheet.create({
     image: {
         width: displayWidth * 0.86,
         height: '100%',
-        
     },
     indicatorContainer: {
         position: 'absolute',
-        top: 10,
+        top: 20,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         alignSelf: 'center',
-        gap: 8,
+        gap: 20,
+        width: displayWidth * 0.65,
     },
     indicator: {
-        width: 16,
-        height: 6,
+        flex: 1,
+        height: 4,
         borderRadius: 3,
+        backgroundColor: '#FFFFFF',
+        zIndex: 1,
     },
 });
 
