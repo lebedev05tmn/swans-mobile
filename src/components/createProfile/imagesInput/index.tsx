@@ -1,4 +1,4 @@
-import { View, Image, Pressable } from 'react-native';
+import { View, Pressable } from 'react-native';
 import styles from './style';
 import { Camera, Pencil, Plus } from 'lucide-react-native';
 import * as ImagePicker from 'expo-image-picker';
@@ -6,6 +6,7 @@ import createProfileStore from '@/src/shared/stores/createProfile/store';
 import ImageSlider from '@/src/shared/ui/ImageSlider';
 import Button from '@/src/shared/ui/Button';
 import { Trash2 } from 'lucide-react-native';
+import { FC } from 'react';
 
 const ImagesInput = () => {
     const { setImages, setErrorMessage } = createProfileStore(
@@ -43,7 +44,9 @@ const ImagesInput = () => {
     );
 };
 
-const ManagmentButtons = ({pickImage}) => {
+type TManagmentButtons = { pickImage: () => void };
+
+const ManagmentButtons: FC<TManagmentButtons> = ({pickImage}) => {
     return (
         <View style={styles.managmentButtons}>
             <Button style={styles.managmentButton}>

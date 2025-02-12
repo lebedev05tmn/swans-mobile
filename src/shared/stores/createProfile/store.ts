@@ -62,7 +62,7 @@ type TCreateProfileActions = {
 
 type TCreateProfileStore = TCreateProfileState & TCreateProfileActions;
 
-const createProfileStore = create<TCreateProfileStore>((set) => ({
+const useCreateProfileStore = create<TCreateProfileStore>((set) => ({
     nextIndex: 0,
     currentIndex: 0,
     pages: 7,
@@ -143,4 +143,4 @@ const createProfileStore = create<TCreateProfileStore>((set) => ({
     },
 }));
 
-export default createProfileStore;
+export default useCreateProfileStore;

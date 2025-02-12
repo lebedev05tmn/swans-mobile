@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import {
     View,
     FlatList,
@@ -7,35 +7,46 @@ import {
     Dimensions,
 } from 'react-native';
 import styles from './style';
+import useImagesStore from '../../stores/ImagesStore';
 
-const displayWidth = Dimensions.get('window').width;
+const windowWidth = Dimensions.get('window').width * 0.86;
 
 type ImageSliderProps = {
     images: string[];
 };
 
 const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const currentImageIndex = useImagesStore(
+        (state) => state.currentImageIndex,
+    );
+    const { setCurrentImageIndex } = useImagesStore((state) => state.actions);
     const flatListRef = useRef<FlatList>(null);
 
     const handlePress = (event: any) => {
         const touchX = event.nativeEvent.locationX;
 
-        setCurrentIndex((prevIndex) => {
-            let newIndex;
-            if (touchX < displayWidth / 2) {
-                newIndex = prevIndex > 0 ? prevIndex - 1 : images.length - 1;
-            } else {
-                newIndex = prevIndex < images.length - 1 ? prevIndex + 1 : 0;
-            }
+        let newIndex;
+        if (touchX < windowWidth / 2) {
+            newIndex =
+                currentImageIndex > 0
+                    ? currentImageIndex - 1
+                    : images.length - 1;
+        } else {
+            newIndex =
+                currentImageIndex < images.length - 1
+                    ? currentImageIndex + 1
+                    : 0;
+        }
 
-            flatListRef.current?.scrollToIndex({
-                index: newIndex,
-                animated: true,
-            });
-            return newIndex;
-        });
+        setCurrentImageIndex(newIndex);
     };
+
+    useEffect(() => {
+        flatListRef.current?.scrollToIndex({
+            index: currentImageIndex,
+            animated: true,
+        });
+    }, [currentImageIndex]);
 
     if (!images || images.length === 0) return null;
 
@@ -50,7 +61,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
                                 styles.indicator,
                                 {
                                     backgroundColor:
-                                        currentIndex === index
+                                        currentImageIndex === index
                                             ? '#FFFFFF'
                                             : '#A3A3A3',
                                 },
@@ -77,8 +88,8 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
                         <Image source={{ uri: item }} style={styles.image} />
                     )}
                     getItemLayout={(_, index) => ({
-                        length: displayWidth * 0.86,
-                        offset: displayWidth * 0.86 * index,
+                        length: windowWidth,
+                        offset: windowWidth * index,
                         index,
                     })}
                 />
@@ -86,7 +97,5 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
         </View>
     );
 };
-
-
 
 export default ImageSlider;
