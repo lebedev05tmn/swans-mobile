@@ -15,7 +15,7 @@ type TImagesStore = TImagesStoreState & IImagesStoreActions;
 const useImagesStore = create<TImagesStore>((set) => ({
     currentImageIndex: 0,
     actions: {
-        setCurrentImageIndex: (index: number) => set({ currentImageIndex: index }),
+        setCurrentImageIndex: (index: number) => set({ currentImageIndex: Math.max(index, 0) }),
     },
 }));
 

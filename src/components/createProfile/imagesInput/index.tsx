@@ -1,18 +1,16 @@
 import { View, Pressable } from 'react-native';
 import styles from './style';
-import { Camera, Pencil, Plus } from 'lucide-react-native';
+import { Camera } from 'lucide-react-native';
 import * as ImagePicker from 'expo-image-picker';
-import createProfileStore from '@/src/shared/stores/createProfile/store';
+import useCreateProfileStore from '@/src/shared/stores/createProfile/store';
 import ImageSlider from '@/src/shared/ui/ImageSlider';
-import Button from '@/src/shared/ui/Button';
-import { Trash2 } from 'lucide-react-native';
-import { FC } from 'react';
+import ManagmentButtons from './ManagmentButtons';
 
 const ImagesInput = () => {
-    const { setImages, setErrorMessage } = createProfileStore(
+    const { setImage, setErrorMessage } = useCreateProfileStore(
         (state) => state.actions,
     );
-    const images = createProfileStore((state) => state.form.images);
+    const images = useCreateProfileStore((state) => state.form.images);
 
     const pickImage = async () => {
         setErrorMessage('');
@@ -23,10 +21,8 @@ const ImagesInput = () => {
             quality: 1,
         });
 
-        console.log(result);
-
         if (!result.canceled) {
-            setImages(result.assets[0].uri);
+            setImage(result.assets[0].uri);
         }
     };
 
@@ -40,26 +36,6 @@ const ImagesInput = () => {
         <View style={styles.container}>
             <ImageSlider images={images} />
             <ManagmentButtons pickImage={pickImage} />
-        </View>
-    );
-};
-
-type TManagmentButtons = { pickImage: () => void };
-
-const ManagmentButtons: FC<TManagmentButtons> = ({pickImage}) => {
-    return (
-        <View style={styles.managmentButtons}>
-            <Button style={styles.managmentButton}>
-                <Trash2 color={'#FF4E51'} size={30} />
-            </Button>
-
-            <Button style={styles.managmentButton} onPress={pickImage}>
-                <Plus color={'#0066FF'} size={34} />
-            </Button>
-
-            <Button style={styles.managmentButton}>
-                <Pencil color={'#FFB303'} size={25} />
-            </Button>
         </View>
     );
 };

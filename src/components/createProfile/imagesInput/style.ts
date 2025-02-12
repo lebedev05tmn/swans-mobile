@@ -14,18 +14,6 @@ const styles = StyleSheet.create({
         borderColor: '#B18FCF',
         overflow: 'hidden',
     },
-    managmentButtons: {
-        position: 'absolute',
-        bottom: 25,
-        flexDirection: 'row',
-        gap: 30,
-    },
-    managmentButton: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: '50%',
-        width: 50,
-        height: 50,
-    },
 });
 
 export default styles;

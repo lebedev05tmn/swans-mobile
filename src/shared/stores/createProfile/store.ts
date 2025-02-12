@@ -50,7 +50,8 @@ type TCreateProfileActions = {
         setBirthDate: (birthDate: string) => void;
         setLongDesc: (longDesc: string) => void;
         setSex: (sex: string) => void;
-        setImages: (images: string) => void;
+        setImage: (images: string) => void;
+        deleteImage: (index: number) => void;
         showErrorMessage: () => void;
         hideErrorMessage: () => void;
         setFieldIsCorrect: () => void;
@@ -129,10 +130,21 @@ const useCreateProfileStore = create<TCreateProfileStore>((set) => ({
             set((state) => ({ form: { ...state.form, long_desc: longDesc } })),
         setSex: (sex: string) =>
             set((state) => ({ form: { ...state.form, sex: sex } })),
-        setImages: (image: string) =>
+        setImage: (image: string) =>
             set((state) => ({
                 form: { ...state.form, images: [...state.form.images, image] },
             })),
+        deleteImage: (index: number) => {
+            set((state) => ({
+                form: {
+                    ...state.form,
+                    images: state.form.images.filter(
+                        (_, i) => i !== index,
+                    ),
+                },
+            }));
+        },
+            
         showErrorMessage: () => set({ isErrorMessageVisible: true }),
         hideErrorMessage: () => set({ isErrorMessageVisible: false }),
         setFieldIsCorrect: () => set({ isFieldCorrect: true }),
