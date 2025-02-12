@@ -35,7 +35,7 @@ const ImagesInput = () => {
     ) : (
         <View style={styles.container}>
             <ImageSlider images={images} />
-            <ManagmentButtons pickImage={pickImage} />
+            <ManagmentButtons />
         </View>
     );
 };
