@@ -9,7 +9,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 
 const ManagmentButtons: FC = () => {
-    const { deleteImage, setImage, setErrorMessage } = useCreateProfileStore((state) => state.actions);
+    const { deleteImage, setImage, setErrorMessage, replaceImage } = useCreateProfileStore((state) => state.actions);
     const { setCurrentImageIndex } = useImagesStore((state) => state.actions);
     const currentImageIndex = useImagesStore(
         (state) => state.currentImageIndex,
@@ -17,19 +17,33 @@ const ManagmentButtons: FC = () => {
     const imagesCounter = useCreateProfileStore((state) => state.form.images.length);
 
     const pickImage = async () => {
-            setErrorMessage('');
-    
-            let result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ['images'],
-                allowsEditing: true,
-                quality: 1,
-            });
-    
-            if (!result.canceled) {
-                setImage(result.assets[0].uri);
-                setCurrentImageIndex(imagesCounter);
-            }
-        };
+        setErrorMessage('');
+
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ['images'],
+            allowsEditing: true,
+            quality: 1,
+        });
+
+        if (!result.canceled) {
+            setImage(result.assets[0].uri);
+            setCurrentImageIndex(imagesCounter);
+        }
+    };
+
+    const editImage = async () => {
+        setErrorMessage('');
+
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ['images'],
+            allowsEditing: true,
+            quality: 1,
+        });
+        
+        if (!result.canceled) {
+            replaceImage(currentImageIndex, result.assets[0].uri);
+        }
+    };
 
     return (
         <View style={styles.managmentButtons}>
@@ -37,6 +51,7 @@ const ManagmentButtons: FC = () => {
                 style={styles.managmentButton}
                 onPress={() => {
                     deleteImage(currentImageIndex);
+                    setErrorMessage('');
                     setCurrentImageIndex(currentImageIndex - 1);
                 }}
             >
@@ -47,7 +62,7 @@ const ManagmentButtons: FC = () => {
                 <Plus color={'#0066FF'} size={34} />
             </Button>
 
-            <Button style={styles.managmentButton}>
+            <Button style={styles.managmentButton} onPress={editImage}>
                 <Pencil color={'#FFB303'} size={25} />
             </Button>
         </View>
