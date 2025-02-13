@@ -62,7 +62,7 @@ const MainSlider = (): JSX.Element => {
                 translateContent.value = direction;
                 
                 translateContent.value = withSpring(0, {
-                    damping: 15,
+                    damping: 16,
                 });
             }, ANIMATION_TIME);
         };
