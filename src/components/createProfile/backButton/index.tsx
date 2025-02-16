@@ -1,5 +1,5 @@
 import { ArrowLeft } from 'lucide-react-native';
-import createProfileStore from '@/src/shared/stores/createProfile/store';
+import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import styles from './styles';
 import Button from '@/src/shared/ui/Button';
 

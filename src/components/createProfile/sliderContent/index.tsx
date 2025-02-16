@@ -4,9 +4,9 @@ import dataCreateProfileContent, {
 } from '@/src/shared/data/createProfile/data';
 import { View, Text, Pressable } from 'react-native';
 import styles from './style';
-import ChooseInterests from '../chooseInterests';
+import ChooseInterests from '@/src/components/createProfile/chooseInterests';
 import { FC } from 'react';
-import createProfileStore from '@/src/shared/stores/createProfile/store';
+import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
 
 const Slide: FC<TContentComponent> = ({
     title,

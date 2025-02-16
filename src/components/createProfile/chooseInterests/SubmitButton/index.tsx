@@ -1,30 +1,18 @@
-import Button from '@/src/shared/ui/Button';
-import styles from './styles';
-import { ArrowRight } from 'lucide-react-native';
 import { Alert, Text } from 'react-native';
-import { useCreateProfile, useProfiles, useUpdateProfile } from '@/src/shared/hooks/useProfile';
-import createProfileStore from '@/src/shared/stores/createProfile/store';
+import React from 'react';
+import Button from '@/src/shared/ui/Button';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 
 const SubmitButton = () => {
-    const {
-        data: profiles,
-        refetch,
-    } = useProfiles();
-
-    const handlePress = async () => {
-        try {
-            const result = await refetch();
-            Alert.alert('Ответ от сервера:', JSON.stringify(result.data));
-        } catch (err: any) {
-            Alert.alert('Ошибка при запросе:', err.message);
-        }
-    };
-
+    const form = useCreateProfileStore((state) => state.form);
 
     return (
-        <Button style={styles.submitButton} onPress={handlePress}>
-            <Text style={styles.text}>Продолжить</Text>
-            <ArrowRight color={'#404040'} size={18} />
+        <Button
+            onPress={() => {
+                Alert.alert('Форма', JSON.stringify(form));
+            }}
+        >
+            <Text>Показать форму</Text>
         </Button>
     );
 };

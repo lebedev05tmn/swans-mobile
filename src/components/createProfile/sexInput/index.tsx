@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text } from 'react-native';
 import Button from '@/src/shared/ui/Button';
-import useCreateProfileStore from '@/src/shared/stores/createProfile/store';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 
 const SexInput = () => {
     const { toggleContent, next, setSex } = useCreateProfileStore(

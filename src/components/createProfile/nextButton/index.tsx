@@ -1,5 +1,5 @@
 import { Alert, StyleSheet, Text } from 'react-native';
-import createProfileStore from '@/src/shared/stores/createProfile/store';
+import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import { ArrowRight } from 'lucide-react-native';
 import Button from '@/src/shared/ui/Button';
 import useValidateField from '@/src/shared/hooks/useValidateField';

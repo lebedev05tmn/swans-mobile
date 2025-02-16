@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import * as Location from 'expo-location';
-import createProfileStore from '@/src/shared/stores/createProfile/store';
+import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
 
 const useUserLocation = () => {
     const setGeolocation = createProfileStore(
@@ -25,7 +25,7 @@ const useUserLocation = () => {
                     location.coords.latitude,
                     location.coords.longitude,
                 ];
-               
+
                 setGeolocation(coords);
             } catch (error) {
                 console.error('Ошибка при получении геолокации:', error);

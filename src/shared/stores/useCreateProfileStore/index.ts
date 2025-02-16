@@ -59,6 +59,8 @@ type TCreateProfileActions = {
         setFieldIsIncorrect: () => void;
         setErrorMessage: (error: string) => void;
         setUserId: (id: string) => void;
+        addInterest: (interest: string) => void;
+        removeInterest: (interest: string) => void;
     };
 };
 
@@ -86,7 +88,7 @@ const useCreateProfileStore = create<TCreateProfileStore>((set) => ({
         images: [],
         short_desc: 'Нужно добавить',
         long_desc: '',
-        categories: ['Нужно добавить'],
+        categories: [],
         geolocation: [],
     },
     actions: {
@@ -160,6 +162,10 @@ const useCreateProfileStore = create<TCreateProfileStore>((set) => ({
         setErrorMessage: (error) => set((state) => ({ errorMessage: error })),
         setUserId: (id: string) =>
             set((state) => ({ form: { ...state.form, user_id: id } })),
+        addInterest: (interest: string) =>
+            set((state) => ({ form: { ...state.form, categories: [...state.form.categories, interest] } })),
+        removeInterest: (interest: string) =>
+            set((state) => ({ form: { ...state.form, categories: state.form.categories.filter((i) => i !== interest) } })),
     },
 }));
 

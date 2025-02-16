@@ -3,18 +3,20 @@ import { Pencil, Plus, Trash2 } from 'lucide-react-native';
 import { FC } from 'react';
 import { View } from 'react-native';
 import styles from './style';
-import useCreateProfileStore from '@/src/shared/stores/createProfile/store';
-import useImagesStore from '@/src/shared/stores/ImagesStore';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import useImagesStore from '@/src/shared/stores/useImagesStore';
 import * as ImagePicker from 'expo-image-picker';
 
-
 const ManagmentButtons: FC = () => {
-    const { deleteImage, setImage, setErrorMessage, replaceImage } = useCreateProfileStore((state) => state.actions);
+    const { deleteImage, setImage, setErrorMessage, replaceImage } =
+        useCreateProfileStore((state) => state.actions);
     const { setCurrentImageIndex } = useImagesStore((state) => state.actions);
     const currentImageIndex = useImagesStore(
         (state) => state.currentImageIndex,
     );
-    const imagesCounter = useCreateProfileStore((state) => state.form.images.length);
+    const imagesCounter = useCreateProfileStore(
+        (state) => state.form.images.length,
+    );
 
     const pickImage = async () => {
         setErrorMessage('');
@@ -39,7 +41,7 @@ const ManagmentButtons: FC = () => {
             allowsEditing: true,
             quality: 1,
         });
-        
+
         if (!result.canceled) {
             replaceImage(currentImageIndex, result.assets[0].uri);
         }

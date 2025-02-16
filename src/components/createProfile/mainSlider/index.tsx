@@ -1,6 +1,6 @@
 import { useWindowDimensions } from 'react-native';
 import createProfileBodyComponents from '@/src/components/createProfile/sliderContent';
-import useCreateProfileStore from '@/src/shared/stores/createProfile/store';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import Animated, {
     Easing,
     useAnimatedStyle,
@@ -60,7 +60,7 @@ const MainSlider = (): JSX.Element => {
                 changeCurrentIndex();
 
                 translateContent.value = direction;
-                
+
                 translateContent.value = withSpring(0, {
                     damping: 16,
                 });

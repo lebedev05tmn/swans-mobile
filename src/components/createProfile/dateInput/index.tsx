@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TextInput, Keyboard } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import createProfileStore from '@/src/shared/stores/createProfile/store';
+import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import Input from '@/src/shared/ui/Input';
 
 type Props = {
@@ -44,9 +44,8 @@ const DateInputCell: React.FC<Props> = ({
 };
 
 const DateInput = () => {
-    const { hideDatePicker, setBirthDate, showDatePicker, setErrorMessage } = createProfileStore(
-        (state) => state.actions,
-    );
+    const { hideDatePicker, setBirthDate, showDatePicker, setErrorMessage } =
+        createProfileStore((state) => state.actions);
     const isDatePickerVisible = createProfileStore(
         (state) => state.isDatePickerVisible,
     );

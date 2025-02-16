@@ -1,5 +1,5 @@
-import Input from "@/src/shared/ui/Input";
-import createProfileStore from '@/src/shared/stores/createProfile/store';
+import Input from '@/src/shared/ui/Input';
+import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
 
 const CityInput = () => {
     const city = createProfileStore((state) => state.form.city);
@@ -21,6 +21,5 @@ const CityInput = () => {
         />
     );
 };
-
 
 export default CityInput;

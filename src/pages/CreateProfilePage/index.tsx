@@ -4,7 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import BodySlider from '@/src/components/createProfile/mainSlider';
 import Header from '@/src/components/createProfile/header';
-import createProfileStore from '@/src/shared/stores/createProfile/store';
 import SeaFooter from '@/src/assets/svg/seaFooter.svg';
 import Animated, {
     Easing,
@@ -15,17 +14,18 @@ import Animated, {
 import { ANIMATION_TIME } from '@/src/shared/config/config';
 import BackButton from '@/src/components/createProfile/backButton';
 import useUserLocation from '@/src/shared/hooks/useUserGeolocation';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 
 const CreateProfilePage: FC = () => {
     useUserLocation();
 
-    const { prev, setErrorMessage } = createProfileStore(
+    const { prev } = useCreateProfileStore(
         (state) => state.actions,
     );
 
-    const nextIndex = createProfileStore((state) => state.nextIndex);
-    const currentIndex = createProfileStore((state) => state.currentIndex);
-    const pages = createProfileStore((state) => state.pages);
+    const nextIndex = useCreateProfileStore((state) => state.nextIndex);
+    const currentIndex = useCreateProfileStore((state) => state.currentIndex);
+    const pages = useCreateProfileStore((state) => state.pages);
 
     const translateFooter = useSharedValue<number>(60);
     const translateHeader = useSharedValue<number>(0);

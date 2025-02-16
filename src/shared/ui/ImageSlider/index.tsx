@@ -7,7 +7,7 @@ import {
     Dimensions,
 } from 'react-native';
 import styles from './style';
-import useImagesStore from '../../stores/ImagesStore';
+import useImagesStore from '../../stores/useImagesStore';
 
 const windowWidth = Dimensions.get('window').width * 0.86;
 

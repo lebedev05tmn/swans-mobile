@@ -1,6 +1,6 @@
 import { View, StyleSheet, Dimensions } from 'react-native';
 import ProgressWave from '@/src/assets/svg/progressWave.svg';
-import useCreateProfileStore from '@/src/shared/stores/createProfile/store';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import Animated, {
     Easing,
     useSharedValue,

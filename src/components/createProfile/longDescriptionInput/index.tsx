@@ -1,6 +1,6 @@
 import Input from '@/src/shared/ui/Input';
 import { StyleSheet } from 'react-native';
-import createProfileStore from '@/src/shared/stores/createProfile/store';
+import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
 
 const LongDescriptionInput = () => {
     const longDescription = createProfileStore((state) => state.form.long_desc);

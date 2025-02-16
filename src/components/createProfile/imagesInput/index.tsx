@@ -2,7 +2,7 @@ import { View, Pressable } from 'react-native';
 import styles from './style';
 import { Camera } from 'lucide-react-native';
 import * as ImagePicker from 'expo-image-picker';
-import useCreateProfileStore from '@/src/shared/stores/createProfile/store';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import ImageSlider from '@/src/shared/ui/ImageSlider';
 import ManagmentButtons from './ManagmentButtons';
 
