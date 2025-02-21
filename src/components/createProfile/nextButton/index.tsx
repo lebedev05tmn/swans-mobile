@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import { ArrowRight } from 'lucide-react-native';
 import Button from '@/src/shared/ui/Button';
@@ -30,7 +30,7 @@ const NextButton = () => {
                 value = form.birth_date;
                 break;
             case 3:
-                value = form.long_desc;
+                value = form.description;
                 break;
             case 5:
                 value = form.images.length;

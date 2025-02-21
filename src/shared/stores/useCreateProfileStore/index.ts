@@ -7,8 +7,7 @@ type TForm = {
     birth_date: string;
     sex: string;
     images: string[];
-    short_desc: string;
-    long_desc: string;
+    description: string;
     categories: string[];
     geolocation: number[];
 };
@@ -48,7 +47,7 @@ type TCreateProfileActions = {
         showDatePicker: () => void;
         hideDatePicker: () => void;
         setBirthDate: (birthDate: string) => void;
-        setLongDesc: (longDesc: string) => void;
+        setDescription: (longDesc: string) => void;
         setSex: (sex: string) => void;
         setImage: (images: string) => void;
         deleteImage: (index: number) => void;
@@ -86,8 +85,7 @@ const useCreateProfileStore = create<TCreateProfileStore>((set) => ({
         birth_date: '',
         sex: '',
         images: [],
-        short_desc: 'Нужно добавить',
-        long_desc: '',
+        description: '',
         categories: [],
         geolocation: [],
     },
@@ -129,8 +127,10 @@ const useCreateProfileStore = create<TCreateProfileStore>((set) => ({
             set((state) => ({
                 form: { ...state.form, birth_date: birthDate },
             })),
-        setLongDesc: (longDesc: string) =>
-            set((state) => ({ form: { ...state.form, long_desc: longDesc } })),
+        setDescription: (description: string) =>
+            set((state) => ({
+                form: { ...state.form, description: description },
+            })),
         setSex: (sex: string) =>
             set((state) => ({ form: { ...state.form, sex: sex } })),
         setImage: (image: string) =>
@@ -163,9 +163,21 @@ const useCreateProfileStore = create<TCreateProfileStore>((set) => ({
         setUserId: (id: string) =>
             set((state) => ({ form: { ...state.form, user_id: id } })),
         addInterest: (interest: string) =>
-            set((state) => ({ form: { ...state.form, categories: [...state.form.categories, interest] } })),
+            set((state) => ({
+                form: {
+                    ...state.form,
+                    categories: [...state.form.categories, interest],
+                },
+            })),
         removeInterest: (interest: string) =>
-            set((state) => ({ form: { ...state.form, categories: state.form.categories.filter((i) => i !== interest) } })),
+            set((state) => ({
+                form: {
+                    ...state.form,
+                    categories: state.form.categories.filter(
+                        (i) => i !== interest,
+                    ),
+                },
+            })),
     },
 }));
 

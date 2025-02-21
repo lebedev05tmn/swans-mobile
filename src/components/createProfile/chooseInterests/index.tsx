@@ -11,7 +11,7 @@ const interestsData = [
 
 const ChooseInterests = () => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>Выбери свои интересы</Text>
             <InterestCard
                 title="Основное в отношениях"

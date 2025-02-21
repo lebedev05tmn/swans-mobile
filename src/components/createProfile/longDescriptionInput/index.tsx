@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native';
 import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
 
 const LongDescriptionInput = () => {
-    const longDescription = createProfileStore((state) => state.form.long_desc);
-    const setLongDescription = createProfileStore(
-        (state) => state.actions.setLongDesc,
+    const description = createProfileStore((state) => state.form.description);
+    const setDescription = createProfileStore(
+        (state) => state.actions.setDescription,
     );
     const setErrorMessage = createProfileStore(
         (state) => state.actions.setErrorMessage,
@@ -16,10 +16,10 @@ const LongDescriptionInput = () => {
             style={styles.aboutTextInput}
             placeholder="Напиши текст до 120 символов..."
             onChangeText={(text) => {
-                setLongDescription(text);
+                setDescription(text);
                 setErrorMessage('');
             }}
-            value={longDescription}
+            value={description}
             multiline={true}
             textAlignVertical={'top'}
         />

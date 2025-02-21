@@ -22,16 +22,6 @@ export const useProfileById = (id: string) => {
     });
 };
 
-export const useCreateProfile = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-        mutationFn: createProfile,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['profiles'] });
-        },
-    });
-};
-
 export const useUpdateProfile = () => {
     const queryClient = useQueryClient();
     return useMutation({

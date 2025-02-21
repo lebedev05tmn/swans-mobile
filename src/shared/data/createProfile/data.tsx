@@ -61,7 +61,7 @@ const dataCreateProfileContent: TContentComponent[] = [
         description: 'Используй настояющую, ее потом поменять нельзя',
         input: <DateInput />,
         countinueButton: true,
-        validationRules: [rules.require, rules.minAge, rules.maxAge],
+        
     },
     {
         id: 'long_desc',

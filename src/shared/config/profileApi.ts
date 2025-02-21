@@ -10,8 +10,11 @@ export const fetchProfileById = async (id: string) => {
     return response.data;
 };
 
-export const createProfile = async (id: string) => {
-    const response = await api.post(`/profile/create?user_id=${id}`);
+export const createProfile = async (id: string, profileData: object) => {
+    const response = await api.post(
+        `/profile/create?user_id=${id}`,
+        profileData,
+    );
     return response.data;
 };
 

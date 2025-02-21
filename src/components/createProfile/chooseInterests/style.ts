@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
         fontFamily: 'MontserratAlternates_700Bold',
         textAlign: 'center',
         marginTop: 16,
+    },
+    container: {
+        flex: 1,
     }
 });
 

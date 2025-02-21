@@ -4273,6 +4273,13 @@ expo-constants@~17.0.0, expo-constants@~17.0.2, expo-constants@~17.0.3:
     "@expo/config" "~10.0.4"
     "@expo/env" "~0.4.0"
 
+expo-file-system@~18.0.11:
+  version "18.0.11"
+  resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-18.0.11.tgz#4e602d6d0a3928810b98666ab11872fafe411170"
+  integrity sha512-yDwYfEzWgPXsBZHJW2RJ8Q66ceiFN9Wa5D20pp3fjXVkzPBDwxnYwiPWk4pVmCa5g4X5KYMoMne1pUrsL4OEpg==
+  dependencies:
+    web-streams-polyfill "^3.3.2"
+
 expo-file-system@~18.0.3:
   version "18.0.3"
   resolved "https://registry.npmjs.org/expo-file-system/-/expo-file-system-18.0.3.tgz"
