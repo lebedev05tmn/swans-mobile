@@ -1,24 +1,23 @@
-module.exports = function (api) {
-    api.cache(true);
-
-    return {
-        presets: [
-            'babel-preset-expo', // Убираем nativewind preset
-        ],
-
-        plugins: [
-            [
-                'module-resolver',
-                {
-                    root: ['./'],
-
-                    alias: {
-                        '@': './',
-                        'tailwind.config': './tailwind.config.js',
-                    },
+module.exports = {
+    presets: ['module:@react-native/babel-preset'],
+    plugins: [
+        [
+            'module-resolver',
+            {
+                root: ['.'],
+                alias: {
+                    '@src': './src',
+                    '@components': './src/components',
+                    '@assets': './src/assets',
+                    '@screens': './src/screens',
+                    '@shared': './src/shared',
+                    '@navigation': './src/navigation',
+                    '@hooks': './src/shared/hooks',
+                    '@stores': './src/shared/stores',
+                    '@config': './src/shared/config',
                 },
-            ],
-            'react-native-reanimated/plugin', // Плагин reanimated обязательно должен быть последним
+            },
         ],
-    };
+        'react-native-reanimated/plugin', // Этот плагин должен быть последним
+    ],
 };

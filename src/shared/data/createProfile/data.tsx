@@ -1,55 +1,92 @@
-import AboutTextInput from '@/src/components/createProfile/aboutTextInput';
-import ButtonChoice from '@/src/components/createProfile/choiceButton';
-import DateInput from '@/src/components/createProfile/dateInput';
-import NameInput from '@/src/components/createProfile/nameInput';
-import PlaceInput from '@/src/components/createProfile/placeInput';
+import LongDescriptionInput from '@components/СreateProfile/DescriptionInput';
+import SexInput from '@components/СreateProfile/SexInput';
+import DateInput from '@components/СreateProfile/DateInput';
+import NameInput from '@components/СreateProfile/NameInput';
+import CityInput from '@components/СreateProfile/CityInput';
+import ImageSlider from '@components/СreateProfile/ImagesInput';
+import { TextStyle } from 'react-native';
+import { JSX } from 'react';
 
 const enum rules {
     require = 'require',
-    letters = 'letters',
+    onlyLetters = 'onlyLetters',
+    minLength = 'minLength',
+    maxLength = 'maxLength',
+    minAge = 'minAge',
+    maxAge = 'maxAge',
+    imageRequire = 'imageRequire',
+    maxDescriptionLength = 'maxDescriptionLength',
 }
 
 export type TContentComponent = {
+    id: string;
     title: string;
-    description: string;
+    textAlign?: TextStyle;
+    description?: string;
     input: JSX.Element;
+    skipButton?: boolean;
     countinueButton: boolean;
     validationRules?: string[];
 };
 
 const dataCreateProfileContent: TContentComponent[] = [
     {
+        id: 'name',
         title: 'Привет, давай знакомиться',
         description: 'Будь собой при выборе имени, привлекает больше внимания.',
         input: <NameInput />,
         countinueButton: true,
-        validationRules: [rules.require, rules.letters],
+        validationRules: [
+            rules.require,
+            rules.onlyLetters,
+            rules.minLength,
+            rules.maxLength,
+        ],
     },
     {
+        id: 'city',
         title: 'Где живем, там и ищем',
         description: 'Выбери свой город, чтобы найти ближайщих соулмейтов',
-        input: <PlaceInput />,
+        input: <CityInput />,
         countinueButton: true,
-        validationRules: [rules.require],
+        validationRules: [
+            rules.require,
+            rules.onlyLetters,
+            rules.minLength,
+            rules.maxLength,
+        ],
     },
     {
+        id: 'birth_date',
         title: 'Выбери дату рождения',
         description: 'Используй настояющую, ее потом поменять нельзя',
         input: <DateInput />,
         countinueButton: true,
-        validationRules: [rules.require],
+        
     },
     {
+        id: 'long_desc',
         title: 'Стань солцем среди планет',
         description: 'Сделай свой \"слоган\", который выделит тебя среди всех',
-        input: <AboutTextInput />,
+        input: <LongDescriptionInput />,
         countinueButton: true,
+        validationRules: [rules.require, rules.maxDescriptionLength],
+        skipButton: true,
     },
     {
+        id: 'sex',
         title: 'Последний этап регистрации',
         description: 'Выберите пол',
-        input: <ButtonChoice />,
+        input: <SexInput />,
         countinueButton: false,
+    },
+    {
+        id: 'images',
+        title: 'Загрузите фото',
+        input: <ImageSlider />,
+        countinueButton: true,
+        textAlign: { textAlign: 'center' },
+        validationRules: [rules.imageRequire],
     },
 ];
 
