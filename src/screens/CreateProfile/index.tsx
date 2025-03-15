@@ -16,11 +16,12 @@ import Animated, {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './style';
 import useGeolocation, { TCoordinates } from '@hooks/useGeolocation';
+import { API_BASE_URL } from '@env';
 
 const CreateProfile: FC = () => {
-    const { prev, setGeolocation } = useCreateProfileStore((state) => state.actions);
-
-    
+    const { prev, setGeolocation } = useCreateProfileStore(
+        (state) => state.actions,
+    );
 
     const nextIndex = useCreateProfileStore((state) => state.nextIndex);
     const currentIndex = useCreateProfileStore((state) => state.currentIndex);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://swans-dating.ru/api';
+import { API_BASE_URL } from '@env'
 
 export const api = axios.create({
     baseURL: API_BASE_URL,
