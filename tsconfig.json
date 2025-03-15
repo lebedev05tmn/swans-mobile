@@ -1,32 +1,28 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@screens/*": ["src/screens/*"],
-      "@shared/*": ["src/shared/*"],
-      "@navigation/*": ["src/navigation/*"],
-      "@hooks/*": ["src/shared/hooks/*"],
-      "@stores/*": ["src/shared/stores/*"],
-      "@config/*": ["src/shared/config/*"]
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@src/*": ["src/*"],
+            "@components/*": ["src/components/*"],
+            "@assets/*": ["src/assets/*"],
+            "@screens/*": ["src/screens/*"],
+            "@shared/*": ["src/shared/*"],
+            "@app/*": ["src/app/*"],
+            "@hooks/*": ["src/shared/hooks/*"],
+            "@stores/*": ["src/shared/stores/*"],
+            "@config/*": ["src/shared/config/*"]
+        },
+        "allowJs": true,
+        "checkJs": false,
+        "resolveJsonModule": true,
+        "jsx": "react-native",
+        "moduleResolution": "node",
+        "noEmit": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "declaration": true
     },
-    "allowJs": true,
-    "checkJs": false,
-    "resolveJsonModule": true,
-    "jsx": "react-native",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true
-  },
-  "include": [
-    "index.ts",
-    "src",
-    "declarations.d.ts"
-  ]
+    "include": ["index.ts", "src", "declarations.d.ts"]
 }

@@ -1,10 +1,7 @@
 import { FC } from 'react';
-import Navigation from '@navigation/Navigation';
+import Navigation from '@app/Navigation';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import {
-    QueryClient,
-    QueryClientProvider,
-} from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
 

@@ -1,5 +1,5 @@
 import { TouchableOpacity, ViewStyle } from 'react-native';
-import styles from './styles';
+import styles from './style';
 import { FC } from 'react';
 
 type TButton = {
