@@ -1,7 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Loading from '@screens/Loading';
+import Authorization from '@screens/Authorization';
 import CreateProfile from '@screens/CreateProfile';
+import EmailRegistration from '@src/screens/EmailRegistration';
 import { FC } from 'react';
 
 const Stack = createNativeStackNavigator();
@@ -18,10 +20,19 @@ const Navigation: FC = () => {
                     statusBarBackgroundColor: 'transparent',
                     statusBarStyle: 'dark',
                 }}
-                initialRouteName="CreateProfile"
+                initialRouteName="Authorization"
             >
+                <Stack.Screen name="Authorization" component={Authorization} />
                 <Stack.Screen name="Loading" component={Loading} />
                 <Stack.Screen name="CreateProfile" component={CreateProfile} />
+                <Stack.Screen
+                    name="EmailRegistration"
+                    component={EmailRegistration}
+                    options={{
+                        animation: 'slide_from_right', // Плавное появление справа
+                        gestureEnabled: true, // Позволяет свайпом закрывать окно
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -1,12 +1,10 @@
-import React, { forwardRef } from 'react';
-import {
-    InputModeOptions,
-    TextInput,
-    View,
-    ViewStyle,
-} from 'react-native';
-import styles from './styles';
+// src/shared/ui/Input/index.tsx (или твой путь)
 
+import React, { forwardRef } from 'react';
+import { InputModeOptions, TextInput, View, ViewStyle } from 'react-native';
+import styles from './styles'; // Убедись, что стили импортируются правильно
+
+// --- ДОБАВЛЯЕМ editable и secureTextEntry В ТИП ---
 type TInput = {
     style?: ViewStyle;
     textStyle?: any;
@@ -24,6 +22,10 @@ type TInput = {
     onFocus?: () => void;
     onSubmitEditing?: () => void;
     onBlur?: () => void;
+    // --- ВОТ ОНИ ---
+    editable?: boolean; // Добавлено
+    secureTextEntry?: boolean; // Добавлено
+    // --- КОНЕЦ ДОБАВЛЕНИЙ В ТИП ---
 };
 
 // Используем forwardRef для правильной передачи ref
@@ -46,6 +48,10 @@ const Input = forwardRef<TextInput, TInput>(
             onFocus,
             onSubmitEditing,
             onBlur,
+            // --- ДЕСТРУКТУРИРУЕМ НОВЫЕ ПРОПСЫ ---
+            editable, // Добавлено
+            secureTextEntry, // Добавлено
+            // --- КОНЕЦ ДЕСТРУКТУРИЗАЦИИ ---
         },
         ref,
     ) => {
@@ -68,10 +74,16 @@ const Input = forwardRef<TextInput, TInput>(
                     onFocus={onFocus}
                     onSubmitEditing={onSubmitEditing}
                     onBlur={onBlur}
+                    // --- ПЕРЕДАЕМ ПРОПСЫ ВНУТРЬ TextInput ---
+                    editable={editable} // Добавлено
+                    secureTextEntry={secureTextEntry} // Добавлено
+                    // --- КОНЕЦ ПЕРЕДАЧИ ПРОПСОВ ---
                 />
             </View>
         );
     },
 );
+
+Input.displayName = 'Input'; // Хорошая практика для forwardRef
 
 export default Input;
