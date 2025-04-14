@@ -2,9 +2,7 @@ module.exports = function (api) {
     api.cache(true);
 
     return {
-        presets: [
-            'babel-preset-expo', // Убираем nativewind preset
-        ],
+        presets: ['babel-preset-expo'],
 
         plugins: [
             [
@@ -14,8 +12,14 @@ module.exports = function (api) {
 
                     alias: {
                         '@': './',
-                        'tailwind.config': './tailwind.config.js',
                     },
+                },
+            ],
+            [
+                'inline-dotenv',
+                {
+                    path: './.env',
+                    unsafe: true,
                 },
             ],
             'react-native-reanimated/plugin', // Плагин reanimated обязательно должен быть последним

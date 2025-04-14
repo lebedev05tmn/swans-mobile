@@ -1,3 +1,3 @@
-import LoadingPage from "@/src/pages/LoadingPage";
+import LoadingPage from '@/src/screens/LoadingPage';
 
 export default LoadingPage;

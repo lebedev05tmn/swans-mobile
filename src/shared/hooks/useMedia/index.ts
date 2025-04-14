@@ -1,5 +1,5 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchMediaById } from '@/src/shared/config/mediaApi';
+import { useQuery } from '@tanstack/react-query';
 
 export const useMediaById = (id: string) => {
     return useQuery({

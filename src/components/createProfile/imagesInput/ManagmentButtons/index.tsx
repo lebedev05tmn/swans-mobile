@@ -6,6 +6,8 @@ import styles from './style';
 import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import useImagesStore from '@/src/shared/stores/useImagesStore';
 import * as ImagePicker from 'expo-image-picker';
+import useThrottle from '@/src/shared/hooks/useThrottle';
+import { THROTTLE_TIME } from '@/src/shared/config/config';
 
 const ManagmentButtons: FC = () => {
     const { deleteImage, setImage, setErrorMessage, replaceImage } =
@@ -33,6 +35,11 @@ const ManagmentButtons: FC = () => {
         }
     };
 
+    const handleDelete = useThrottle(() => {
+        deleteImage(currentImageIndex);
+        setErrorMessage('');
+        setCurrentImageIndex(currentImageIndex - 1);
+    }, THROTTLE_TIME);
     const editImage = async () => {
         setErrorMessage('');
 
@@ -49,14 +56,7 @@ const ManagmentButtons: FC = () => {
 
     return (
         <View style={styles.managmentButtons}>
-            <Button
-                style={styles.managmentButton}
-                onPress={() => {
-                    deleteImage(currentImageIndex);
-                    setErrorMessage('');
-                    setCurrentImageIndex(currentImageIndex - 1);
-                }}
-            >
+            <Button style={styles.managmentButton} onPress={handleDelete}>
                 <Trash2 color={'#FF4E51'} size={30} />
             </Button>
 

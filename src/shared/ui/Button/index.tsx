@@ -1,25 +1,21 @@
-import { TouchableOpacity, ViewStyle } from 'react-native';
+import { FC, PropsWithChildren } from 'react';
+import {
+    TouchableOpacity,
+    TouchableOpacityProps,
+    StyleSheet,
+} from 'react-native';
 import styles from './styles';
 
-type TButton = {
-    children: React.ReactNode;
-    style?: ViewStyle;
-    disabled?: boolean;
-    onPress?: () => void;
-};
+type TButton = TouchableOpacityProps & PropsWithChildren;
 
-const Button = ({ children, style, onPress, disabled }: TButton) => {
+const Button: FC<TButton> = ({ children, style, ...props }) => {
+    const flattenedStyle = StyleSheet.flatten([styles.button, style]);
+
     return (
         <TouchableOpacity
-            onPress={onPress}
-            disabled={disabled}
+            {...props}
             activeOpacity={0.75}
-            style={{
-                ...styles.button,
-                ...style,
-                opacity: disabled ? 0.75 : 1,
-                pointerEvents: disabled ? 'none' : 'auto',
-            }}
+            style={flattenedStyle}
         >
             {children}
         </TouchableOpacity>

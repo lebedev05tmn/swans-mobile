@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import useThrottle from '@/src/shared/hooks/useThrottle';
 import {
     View,
     FlatList,
@@ -7,7 +8,8 @@ import {
     Dimensions,
 } from 'react-native';
 import styles from './style';
-import useImagesStore from '../../stores/useImagesStore';
+import useImagesStore from '@/src/shared/stores/useImagesStore';
+import { THROTTLE_TIME } from '@/src/shared/config/config';
 
 const windowWidth = Dimensions.get('window').width * 0.86;
 
@@ -22,7 +24,9 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
     const { setCurrentImageIndex } = useImagesStore((state) => state.actions);
     const flatListRef = useRef<FlatList>(null);
 
-    const handlePress = (event: any) => {
+    const handlePress = useThrottle((event: any) => {
+        if (!event?.nativeEvent) return; 
+
         const touchX = event.nativeEvent.locationX;
 
         let newIndex;
@@ -39,13 +43,15 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
         }
 
         setCurrentImageIndex(newIndex);
-    };
+    }, THROTTLE_TIME);
 
     useEffect(() => {
-        flatListRef.current?.scrollToIndex({
-            index: currentImageIndex,
-            animated: true,
-        });
+        setTimeout(() => {
+            flatListRef.current?.scrollToIndex({
+                index: currentImageIndex,
+                animated: true,
+            });
+        }, 100);
     }, [currentImageIndex]);
 
     if (!images || images.length === 0) return null;

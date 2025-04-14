@@ -1,11 +1,10 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
-    fetchProfiles,
-    fetchProfileById,
-    createProfile,
-    updateProfile,
     deleteProfile,
+    fetchProfileById,
+    fetchProfiles,
+    updateProfile
 } from '@/src/shared/config/profileApi';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export const useProfiles = () => {
     return useQuery({

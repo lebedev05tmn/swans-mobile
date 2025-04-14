@@ -13,7 +13,7 @@ const LongDescriptionInput = () => {
 
     return (
         <Input
-            style={styles.aboutTextInput}
+            viewStyle={styles.aboutTextInput}
             placeholder="Напиши текст до 120 символов..."
             onChangeText={(text) => {
                 setDescription(text);

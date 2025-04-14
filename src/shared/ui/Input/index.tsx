@@ -1,73 +1,42 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import {
-    InputModeOptions,
+    StyleSheet,
     TextInput,
+    TextInputProps,
     View,
     ViewStyle,
 } from 'react-native';
-import styles from './styles';
+import styles from './style';
 
-type TInput = {
-    style?: ViewStyle;
-    textStyle?: any;
-    placeholder?: string;
-    placeholderTextColor?: string;
-    inputMode?: InputModeOptions;
-    textAlign?: any;
-    maxLength?: number;
-    multiline?: boolean;
-    textAlignVertical?: any;
-    value?: string;
-    key?: number | string;
-    onChange?: (e: any) => void;
-    onChangeText?: (text: string) => void;
-    onFocus?: () => void;
-    onSubmitEditing?: () => void;
-    onBlur?: () => void;
-};
+type TInput = { viewStyle?: ViewStyle } & TextInputProps;
 
-// Используем forwardRef для правильной передачи ref
 const Input = forwardRef<TextInput, TInput>(
     (
         {
             style,
             placeholder,
             placeholderTextColor,
-            inputMode,
-            textStyle,
-            textAlign,
-            maxLength,
-            multiline,
             textAlignVertical,
-            value,
-            key,
-            onChange,
-            onChangeText,
-            onFocus,
-            onSubmitEditing,
-            onBlur,
+            viewStyle,
+            ...props
         },
         ref,
     ) => {
+        const flattenedStyle = StyleSheet.flatten([styles.textInput, style]);
+        const flattenedViewStyle = StyleSheet.flatten([
+            styles.inputView,
+            viewStyle,
+        ]);
+
         return (
-            <View style={{ ...styles.inputView, ...style }}>
+            <View style={flattenedViewStyle}>
                 <TextInput
-                    style={{ ...styles.textInput, ...textStyle }}
+                    {...props}
+                    style={flattenedStyle}
                     placeholder={placeholder ?? 'Введите текст'}
                     placeholderTextColor={placeholderTextColor ?? '#A3A3A3'}
-                    inputMode={inputMode ?? 'text'}
-                    textAlign={textAlign}
                     textAlignVertical={textAlignVertical ?? 'center'}
-                    maxLength={maxLength}
-                    multiline={multiline}
-                    value={value}
-                    key={key}
                     ref={ref}
-                    onChange={onChange}
-                    onChangeText={onChangeText}
-                    onFocus={onFocus}
-                    onSubmitEditing={onSubmitEditing}
-                    onBlur={onBlur}
                 />
             </View>
         );
