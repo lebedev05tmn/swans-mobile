@@ -8,6 +8,7 @@ import useImagesStore from '@/src/shared/stores/useImagesStore';
 import * as ImagePicker from 'expo-image-picker';
 import useThrottle from '@/src/shared/hooks/useThrottle';
 import { THROTTLE_TIME } from '@/src/shared/config/config';
+import ButtonWithCounter from '@/src/shared/ui/ButtonWithCounter';
 
 const ManagmentButtons: FC = () => {
     const { deleteImage, setImage, setErrorMessage, replaceImage } =
@@ -25,6 +26,7 @@ const ManagmentButtons: FC = () => {
 
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
+            aspect: [340, 500],
             allowsEditing: true,
             quality: 1,
         });
@@ -46,6 +48,7 @@ const ManagmentButtons: FC = () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
             allowsEditing: true,
+            aspect: [340, 500],
             quality: 1,
         });
 
@@ -60,9 +63,9 @@ const ManagmentButtons: FC = () => {
                 <Trash2 color={'#FF4E51'} size={30} />
             </Button>
 
-            <Button style={styles.managmentButton} onPress={pickImage}>
+            <ButtonWithCounter onPress={pickImage} maxNumber={4} usedNumber={imagesCounter}>
                 <Plus color={'#0066FF'} size={34} />
-            </Button>
+            </ButtonWithCounter>
 
             <Button style={styles.managmentButton} onPress={editImage}>
                 <Pencil color={'#FFB303'} size={25} />

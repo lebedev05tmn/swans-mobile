@@ -51,7 +51,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
                 index: currentImageIndex,
                 animated: true,
             });
-        }, 100);
+        }, 0);
     }, [currentImageIndex]);
 
     if (!images || images.length === 0) return null;

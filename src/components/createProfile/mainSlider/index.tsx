@@ -1,5 +1,5 @@
 import { useWindowDimensions } from 'react-native';
-import createProfileBodyComponents from '@/src/components/createProfile/sliderContent';
+import createProfileBodyComponents from '@/src/components/createProfile/SliderContent';
 import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import Animated, {
     Easing,

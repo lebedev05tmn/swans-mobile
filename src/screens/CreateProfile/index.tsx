@@ -2,8 +2,8 @@ import React, { FC, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import BodySlider from '@/src/components/createProfile/mainSlider';
-import Header from '@/src/components/createProfile/header';
+import BodySlider from '@/src/components/createProfile/MainSlider';
+import Header from '@/src/components/createProfile/Header';
 import SeaFooter from '@/src/assets/svg/seaFooter.svg';
 import Animated, {
     Easing,

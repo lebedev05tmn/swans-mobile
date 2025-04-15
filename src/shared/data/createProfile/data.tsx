@@ -1,9 +1,9 @@
-import LongDescriptionInput from '@/src/components/createProfile/longDescriptionInput';
-import SexInput from '@/src/components/createProfile/sexInput';
+import LongDescriptionInput from '@/src/components/createProfile/DescriptionInput';
+import SexInput from '@/src/components/createProfile/SexInput';
 import DateInput from '@/src/components/createProfile/DateInput';
-import NameInput from '@/src/components/createProfile/nameInput';
+import NameInput from '@/src/components/createProfile/NameInput';
 import CityInput from '@/src/components/createProfile/CityInput';
-import ImageSlider from '@/src/components/createProfile/imagesInput';
+import ImageSlider from '@/src/components/createProfile/ImagesInput';
 import { TextStyle } from 'react-native';
 
 const enum rules {

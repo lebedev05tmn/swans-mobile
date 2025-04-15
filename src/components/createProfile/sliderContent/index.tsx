@@ -1,4 +1,4 @@
-import NextButton from '@/src/components/createProfile/nextButton';
+import NextButton from '@/src/components/createProfile/NextButton';
 import dataCreateProfileContent, {
     TContentComponent,
 } from '@/src/shared/data/createProfile/data';
