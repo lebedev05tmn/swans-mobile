@@ -19,7 +19,7 @@ module.exports = function (api) {
                 'inline-dotenv',
                 {
                     path: './.env',
-                    unsafe: true,
+                    unsafe: false,
                 },
             ],
             'react-native-reanimated/plugin', // Плагин reanimated обязательно должен быть последним
