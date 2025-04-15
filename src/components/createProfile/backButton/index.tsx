@@ -1,28 +1,29 @@
 import { ArrowLeft } from 'lucide-react-native';
-import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
-import styles from './styles';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import styles from './style';
 import Button from '@/src/shared/ui/Button';
+import { FC } from 'react';
 
 type TBackButton = {
-    onPress: any;
+    onPress: () => void;
 };
 
-const BackButton = ({ onPress }: TBackButton) => {
-    const isPreviousButtonDisabled = createProfileStore(
+const BackButton: FC<TBackButton> = ({ onPress }) => {
+    const isBackButtonDisabled = useCreateProfileStore(
         (state) => state.isPreviousButtonDisabled,
     );
 
     return (
         <Button
-            disabled={isPreviousButtonDisabled}
+            disabled={isBackButtonDisabled}
             onPress={onPress}
             style={styles.prevButton}
         >
-            {isPreviousButtonDisabled ? (
-                <ArrowLeft color={'#CECECE'} opacity={0.75} size={24} />
-            ) : (
-                <ArrowLeft color={'#CECECE'} size={24} />
-            )}
+            <ArrowLeft
+                color={'#CECECE'}
+                opacity={isBackButtonDisabled ? 0.75 : 1}
+                size={24}
+            />
         </Button>
     );
 };

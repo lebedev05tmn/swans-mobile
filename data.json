@@ -5,6 +5,8 @@
         "description": "Будь собой при выборе имени, привлекает больше внимания.",
         "input": {
             "type": "string",
+            "onChangeText": "setUserName",
+            "value": "userName",
             "placeholder": "Имя"
         },
         "nextButton": true,
@@ -21,6 +23,8 @@
         "description": "Выбери свой город, чтобы найти ближайщих соулмейтов",
         "input": {
             "type": "string",
+            "onChangeText": "setCity",
+            "value": "city",
             "placeholder": "Город..."
         },
         "nextButton": true,
@@ -52,6 +56,8 @@
         "description": "Сделай свой \"слоган\", который выделит тебя среди всех",
         "input": {
             "type": "longString",
+            "onChangeText": "setDescription",
+            "value": "description",
             "placeholder": "Напиши текст до 120 символов..."
         },
         "nextButton": true,

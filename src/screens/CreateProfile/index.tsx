@@ -12,7 +12,7 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated';
 import { ANIMATION_TIME } from '@/src/shared/config/config';
-import BackButton from '@/src/components/createProfile/backButton';
+import BackButton from '@/src/components/createProfile/BackButton';
 import useUserLocation from '@/src/shared/hooks/useUserGeolocation';
 import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 

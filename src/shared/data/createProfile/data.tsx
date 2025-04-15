@@ -1,8 +1,8 @@
 import LongDescriptionInput from '@/src/components/createProfile/longDescriptionInput';
 import SexInput from '@/src/components/createProfile/sexInput';
-import DateInput from '@/src/components/createProfile/dateInput';
+import DateInput from '@/src/components/createProfile/DateInput';
 import NameInput from '@/src/components/createProfile/nameInput';
-import CityInput from '@/src/components/createProfile/cityInput';
+import CityInput from '@/src/components/createProfile/CityInput';
 import ImageSlider from '@/src/components/createProfile/imagesInput';
 import { TextStyle } from 'react-native';
 

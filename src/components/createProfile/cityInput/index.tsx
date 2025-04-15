@@ -1,19 +1,14 @@
 import Input from '@/src/shared/ui/Input';
-import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import { FC } from 'react';
 
-const CityInput = () => {
-    const city = createProfileStore((state) => state.form.city);
-    const setCity = createProfileStore((state) => state.actions.setCity);
-    const setErrorMessage = createProfileStore(
-        (state) => state.actions.setErrorMessage,
-    );
+const CityInput: FC = () => {
+    const city = useCreateProfileStore((state) => state.form.city);
+    const setCity = useCreateProfileStore((state) => state.actions.setCity);
 
     return (
         <Input
-            onChangeText={(text) => {
-                setCity(text);
-                setErrorMessage('');
-            }}
+            onChangeText={setCity}
             value={city}
             placeholder="Город..."
             placeholderTextColor="#A3A3A3"

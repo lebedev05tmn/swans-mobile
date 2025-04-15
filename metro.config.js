@@ -19,22 +19,5 @@ module.exports = (() => {
         sourceExts: [...resolver.sourceExts, 'svg'],
     };
 
-    // Добавляем CORS middleware
-    config.server = {
-        enhanceMiddleware: (middleware, server) => {
-            return (req, res, next) => {
-                res.setHeader('Access-Control-Allow-Origin', '*');
-                res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-                res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-                
-                if (req.method === 'OPTIONS') {
-                    return res.end();
-                }
-                
-                return middleware(req, res, next);
-            };
-        },
-    };
-
     return wrapWithReanimatedMetroConfig(config);
 })();

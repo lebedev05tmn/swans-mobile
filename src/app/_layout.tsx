@@ -6,7 +6,7 @@ import {
     MontserratAlternates_500Medium,
     MontserratAlternates_400Regular,
 } from '@expo-google-fonts/montserrat-alternates';
-import LoadingPage from '../screens/LoadingPage';
+import LoadingPage from '../screens/Loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export default function RootLayout() {

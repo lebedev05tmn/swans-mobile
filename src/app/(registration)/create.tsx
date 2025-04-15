@@ -1,3 +1,3 @@
-import CreateProfilePage from '@/src/screens/CreateProfilePage';
+import CreateProfilePage from '@/src/screens/CreateProfile';
 
 export default CreateProfilePage;
