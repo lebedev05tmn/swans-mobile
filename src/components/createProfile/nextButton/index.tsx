@@ -3,7 +3,10 @@ import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import { ArrowRight } from 'lucide-react-native';
 import Button from '@/src/shared/ui/Button';
 import useValidateField from '@/src/shared/hooks/useValidateField';
-import dataCreateProfileContent from '@/src/shared/data/createProfile/data';
+import data from '@/data.json';
+import styles from './style';
+
+const dataCreateProfileContent = JSON.parse(JSON.stringify(data));
 
 const NextButton = () => {
     const next = createProfileStore((state) => state.actions.next);
@@ -62,19 +65,6 @@ const NextButton = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    nextButton: {
-        gap: 8,
-    },
-    disabled: {
-        opacity: 0.75,
-    },
-    text: {
-        color: '#404040',
-        fontWeight: 500,
-        fontSize: 16,
-        lineHeight: 16,
-    },
-});
+
 
 export default NextButton;

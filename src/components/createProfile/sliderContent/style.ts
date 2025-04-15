@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    container: { 
+        flex: 1,
+    },
     title: {
         fontFamily: 'MontserratAlternates_700Bold',
         fontSize: 28,
@@ -33,7 +36,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal: 4,
     },
-    skipButton: {
+    skipButtonText: {
         fontFamily: 'MontserratAlternates_500Medium',
         fontSize: 14,
         lineHeight: 16,

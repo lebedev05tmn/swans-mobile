@@ -1,13 +1,14 @@
-import { View, StyleSheet, Dimensions } from 'react-native';
 import ProgressWave from '@/src/assets/svg/progressWave.svg';
+import { ANIMATION_TIME } from '@/src/shared/config/config';
 import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import { useEffect } from 'react';
+import { Dimensions, View } from 'react-native';
 import Animated, {
     Easing,
     useSharedValue,
     withTiming,
 } from 'react-native-reanimated';
-import { useEffect } from 'react';
-import { ANIMATION_TIME } from '@/src/shared/config/config';
+import styles from './style';
 
 const displayWidth = Dimensions.get('window').width;
 
@@ -52,20 +53,6 @@ const Header = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 'auto',
-        width: '100%',
-        marginVertical: 28,
-        marginTop: 40,
-    },
-    progress: {
-        position: 'absolute',
-        left: displayWidth * 0.15,
-    },
-});
+
 
 export default Header;

@@ -6,6 +6,7 @@ import {
     MontserratAlternates_500Medium,
     MontserratAlternates_400Regular,
 } from '@expo-google-fonts/montserrat-alternates';
+import { Roboto_500Medium } from '@expo-google-fonts/roboto';
 import LoadingPage from '../screens/Loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -15,6 +16,7 @@ export default function RootLayout() {
         MontserratAlternates_600SemiBold,
         MontserratAlternates_500Medium,
         MontserratAlternates_400Regular,
+        Roboto_500Medium,
     });
 
     if (!fontsLoaded) {
@@ -28,7 +30,10 @@ export default function RootLayout() {
             <Stack
                 screenOptions={{
                     headerShown: false,
+                    navigationBarTranslucent: true,
+                    navigationBarColor: 'transparent',
                     statusBarTranslucent: true,
+                    statusBarBackgroundColor: 'transparent',
                     statusBarStyle: 'dark',
                 }}
             />

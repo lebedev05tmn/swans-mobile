@@ -1,20 +1,21 @@
-import React, { FC, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import BodySlider from '@/src/components/createProfile/MainSlider';
-import Header from '@/src/components/createProfile/Header';
 import SeaFooter from '@/src/assets/svg/seaFooter.svg';
+import BackButton from '@/src/components/CreateProfile/BackButton';
+import Header from '@/src/components/CreateProfile/Header';
+import BodySlider from '@/src/components/CreateProfile/MainSlider';
+import { ANIMATION_TIME } from '@/src/shared/config/config';
+import useUserLocation from '@/src/shared/hooks/useUserGeolocation';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import { LinearGradient } from 'expo-linear-gradient';
+import React, { FC, useEffect } from 'react';
+import { View } from 'react-native';
 import Animated, {
     Easing,
     useAnimatedStyle,
     useSharedValue,
     withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION_TIME } from '@/src/shared/config/config';
-import BackButton from '@/src/components/createProfile/BackButton';
-import useUserLocation from '@/src/shared/hooks/useUserGeolocation';
-import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import styles from './style';
 
 const CreateProfilePage: FC = () => {
     useUserLocation();
@@ -104,21 +105,5 @@ const CreateProfilePage: FC = () => {
         </LinearGradient>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginHorizontal: '7%',
-    },
-    gradient: {
-        flex: 1,
-        overflow: 'hidden',
-    },
-    prevButton: {
-        position: 'absolute',
-        top: 29,
-        left: 0,
-    },
-});
 
 export default CreateProfilePage;

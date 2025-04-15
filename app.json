@@ -25,16 +25,6 @@
         "backgroundColor": "#ffffff"
       }
     },
-    "androidNavigationBar": {
-      "visible": "leanback",
-      "barStyle": "light-content",
-      "backgroundColor": "transparent"
-    },
-    "androidStatusBar": {
-      "translucent": true,
-      "backgroundColor": "transparent",
-      "barStyle": "light-content"
-    },
     "web": {
       "favicon": "./assets/favicon.png"
     },

@@ -1,49 +1,142 @@
-import NextButton from '@/src/components/createProfile/NextButton';
-import dataCreateProfileContent, {
-    TContentComponent,
-} from '@/src/shared/data/createProfile/data';
 import { View, Text, Pressable } from 'react-native';
 import styles from './style';
-import ChooseInterests from '@/src/components/createProfile/ChooseInterests';
 import { FC } from 'react';
-import createProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import data from '@/data.json';
+import NextButton from '@/src/components/CreateProfile/NextButton';
+import Input from '@/src/shared/ui/Input';
+
+import ChooseInterests from '@/src/components/CreateProfile/ChooseInterests';
+import DateInput from '../DateInput';
+import SexInput from '../SexInput';
+import ImagesInput from '../ImagesInput';
+
+type TContentComponent = {
+    id: string;
+    title: string;
+    textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify';
+    description?: string;
+    input: {
+        type: string;
+        placeholder?: string;
+        onChangeText?: string;
+        value?: string;
+        options?: string[];
+    };
+    skipButton?: boolean;
+    nextButton: boolean;
+    validationRules?: string[];
+};
 
 const Slide: FC<TContentComponent> = ({
+    id,
     title,
     description,
     input,
-    countinueButton,
+    nextButton,
     skipButton,
     textAlign,
 }) => {
-    const errorMessage = createProfileStore((state) => state.errorMessage);
-    const next = createProfileStore((state) => state.actions.next);
+    const errorMessage = useCreateProfileStore(state => state.errorMessage);
+    const form = useCreateProfileStore(state => state.form);
+    const {
+        actions: { next, setDescription, setCity, setUserName, setSex }
+    } = useCreateProfileStore();
+
+    const getValue = () => {
+        switch (id) {
+            case 'name': return form.user_name;
+            case 'city': return form.city;
+            case 'description': return form.description;
+            case 'birth_date': return form.birth_date;
+            case 'sex': return form.sex;
+            default: return '';
+        }
+    };
+
+    const handleChange = (value: string) => {
+        switch (id) {
+            case 'name': return setUserName(value);
+            case 'city': return setCity(value);
+            case 'description': return setDescription(value);
+            case 'sex': return setSex(value);
+        }
+    };
+
+    const renderInput = () => {
+        switch (input.type) {
+            case 'string':
+                return (
+                    <Input 
+                        placeholder={input.placeholder}
+                        value={getValue()}
+                        onChangeText={handleChange}
+                    />
+                )
+            case 'longString':
+                return (
+                    <Input
+                        placeholder={input.placeholder}
+                        viewStyle={{
+                            padding: 12,
+                            height: 96,
+                        }}
+                        textAlignVertical={'top'}
+                        value={getValue()}
+                        onChangeText={handleChange}
+                        multiline={true}
+                    />
+                );
+            case 'date':
+                return (
+                    <DateInput />
+                );
+            case 'select':
+                return (
+                    <SexInput />
+                );
+            case 'images':
+                return <ImagesInput />;
+            default:
+                return null;
+        }
+    };
 
     return (
-        <View>
-            <Text style={[styles.title, textAlign]}>{title}</Text>
-            <Text style={styles.description}>{description}</Text>
-            {input}
+        <View style={styles.container}>
+            <Text style={[styles.title, textAlign && { textAlign }]}>
+                {title}
+            </Text>
+            {description && (
+                <Text style={styles.description}>{description}</Text>
+            )}
+            
+            {renderInput()}
+
             {
                 <View style={styles.textWrap}>
                     <Text style={styles.errorMessage}>{errorMessage}</Text>
                 </View>
             }
-            {countinueButton && <NextButton />}
+            
+            {nextButton && <NextButton />}
+            
             {skipButton && (
                 <Pressable onPress={next}>
-                    <Text style={styles.skipButton}>Пропустить</Text>
+                    <Text style={styles.skipButtonText}>Пропустить</Text>
                 </Pressable>
             )}
         </View>
     );
 };
 
-const createProfileBodyComponents: JSX.Element[] = [
+const dataCreateProfileContent: TContentComponent[] = JSON.parse(JSON.stringify(data));
+
+const createProfileBodyComponents = [
     ...dataCreateProfileContent.map((item) => (
         <Slide key={item.id} {...item} />
     )),
-    <ChooseInterests />,
+    <ChooseInterests key="interests" />,
 ];
 
 export default createProfileBodyComponents;
