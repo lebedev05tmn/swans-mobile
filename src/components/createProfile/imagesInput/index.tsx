@@ -1,4 +1,4 @@
-import { View, Pressable } from 'react-native';
+import { View, Pressable, Dimensions } from 'react-native';
 import styles from './style';
 import { Camera } from 'lucide-react-native';
 import * as ImagePicker from 'expo-image-picker';
@@ -18,7 +18,7 @@ const ImagesInput = () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
             allowsEditing: true,
-            aspect: [340, 500],
+            aspect: [340, 510],
             quality: 1,
         });
 

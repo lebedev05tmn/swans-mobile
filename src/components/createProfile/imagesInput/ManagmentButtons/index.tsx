@@ -26,7 +26,7 @@ const ManagmentButtons: FC = () => {
 
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
-            aspect: [340, 500],
+            aspect: [340, 510],
             allowsEditing: true,
             quality: 1,
         });
@@ -48,7 +48,7 @@ const ManagmentButtons: FC = () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
             allowsEditing: true,
-            aspect: [340, 500],
+            aspect: [340, 510],
             quality: 1,
         });
 
