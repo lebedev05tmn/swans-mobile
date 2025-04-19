@@ -15,6 +15,9 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+        "infoPlist": {
+        "UIViewControllerBasedStatusBarAppearance": true
+      },
       "supportsTablet": true,
       "bundleIdentifier": "com.swans.app"
     },
@@ -57,6 +60,16 @@
         "expo-image-picker",
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "infoPlist": {
+              "UIViewControllerBasedStatusBarAppearance": true
+            }
+          }
         }
       ]
     ],
