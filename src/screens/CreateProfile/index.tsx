@@ -1,7 +1,7 @@
 import SeaFooter from '@/src/assets/svg/seaFooter.svg';
-import BackButton from '@/src/components/CreateProfile/BackButton';
-import Header from '@/src/components/CreateProfile/Header';
-import BodySlider from '@/src/components/CreateProfile/MainSlider';
+import BackButton from '@/src/components/create-profile/BackButton';
+import Header from '@/src/components/create-profile/Header';
+import BodySlider from '@/src/components/create-profile/MainSlider';
 import { ANIMATION_TIME } from '@/src/shared/config/config';
 import useUserLocation from '@/src/shared/hooks/useUserGeolocation';
 import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';

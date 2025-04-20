@@ -3,10 +3,10 @@ import styles from './style';
 import { FC } from 'react';
 import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import data from '@/data.json';
-import NextButton from '@/src/components/CreateProfile/NextButton';
+import NextButton from '@/src/components/create-profile/NextButton';
 import Input from '@/src/shared/ui/Input';
 
-import ChooseInterests from '@/src/components/CreateProfile/ChooseInterests';
+import ChooseInterests from '@/src/components/create-profile/ChooseInterests';
 import DateInput from '../DateInput';
 import SexInput from '../SexInput';
 import ImagesInput from '../ImagesInput';
