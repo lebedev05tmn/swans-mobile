@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#404040',
-        fontFamily: 'Roboto_500Medium',
+        fontFamily: 'Roboto-Medium',
         fontSize: 16,
         lineHeight: 16,
     },

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 12,
         lineHeight: 14,
-        fontFamily: 'MontserratAlternates_600SemiBold',
+        fontFamily: 'MontserratAlternates-SemiBold',
         marginBottom: 8,
         color: '#444444',
     },

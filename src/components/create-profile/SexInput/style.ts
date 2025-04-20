@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         gap: 13,
     },
     text: {
-        fontFamily: 'Roboto_500Medium',
+        fontFamily: 'Roboto-Medium',
         color: '#404040',
         fontSize: 16,
         lineHeight: 19,

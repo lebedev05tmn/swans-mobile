@@ -1,22 +1,15 @@
 import { Stack } from 'expo-router';
-import {
-    useFonts,
-    MontserratAlternates_700Bold,
-    MontserratAlternates_600SemiBold,
-    MontserratAlternates_500Medium,
-    MontserratAlternates_400Regular,
-} from '@expo-google-fonts/montserrat-alternates';
-import { Roboto_500Medium } from '@expo-google-fonts/roboto';
+import { useFonts } from 'expo-font';
 import LoadingPage from '../screens/Loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export default function RootLayout() {
     const [fontsLoaded] = useFonts({
-        MontserratAlternates_700Bold,
-        MontserratAlternates_600SemiBold,
-        MontserratAlternates_500Medium,
-        MontserratAlternates_400Regular,
-        Roboto_500Medium,
+        'MontserratAlternates-Bold': require('@/src/assets/fonts/MontserratAlternates-Bold.ttf'),
+        'MontserratAlternates-Medium': require('@/src/assets/fonts/MontserratAlternates-Medium.ttf'),
+        'MontserratAlternates-Regular': require('@/src/assets/fonts/MontserratAlternates-Regular.ttf'),
+        'MontserratAlternates-SemiBold': require('@/src/assets/fonts/MontserratAlternates-SemiBold.ttf'),
+        'Roboto-Medium': require('@/src/assets/fonts/Roboto-Medium.ttf'),
     });
 
     if (!fontsLoaded) {

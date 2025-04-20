@@ -1,6 +1,7 @@
-import { StyleSheet, View, Text } from 'react-native';
-import Button from '@/src/shared/ui/Button';
 import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import Button from '@/src/shared/ui/Button';
+import { Text, View } from 'react-native';
+import styles from './style';
 
 const SexInput = () => {
     const { toggleContent, next, setSex } = useCreateProfileStore(
@@ -35,16 +36,5 @@ const SexInput = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    buttonsWrap: {
-        gap: 13,
-    },
-    text: {
-        color: '#404040',
-        fontWeight: '500',
-        fontSize: 16,
-        lineHeight: 19,
-    },
-});
 
 export default SexInput;

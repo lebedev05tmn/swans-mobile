@@ -2,9 +2,6 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
-  "tailwindCSS.experimental.classRegex": [
-    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ],
   "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -26,8 +23,4 @@
     ],
     "eslint.format.enable": true,
     "prettier.requireConfig": true,
-    "tailwindCSS.includeLanguages": {
-        "typescript": "javascript",
-        "typescriptreact": "javascript"
-    }
 }

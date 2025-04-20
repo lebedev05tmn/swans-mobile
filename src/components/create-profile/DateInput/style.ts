@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     dateCellText: {
-        fontFamily: 'MontserratAlternates_600SemiBold',
+        fontFamily: 'MontserratAlternates-SemiBold',
         color: '#fff',
         fontSize: 14,
         textAlign: 'center',
