@@ -14,7 +14,6 @@ const SubmitButton = () => {
         const result = { ...form, images: images };
         const { user_id, ...rest } = result;
         const response = await createProfile(user_id, rest);
-        console.log(response);
     };
     return (
         <Button onPress={handleClick} style={styles.button}>
