@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, FC } from 'react';
 import useThrottle from '@/src/shared/hooks/useThrottle';
 import {
     View,
@@ -17,7 +17,7 @@ type ImageSliderProps = {
     images: string[];
 };
 
-const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
+const ImageSlider: FC<ImageSliderProps> = ({ images }) => {
     const currentImageIndex = useImagesStore(
         (state) => state.currentImageIndex,
     );
