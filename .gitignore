@@ -63,16 +63,18 @@ yarn-error.log
 # Temporary files created by Metro to check the health of the file watcher
 .metro-health-check*
 
-# testing
-/coverage
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
 
-# Yarn
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+# macOS
+.DS_Store
+*.pem
 
-#env
+# env files
+.env*.local
 .env
+
+# typescript
+*.tsbuildinfo
