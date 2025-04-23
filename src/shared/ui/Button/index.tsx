@@ -4,7 +4,7 @@ import {
     TouchableOpacityProps,
     StyleSheet,
 } from 'react-native';
-import styles from './styles';
+import styles from './style';
 
 type TButton = TouchableOpacityProps & PropsWithChildren;
 

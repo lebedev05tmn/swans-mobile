@@ -1,10 +1,10 @@
-import { View, Pressable, Dimensions } from 'react-native';
-import styles from './style';
-import { Camera } from 'lucide-react-native';
-import * as ImagePicker from 'expo-image-picker';
 import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import ImageSlider from '@/src/shared/ui/ImageSlider';
+import * as ImagePicker from 'expo-image-picker';
+import { Camera } from 'lucide-react-native';
+import { Pressable, View } from 'react-native';
 import ManagmentButtons from './ManagmentButtons';
+import styles from './style';
 
 const ImagesInput = () => {
     const { setImage, setErrorMessage } = useCreateProfileStore(
