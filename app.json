@@ -7,21 +7,19 @@
     "sdkVersion": "52.0.0",
     "userInterfaceStyle": "automatic",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "newArchEnabled": true,
     "ios": {
       "infoPlist": {
         "UIViewControllerBasedStatusBarAppearance": true
       },
-      "supportsTablet": true,
       "bundleIdentifier": "com.swans.app"
     },
     "android": {
       "package": "com.swans.app"
     },
     "plugins": [
+      "expo-dev-client",
       "expo-router",
-      "react-native-reanimated",
       [
         "expo-location",
         {

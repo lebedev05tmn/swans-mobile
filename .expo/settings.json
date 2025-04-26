@@ -1,3 +1,8 @@
 {
-  "urlRandomness": "pMDI7iw"
+  "hostType": "lan",
+  "lanType": "ip",
+  "dev": true,
+  "minify": false,
+  "urlRandomness": null,
+  "https": false
 }
