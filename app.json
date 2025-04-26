@@ -1,55 +1,25 @@
 {
   "expo": {
-    "name": "Swans",
-    "slug": "Swans",
+    "name": "SwansApp",
+    "slug": "swans-app",
     "scheme": "swans",
     "version": "1.0.0",
     "sdkVersion": "52.0.0",
     "userInterfaceStyle": "automatic",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "ios": {
-        "infoPlist": {
+      "infoPlist": {
         "UIViewControllerBasedStatusBarAppearance": true
       },
-      "supportsTablet": true,
       "bundleIdentifier": "com.swans.app"
     },
     "android": {
-      "package": "com.swans.app",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "packagerOpts": {
-      "config": "metro.config.js",
-      "sourceExts": [
-        "expo.ts",
-        "expo.tsx",
-        "expo.js",
-        "expo.jsx",
-        "ts",
-        "tsx",
-        "js",
-        "jsx",
-        "json",
-        "wasm",
-        "svg"
-      ]
+      "package": "com.swans.app"
     },
     "plugins": [
+      "expo-dev-client",
       "expo-router",
-      "react-native-reanimated",
       [
         "expo-location",
         {
@@ -72,15 +42,6 @@
           }
         }
       ]
-    ],
-    "extra": {
-      "assets": [
-        "./assets/fonts/MontserratAlternates-Bold.ttf",
-        "./assets/fonts/MontserratAlternates-Bold.ttf"
-      ],
-      "eas": {
-        "projectId": "6c752c2c-b3f5-40ab-a8e8-50e317908e15"
-      }
-    }
+    ]
   }
 }
