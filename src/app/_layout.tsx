@@ -1,6 +1,6 @@
 import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
-import LoadingPage from '../screens/Loading';
+import LoadingPage from './loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export default function RootLayout() {
