@@ -23,7 +23,9 @@
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+          "locationAlwaysAndWhenInUsePermission": "Разрешить доступ к геолокации в фоне?",
+          "locationAlwaysPermission": "Разрешить доступ к геолокации в фоне?",
+          "locationWhenInUsePermission": "Для работы приложения нужен доступ к геолокации"
         }
       ],
       [
@@ -40,6 +42,12 @@
               "UIViewControllerBasedStatusBarAppearance": true
             }
           }
+        }
+      ],
+      [
+        "expo-localization",
+        {
+          "locales": ["en", "ru", "es"]
         }
       ]
     ]
