@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
 import * as Localization from 'expo-localization';
-import { Platform } from 'react-native';
+import * as Notifications from 'expo-notifications';
 
 type TMetaData = {
     user_id: string;
@@ -23,14 +24,11 @@ type TMetaData = {
     dating_last_time: string;
 };
 
-export const useMetaData = () => {
-    const metaData: TMetaData = {
+const useMetaData = () => {
+    const [metaData, setMetaData] = useState<TMetaData>({
         user_id: '123e4567-e89b-12d3-a456-426614174000',
         refresh_token: 'some_refresh_token',
-        geolocation: {
-            x: null,
-            y: null,
-        },
+        geolocation: { x: null, y: null },
         online: true,
         last_visit: '2023-01-01T12:00:00Z',
         verify: true,
@@ -44,46 +42,63 @@ export const useMetaData = () => {
         socket_id: '123e4567-e89b-12d3-a456-426614174000',
         timezone: null,
         dating_last_time: '2023-01-01T12:00:00Z',
-    };
+    });
 
-    const getSafeLocale = (): string => {
-        try {
-            const locales = Localization.getLocales();
-            if (locales.length > 0) {
-                return locales[0].languageTag;
-            }
+    useEffect(() => {
+        const init = async () => {
+            const getSafeLocale = () => {
+                try {
+                    const locales = Localization.getLocales();
+                    if (locales.length > 0) return locales[0].languageTag;
+                    if ('locale' in Localization)
+                        return (Localization as any).locale;
+                    return 'ru-RU';
+                } catch {
+                    return 'ru-RU';
+                }
+            };
 
-            if ('locale' in Localization) {
-                return (Localization as any).locale;
-            }
+            const getSafeTimezone = () => {
+                try {
+                    const calendars = Localization.getCalendars();
+                    if (calendars.length > 0 && calendars[0].timeZone) {
+                        return calendars[0].timeZone;
+                    }
+                    return (
+                        Intl.DateTimeFormat().resolvedOptions().timeZone ??
+                        'Europe/Moscow'
+                    );
+                } catch {
+                    return 'Europe/Moscow';
+                }
+            };
 
-            return 'en-US';
-        } catch (error) {
-            console.warn('Failed to get locale:', error);
-            return 'en-US';
-        }
-    };
+            const registerForPushNotificationsAsync = async () => {
+                const { status: existingStatus } =
+                    await Notifications.getPermissionsAsync();
+                let finalStatus = existingStatus;
+                if (existingStatus !== 'granted') {
+                    const { status } =
+                        await Notifications.requestPermissionsAsync();
+                    finalStatus = status;
+                }
+                return finalStatus === 'granted';
+            };
 
-    const getSafeTimezone = (): string => {
-        try {
-            const calendars = Localization.getCalendars();
-            if (calendars.length > 0 && calendars[0].timeZone) {
-                return calendars[0].timeZone;
-            }
+            const background_mode = await registerForPushNotificationsAsync();
 
-            try {
-                return Intl.DateTimeFormat().resolvedOptions().timeZone;
-            } catch {
-                return 'UTC';
-            }
-        } catch (error) {
-            console.warn('Failed to get timezone:', error);
-            return 'UTC';
-        }
-    };
+            setMetaData((prev) => ({
+                ...prev,
+                locale: getSafeLocale(),
+                timezone: getSafeTimezone(),
+                background_mode,
+            }));
+        };
 
-    metaData.locale = getSafeLocale();
-    metaData.timezone = getSafeTimezone();
+        init();
+    }, []);
 
     return metaData;
 };
+
+export default useMetaData

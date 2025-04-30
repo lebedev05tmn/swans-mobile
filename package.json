@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "tunnel": "expo start --tunnel",
-    "start": "expo start",
+    "dev": "expo start",
+    "go": "expo start --go",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web"
@@ -24,6 +25,7 @@
     "expo-linking": "^7.0.5",
     "expo-localization": "~16.0.1",
     "expo-location": "~18.0.5",
+    "expo-notifications": "~0.29.14",
     "expo-router": "~4.0.2",
     "expo-status-bar": "^2.0.1",
     "expo-system-ui": "~4.0.9",
