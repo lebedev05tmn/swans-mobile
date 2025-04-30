@@ -1,0 +1,95 @@
+[
+    {
+        "id": "name",
+        "title": "Привет, давай знакомиться",
+        "description": "Будь собой при выборе имени, привлекает больше внимания.",
+        "input": {
+            "type": "string",
+            "onChangeText": "setUserName",
+            "value": "userName",
+            "placeholder": "Имя"
+        },
+        "nextButton": true,
+        "validationRules": [
+            "require",
+            "onlyLetters",
+            "minLength",
+            "maxLength"
+        ]
+    },
+    {
+        "id": "city",
+        "title": "Где живем, там и ищем",
+        "description": "Выбери свой город, чтобы найти ближайщих соулмейтов",
+        "input": {
+            "type": "string",
+            "onChangeText": "setCity",
+            "value": "city",
+            "placeholder": "Город..."
+        },
+        "nextButton": true,
+        "validationRules": [
+            "require",
+            "onlyLetters",
+            "minLength",
+            "maxLength"
+        ]
+    },
+    {
+        "id": "birth_date",
+        "title": "Выбери дату рождения",
+        "description": "Используй настояющую, ее потом поменять нельзя",
+        "input": {
+            "type": "date",
+            "placeholder": "1999-01-01"
+        },
+        "nextButton": true,
+        "validationRules": [
+            "require",
+            "minAge",
+            "maxAge"
+        ]
+    },
+    {
+        "id": "description",
+        "title": "Стань солцем среди планет",
+        "description": "Сделай свой \"слоган\", который выделит тебя среди всех",
+        "input": {
+            "type": "longString",
+            "onChangeText": "setDescription",
+            "value": "description",
+            "placeholder": "Напиши текст до 120 символов..."
+        },
+        "nextButton": true,
+        "validationRules": [
+            "require", 
+            "maxDescriptionLength"
+        ],
+        "skipButton": true
+    },
+    {
+        "id": "sex",
+        "title": "Последний этап регистрации",
+        "description": "Выберите пол",
+        "input": {
+            "type": "select",
+            "options": [
+                "Мужчина",
+                "Женщина"
+            ]
+        },
+        "nextButton": false
+    },
+    {
+        "id": "images",
+        "title": "Загрузите фото",
+        "input": {
+            "type": "images"
+        },
+        "nextButton": true,
+        "textAlign":  "center",
+        "validationRules": [
+            "imageRequire"
+        ]
+    }
+]

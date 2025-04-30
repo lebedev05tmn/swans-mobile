@@ -1,42 +1,47 @@
 {
   "expo": {
-    "name": "Swans",
-    "slug": "swans",
+    "name": "SwansApp",
+    "slug": "swans-app",
     "scheme": "swans",
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "sdkVersion": "52.0.0",
     "userInterfaceStyle": "automatic",
+    "orientation": "portrait",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "infoPlist": {
+        "UIViewControllerBasedStatusBarAppearance": true
+      },
+      "bundleIdentifier": "com.swans.app"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "package": "com.swans.app"
     },
     "plugins": [
+      "expo-dev-client",
       "expo-router",
       [
-        "expo-splash-screen",
+        "expo-location",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "infoPlist": {
+              "UIViewControllerBasedStatusBarAppearance": true
+            }
+          }
         }
       ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    ]
   }
 }
