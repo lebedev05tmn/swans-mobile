@@ -1,26 +1,27 @@
 import * as Location from 'expo-location';
-import { useState } from 'react';
 
 const useUserGeolocation = () => {
-    const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-
-    const checkPermission = async () => {
+    const checkGeolocationPermission = async () => {
         const { status } = await Location.getForegroundPermissionsAsync();
-        setHasPermission(status === 'granted');
-        return status === 'granted';
+        return status;
     };
 
-    const requestPermission = async () => {
+    const requestGeolocationPermission = async () => {
         const { status } = await Location.requestForegroundPermissionsAsync();
-        const granted = status === 'granted';
-        setHasPermission(granted);
-        return granted;
+
+        return status;
     };
+
+    const getGeolocation = async () => {
+        const { coords } = await Location.getCurrentPositionAsync();
+
+        return coords
+    }
 
     return {
-        hasPermission,
-        checkPermission,
-        requestPermission,
+        checkGeolocationPermission,
+        requestGeolocationPermission,
+        getGeolocation,
     };
 };
 

@@ -2,8 +2,9 @@ import SeaFooter from '@/src/assets/svg/seaFooter.svg';
 import BackButton from '@/src/components/create-profile/BackButton';
 import Header from '@/src/components/create-profile/Header';
 import BodySlider from '@/src/components/create-profile/MainSlider';
+import * as Location from 'expo-location';
 import { ANIMATION_TIME } from '@/src/shared/config/config';
-import useUserLocation from '@/src/shared/hooks/useUserGeolocation';
+import useMetaData from '@/src/shared/hooks/useMetaData';
 import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { FC, useEffect } from 'react';
@@ -18,11 +19,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './style';
 
 const CreateProfilePage: FC = () => {
-    useUserLocation();
+    const { metaData, isLoading } = useMetaData();
 
-    const { prev } = useCreateProfileStore(
-        (state) => state.actions,
-    );
+    const { prev, setCity } = useCreateProfileStore((state) => state.actions);
 
     const nextIndex = useCreateProfileStore((state) => state.nextIndex);
     const currentIndex = useCreateProfileStore((state) => state.currentIndex);
@@ -71,6 +70,29 @@ const CreateProfilePage: FC = () => {
             }, ANIMATION_TIME);
         }
     }, [nextIndex]);
+
+    useEffect(() => {
+        if (!isLoading) {
+            const fetchLocation = async () => {
+                try {
+                    const location = await Location.getCurrentPositionAsync({});
+                    const { latitude, longitude } = location.coords;
+
+                    const geoCode = await Location.reverseGeocodeAsync({
+                        latitude,
+                        longitude,
+                    });
+
+                    console.log(geoCode);
+                    if (geoCode[0].city) setCity(geoCode[0].city);
+                } catch (error) {
+                    console.error('Ошибка при получении локации:', error);
+                }
+            };
+
+            fetchLocation();
+        }
+    }, [metaData]);
 
     return (
         <LinearGradient

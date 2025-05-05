@@ -18,6 +18,8 @@
       "package": "com.swans.app"
     },
     "plugins": [
+      "expo-localization",
+      "expo-notifications",
       "expo-dev-client",
       "expo-router",
       [
@@ -42,12 +44,6 @@
               "UIViewControllerBasedStatusBarAppearance": true
             }
           }
-        }
-      ],
-      [
-        "expo-localization",
-        {
-          "locales": ["en", "ru", "es"]
         }
       ]
     ]

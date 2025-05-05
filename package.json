@@ -45,7 +45,6 @@
     "@expo/cli": "^0.22.26",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/react": "~18.3.12",
-    "babel-plugin-inline-dotenv": "^1.7.0",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",

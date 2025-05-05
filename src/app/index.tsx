@@ -1,13 +1,14 @@
 import { Redirect } from 'expo-router';
+import Loading from '../screens/Loading';
 import useMetaData from '../shared/hooks/useMetaData';
 import { useEffect } from 'react';
 
 export default function HomeScreen() {
-    const metaData = useMetaData();
+    const { metaData, isLoading } = useMetaData();
 
     useEffect(() => {
-        console.log('metaData:', metaData);
-    }, [metaData]);
+        if (!isLoading) console.log(metaData);
+    }, [metaData])
 
-    return <Redirect href="/chat" />;
+    return isLoading ? <Loading /> : <Redirect href="/create" />;
 }
