@@ -83,7 +83,6 @@ const CreateProfilePage: FC = () => {
                         longitude,
                     });
 
-                    console.log(geoCode);
                     if (geoCode[0].city) setCity(geoCode[0].city);
                 } catch (error) {
                     console.error('Ошибка при получении локации:', error);
