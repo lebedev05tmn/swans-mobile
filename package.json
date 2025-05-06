@@ -16,7 +16,7 @@
     "axios": "^1.7.9",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "babel-plugin-module-resolver": "^5.0.2",
-    "expo": "^52.0.46",
+    "expo": "^53.0.7",
     "expo-build-properties": "~0.13.2",
     "expo-dev-client": "^5.0.20",
     "expo-file-system": "~18.0.11",
