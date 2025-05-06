@@ -4,7 +4,7 @@
     "slug": "swans-app",
     "scheme": "swans",
     "version": "1.0.0",
-    "sdkVersion": "52.0.0",
+    "sdkVersion": "53.0.7",
     "userInterfaceStyle": "automatic",
     "orientation": "portrait",
     "newArchEnabled": true,
