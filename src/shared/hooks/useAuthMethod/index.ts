@@ -9,11 +9,11 @@ import { router } from 'expo-router';
 import { handleTelegramAuth } from '@/src/shared/hooks/useTelegram';
 import { handleAppleAuth } from '@/src/shared/hooks/useApple';
 import { handleVKAuth } from '@/src/shared/hooks/useVK';
-import { Redirect } from 'expo-router';
+import { Link } from 'expo-router';
 
 export type AuthMethod = {
     label: string;
-    action: () => any; //
+    action: () => void; //
     icon: React.ComponentType<SvgProps>;
 };
 
@@ -41,7 +41,7 @@ export const useAuthMethods = (): { authMethods: AuthMethod[] } => {
             : []),
         {
             label: 'Почта',
-            action: () => router.push('emailauth'),
+            action: () => router.push('/emailauth'),
             icon: MailIcon,
         },
     ];

@@ -25,7 +25,7 @@ const Authorization = () => {
             if (method.label === 'Почта') {
                 return {
                     ...method,
-                    action: () => router.push('/email'),
+                    action: () => router.push('/emailauth'),
                 };
             }
             return method;

@@ -36,6 +36,7 @@
     "metro-react-native-babel-transformer": "^0.77.0",
     "react": "19.0.0",
     "react-native": "0.79.2",
+    "react-native-apple-authentication": "^2.0.0",
     "react-native-modal-datetime-picker": "^18.0.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
