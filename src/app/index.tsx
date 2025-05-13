@@ -8,7 +8,7 @@ export default function HomeScreen() {
 
     useEffect(() => {
         if (!isLoading) console.log(metaData);
-    }, [metaData])
+    }, [metaData]);
 
-    return isLoading ? <Loading /> : <Redirect href="/emailauth" />;
+    return isLoading ? <Loading /> : <Redirect href="/auth" />;
 }

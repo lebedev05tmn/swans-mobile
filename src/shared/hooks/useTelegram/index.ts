@@ -1,4 +1,4 @@
-import { Linking } from 'react-native';
+import { Alert, Linking } from 'react-native';
 
 const handleTelegramRedirect = async (url: string) => {
     const queryParams = new URLSearchParams(url.split('?')[1]);
@@ -7,22 +7,22 @@ const handleTelegramRedirect = async (url: string) => {
     const accessToken = queryParams.get('access_token');
     const refreshToken = queryParams.get('refresh_token');
 
-    if (userId && accessToken && refreshToken) {
-        try {
-            console.log('User ID:', userId);
-            console.log('Access Token:', accessToken);
-            console.log('Refresh Token:', refreshToken);
-        } catch (error) {
-            console.error('Ошибка при обработке данных:', error);
-        }
-    } else {
-        console.log('Отсутствуют необходимые параметры в ссылке');
-    }
+    // if (userId && accessToken && refreshToken) {
+    //     try {
+    //         console.log('User ID:', userId);
+    //         console.log('Access Token:', accessToken);
+    //         console.log('Refresh Token:', refreshToken);
+    //     } catch (error) {
+    //         console.error('Ошибка при обработке данных:', error);
+    //     }
+    // } else {
+    //     console.log('Отсутствуют необходимые параметры в ссылке');
+    // }
 };
 
 export const handleTelegramAuth = async () => {
-    const botLink = `https://t.me/SwansAuthenticatorBot?start=auth`;
-    const telegramAppUrl = `tg://resolve?domain=SwansAuthenticatorBot&start=auth`;
+    const botLink = String(process.env.EXPO_PUBLIC_BOT_LINK);
+    const telegramAppUrl = String(process.env.EXPO_PUBLIC_TG_APP_URL);
 
     try {
         const supported = await Linking.canOpenURL(telegramAppUrl);
@@ -32,7 +32,8 @@ export const handleTelegramAuth = async () => {
             await Linking.openURL(botLink);
         }
     } catch (err) {
-        console.error('Ошибка открытия Telegram:', err);
+        Alert.alert('Ошибка открытия Telegram');
+        console.error(err);
         Linking.openURL(botLink);
     }
 };

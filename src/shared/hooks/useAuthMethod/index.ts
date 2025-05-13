@@ -26,7 +26,6 @@ export const useAuthMethods = (): { authMethods: AuthMethod[] } => {
         },
         {
             label: 'ВКонтакте',
-
             action: handleVKAuth,
             icon: VkIcon,
         },
@@ -34,7 +33,7 @@ export const useAuthMethods = (): { authMethods: AuthMethod[] } => {
             ? [
                   {
                       label: 'Apple ID',
-                      action: () => handleAppleAuth,
+                      action: handleAppleAuth,
                       icon: AppleIcon,
                   },
               ]

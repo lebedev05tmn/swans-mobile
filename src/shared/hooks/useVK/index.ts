@@ -1,8 +1,8 @@
-import { Linking } from 'react-native';
+import { Alert, Linking } from 'react-native';
 
-const vkAppId = '53157922';
-const vkRedirectUri = 'https://qieozjs-anonymous-8081.exp.direct/auth';
-const vkClientSecret = '8MKmpXPQ8Tx576zJxO4j';
+const vkAppId = String(process.env.EXPO_PUBLIC_VK_APP_ID);
+const vkRedirectUri = String(process.env.EXPO_PUBLIC_VK_REDIRECT_URL);
+const vkClientSecret = String(process.env.EXPO_PUBLIC_VK_CLIENT_SECRET);
 
 export const handleVKAuth = async () => {
     const authUrl = `https://oauth.vk.com/authorize?client_id=${vkAppId}&display=mobile&redirect_uri=${encodeURIComponent(vkRedirectUri)}&scope=profile,email&response_type=code&v=5.131`;
@@ -20,6 +20,7 @@ export const verifyVKAuth = async (queryParams: Record<string, string>) => {
             console.log('Ответ от ВКонтакте:', data);
 
             if (data.error) {
+                Alert.alert('Ошибка при авторизацию через VK');
                 console.error('Ошибка от ВКонтакте:', data.error);
                 return;
             }
@@ -37,12 +38,14 @@ export const verifyVKAuth = async (queryParams: Record<string, string>) => {
                 console.error('Не удалось получить данные пользователя');
             }
         } catch (error) {
+            Alert.alert('Ошибка при авторизацию через VK');
             console.error(
                 'Ошибка при получении токена доступа ВКонтакте:',
                 error,
             );
         }
     } else {
+        Alert.alert('Ошибка при авторизацию через VK');
         console.error('Код авторизации не найден');
     }
 };
@@ -77,6 +80,7 @@ const registerUser = async (
             console.log('Ошибка регистрации пользователя:', data.message);
         }
     } catch (error) {
+        Alert.alert('Ошибка при авторизацию через VK');
         console.error(
             'Ошибка при регистрации пользователя через ВКонтакте:',
             error,

@@ -3,7 +3,6 @@ import { useFonts } from 'expo-font';
 import LoadingPage from './loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-
 export default function RootLayout() {
     const [fontsLoaded] = useFonts({
         'MontserratAlternates-Bold': require('@/src/assets/fonts/MontserratAlternates-Bold.ttf'),
@@ -28,7 +27,7 @@ export default function RootLayout() {
                     navigationBarColor: 'transparent',
                     statusBarTranslucent: true,
                     statusBarBackgroundColor: 'transparent',
-                    statusBarStyle: 'dark',
+                    // statusBarStyle: 'dark',
                 }}
             />
         </QueryClientProvider>

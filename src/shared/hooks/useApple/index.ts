@@ -1,40 +1,22 @@
-import { Platform } from 'react-native';
-
-let AppleAuthentication: any;
-
-if (Platform.OS === 'ios') {
-    try {
-        AppleAuthentication = require('react-native-apple-authentication');
-    } catch (error) {
-        console.warn(
-            '⚠️ Библиотека react-native-apple-authentication не найдена!',
-        );
-    }
-}
+import * as AppleAuthentication from 'expo-apple-authentication';
+import { Alert } from 'react-native';
+import { jwtDecode } from 'jwt-decode'; //Apple возвращает JWT
+import * as SecureStore from 'expo-secure-store';
 
 export const handleAppleAuth = async () => {
-    if (Platform.OS !== 'ios') {
-        console.warn('⚠️ Apple Sign-In доступен только на iOS.');
-        return;
-    }
-
-    if (!AppleAuthentication) {
-        console.error(
-            '❌ Ошибка: react-native-apple-authentication не установлена.',
-        );
-        return;
-    }
-
     try {
-        const response = await AppleAuthentication.signInAsync({
+        const credential = await AppleAuthentication.signInAsync({
             requestedScopes: [
-                AppleAuthentication.Scope.FULL_NAME,
-                AppleAuthentication.Scope.EMAIL,
+                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                AppleAuthentication.AppleAuthenticationScope.EMAIL,
             ],
         });
-
-        console.log('✅ Успешная аутентификация через Apple:', response);
-    } catch (error: any) {
-        console.error('❌ Ошибка аутентификации через Apple:', error);
+    } catch (e: any) {
+        if (e.code !== 'ERR_REQUEST_CANCELED') {
+            //ERR_REQUEST_CANCELED - состояние при нажатии крестика
+            Alert.alert(
+                'Ошибка при авторизации через Apple ID.\nПроверьте подключение к Интернету',
+            );
+        }
     }
 };
