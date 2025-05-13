@@ -2,6 +2,7 @@ import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import LoadingPage from './loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ModalComponent from '@/src/shared/ui/Modal'
 
 export default function RootLayout() {
     const [fontsLoaded] = useFonts({
@@ -30,6 +31,7 @@ export default function RootLayout() {
                     statusBarStyle: 'dark',
                 }}
             />
+            <ModalComponent />
         </QueryClientProvider>
     );
 }
