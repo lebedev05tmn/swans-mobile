@@ -12,7 +12,7 @@ export default [
     pluginReact.configs.flat!.recommended,
     prettierConfig,
     {
-        plugins: ['prettier'],
+        plugins: ['prettier', '@typescript-eslint'],
         rules: {
             'prettier/prettier': 'error',
             'space-before-blocks': 'error',
@@ -31,6 +31,7 @@ export default [
                     asyncArrow: 'always',
                 },
             ],
+            '@typescript-eslint/no-explicit-any': 'error',
         },
     },
 ];
