@@ -1,23 +1,28 @@
-import { Tabs } from 'expo-router';
-import Heart from '@/src/assets/svg/heartTab.svg';
 import Chats from '@/src/assets/svg/chatsTab.svg';
-import SwansFill from '@/src/assets/svg/swansTabFill.svg';
-import SwansUnfill from '@/src/assets/svg/swansTabUnfill.svg';
+import Heart from '@/src/assets/svg/heartTab.svg';
 import Profile from '@/src/assets/svg/profileTab.svg';
 import Settings from '@/src/assets/svg/settingsTab.svg';
+import SwansFill from '@/src/assets/svg/swansTabFill.svg';
+import SwansUnfill from '@/src/assets/svg/swansTabUnfill.svg';
+import { Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring,
+} from 'react-native-reanimated';
 
 const NavigationLayout = () => {
     return (
         <Tabs
             screenOptions={{
+                headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: {
                     backgroundColor: '#fff',
                     height: 100,
                     paddingTop: 20,
-                    borderTopWidth: 0,
+                    borderTopWidth: 1,
                 },
                 tabBarButton: (props) => {
                     const scale = useSharedValue(1);
