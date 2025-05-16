@@ -9,7 +9,6 @@ import AuthModal from '../../components/Authorization/Modal';
 import styles from './style';
 import { router } from 'expo-router';
 
-// Это первая страница, которая предлагает модалку с выбором способа авторизации
 const Authorization = () => {
     const [modalVisible, setModalVisible] = useState(false);
 

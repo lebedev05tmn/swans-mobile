@@ -1,12 +1,18 @@
 import { Alert, Linking } from 'react-native';
+import * as AuthSession from 'expo-auth-session';
 
 const vkAppId = String(process.env.EXPO_PUBLIC_VK_APP_ID);
-const vkRedirectUri = String(process.env.EXPO_PUBLIC_VK_REDIRECT_URL);
+const vkRedirectUri = AuthSession.makeRedirectUri({
+    scheme: 'swans',
+    path: 'auth',
+});
 const vkClientSecret = String(process.env.EXPO_PUBLIC_VK_CLIENT_SECRET);
 
 export const handleVKAuth = async () => {
+    console.log(vkRedirectUri);
     const authUrl = `https://oauth.vk.com/authorize?client_id=${vkAppId}&display=mobile&redirect_uri=${encodeURIComponent(vkRedirectUri)}&scope=profile,email&response_type=code&v=5.131`;
     Linking.openURL(authUrl);
+    Linking.addEventListener('url', verifyVKAuth);
 };
 
 export const verifyVKAuth = async (queryParams: Record<string, string>) => {
@@ -45,7 +51,7 @@ export const verifyVKAuth = async (queryParams: Record<string, string>) => {
             );
         }
     } else {
-        Alert.alert('Ошибка при авторизацию через VK');
+        Alert.alert('Ошибка при авторизации через VK');
         console.error('Код авторизации не найден');
     }
 };
