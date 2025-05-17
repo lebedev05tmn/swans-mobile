@@ -3,9 +3,8 @@ import type { AppleAuthenticationCredential } from 'expo-apple-authentication';
 import { Buffer } from 'buffer';
 import { Alert } from 'react-native';
 import { jwtDecode } from 'jwt-decode';
-import * as SecureStore from 'expo-secure-store';
 import * as Crypto from 'expo-crypto';
-import { router } from 'expo-router';
+import SuccessfulAuth from '../successfulAuth/successfulAuth';
 
 type identityToken = {
     aud: string;
@@ -20,13 +19,10 @@ type identityToken = {
     nonce_supported: boolean;
 };
 
+/**
+ * Должно гарантироваться, что пользователя не существует
+ */
 export const handleAppleAuth = async () => {
-    let userId = await SecureStore.getItemAsync('appleAuth');
-
-    handleFirstTimeLog();
-};
-
-const handleFirstTimeLog = async (): Promise<void> => {
     try {
         const credential = await AppleAuthentication.signInAsync({
             requestedScopes: [
@@ -34,7 +30,6 @@ const handleFirstTimeLog = async (): Promise<void> => {
                 AppleAuthentication.AppleAuthenticationScope.EMAIL,
             ],
         });
-
         if (credential['identityToken']) {
             const payload: identityToken = jwtDecode(
                 credential['identityToken'],
@@ -44,8 +39,7 @@ const handleFirstTimeLog = async (): Promise<void> => {
                 payload,
             );
             if (isProperResponse) {
-                SecureStore.setItemAsync('appleAuth', payload['sub']);
-                goToCreateProfile();
+                SuccessfulAuth(payload['sub'], 'Apple');
             } else {
                 throw new Error('INVALID_RESPONSE_FROM_APPLE');
             }
@@ -64,6 +58,7 @@ const handleFirstTimeLog = async (): Promise<void> => {
 
 /**
  * Apple возвращает authorizationCode для проверки достоверности получаемых файлов
+ * TO-DO: добавить проверки
  * @param credential Полный ответ от Apple
  * @param payload Расшифрованный JWT (identityToken)
  * @returns Возвразает boolean проверки
@@ -95,6 +90,6 @@ const ifProperResponse = async (
     }
 };
 
-const goToCreateProfile = () => {
-    router.push('/create');
-};
+// const goToCreateProfile = () => {
+//     router.push('/create');
+// };
