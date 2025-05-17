@@ -16,7 +16,6 @@ export const createUser = async (
     serviceName: string,
 ): Promise<void> => {
     const url = 'https://swans-dating.ru/api/auth/create_user';
-    console.log('Так, ну запрос отправляется');
     let response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -32,7 +31,8 @@ export const createUser = async (
     if (response.ok) {
         const data = (await response.json()) as AuthResponse;
         await SecureStore.setItemAsync('user', JSON.stringify(data));
-        console.log(`Регистрация прошла успешно\n${JSON.stringify(data)}`);
+    } else if (response.status === 403) {
+        getTokenByServiceId(serviceId, serviceName);
     } else {
         const errorText = await response.text();
         console.error(`${response.status}: ${errorText}`);
@@ -47,7 +47,6 @@ export const getUserByToken = async (): Promise<object | null> => {
     let userData = SecureStore.getItem('user');
     if (userData) {
         const userDataParsed: AuthResponse = JSON.parse(userData);
-        console.log('Ага, я проверяю есть ли юзер в дб');
         const url = 'https://swans-dating.ru/api/profile/get';
         let response = await fetch(url, {
             method: 'GET',
@@ -65,4 +64,26 @@ export const getUserByToken = async (): Promise<object | null> => {
     } else {
         return null;
     }
+};
+
+export const getTokenByServiceId = async (
+    serviceId: string,
+    serviceName: string,
+): Promise<void> => {
+    await SecureStore.deleteItemAsync('user');
+    const url = 'https://swans-dating.ru/api/auth/get_tokens';
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json',
+            Authorization: `Basic ${credentialsBase64}`,
+        },
+        body: JSON.stringify({
+            service_id: serviceId,
+            service_name: serviceName,
+        }),
+    });
+    const userData = await response.json();
+    await SecureStore.setItemAsync('user', JSON.stringify(userData));
 };
