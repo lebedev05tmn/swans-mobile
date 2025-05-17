@@ -19,9 +19,6 @@ type identityToken = {
     nonce_supported: boolean;
 };
 
-/**
- * Должно гарантироваться, что пользователя не существует
- */
 export const handleAppleAuth = async () => {
     try {
         const credential = await AppleAuthentication.signInAsync({
@@ -58,7 +55,6 @@ export const handleAppleAuth = async () => {
 
 /**
  * Apple возвращает authorizationCode для проверки достоверности получаемых файлов
- * TO-DO: добавить проверки
  * @param credential Полный ответ от Apple
  * @param payload Расшифрованный JWT (identityToken)
  * @returns Возвразает boolean проверки
@@ -67,7 +63,10 @@ const ifProperResponse = async (
     credential: AppleAuthenticationCredential,
     payload: identityToken,
 ): Promise<boolean> => {
-    if (credential['user'] === payload['sub']) {
+    if (
+        credential['user'] === payload['sub'] &&
+        Math.floor(Date.now() / 1000) < payload.exp
+    ) {
         const code = credential['authorizationCode'];
         if (code) {
             const hash = await Crypto.digestStringAsync(
