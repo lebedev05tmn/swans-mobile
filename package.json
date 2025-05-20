@@ -33,7 +33,7 @@
     "expo-location": "~18.1.4",
     "expo-modules-core": "~2.3.12",
     "expo-notifications": "~0.31.1",
-    "expo-router": "~5.0.6",
+    "expo-router": "^5.0.7",
     "expo-secure-store": "^14.2.3",
     "expo-status-bar": "~2.2.3",
     "expo-system-ui": "~5.0.7",
