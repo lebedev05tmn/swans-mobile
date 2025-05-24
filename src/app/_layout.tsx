@@ -11,6 +11,8 @@ export default function RootLayout() {
         'MontserratAlternates-Regular': require('@/src/assets/fonts/MontserratAlternates-Regular.ttf'),
         'MontserratAlternates-SemiBold': require('@/src/assets/fonts/MontserratAlternates-SemiBold.ttf'),
         'Roboto-Medium': require('@/src/assets/fonts/Roboto-Medium.ttf'),
+        'Roboto-SemiBold': require('@/src/assets/fonts/Roboto-SemiBold.ttf'),
+        'Roboto-Regular': require('@/src/assets/fonts/Roboto-Regular.ttf'),
     });
 
     if (!fontsLoaded) {
