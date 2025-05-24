@@ -1,12 +1,12 @@
 import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const swans = () => {
+const likes = () => {
     return (
         <SafeAreaView>
-            <Text>swans</Text>
+            <Text>likes</Text>
         </SafeAreaView>
     );
 };
 
-export default swans;
+export default likes;

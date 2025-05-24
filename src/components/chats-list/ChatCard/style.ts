@@ -7,7 +7,12 @@ const styles = StyleSheet.create({
         height: 100,
         backgroundColor: '#F6F6F6',
         borderRadius: 20,
-        padding: 16,
+        alignItems: 'center',
+        paddingLeft: 18,
+        gap: 12,
+    },
+    contentWrap: {
+        alignItems: 'flex-start',
     },
 });
 

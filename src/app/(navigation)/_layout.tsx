@@ -86,7 +86,7 @@ const NavigationLayout = () => {
                 }}
             >
                 <Tabs.Screen
-                    name="dating"
+                    name="likes"
                     options={{
                         tabBarIcon: ({ focused }) => (
                             <Heart fill={focused ? '#FF4C00' : '#A3A3A3'} />
@@ -102,7 +102,7 @@ const NavigationLayout = () => {
                     }}
                 />
                 <Tabs.Screen
-                    name="swans"
+                    name="dating"
                     options={{
                         tabBarIcon: ({ focused }) =>
                             focused ? <SwansFill /> : <SwansUnfill />,
