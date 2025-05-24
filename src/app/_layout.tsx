@@ -24,6 +24,7 @@ const RootLayout = () => {
             <Stack
                 screenOptions={{
                     headerShown: false,
+                    navigationBarHidden: true,
                     navigationBarTranslucent: true,
                     navigationBarColor: 'transparent',
                     statusBarTranslucent: true,

@@ -1,9 +1,9 @@
-import React from 'react';
+import styles from './style';
 import { Text, View } from 'react-native';
 
 const ChatCard = () => {
     return (
-        <View>
+        <View style={styles.wrap}>
             <Text>Card</Text>
         </View>
     );
