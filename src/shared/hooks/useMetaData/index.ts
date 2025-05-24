@@ -90,11 +90,11 @@ const useMetaData = () => {
                 const position = await Location.getCurrentPositionAsync();
                 initialData.geolocation = {
                     x: position.coords.latitude,
-                    y: position.coords.longitude
-                }
+                    y: position.coords.longitude,
+                };
             }
         } catch (e) {
-            console.warn('Location error:', e)
+            console.warn('Location error:', e);
         }
 
         return initialData;

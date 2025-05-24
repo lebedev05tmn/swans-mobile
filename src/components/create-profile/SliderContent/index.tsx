@@ -37,29 +37,39 @@ const Slide: FC<TContentComponent> = ({
     skipButton,
     textAlign,
 }) => {
-    const errorMessage = useCreateProfileStore(state => state.errorMessage);
-    const form = useCreateProfileStore(state => state.form);
+    const errorMessage = useCreateProfileStore((state) => state.errorMessage);
+    const form = useCreateProfileStore((state) => state.form);
     const {
-        actions: { next, setDescription, setCity, setUserName, setSex }
+        actions: { next, setDescription, setCity, setUserName, setSex },
     } = useCreateProfileStore();
 
     const getValue = () => {
         switch (id) {
-            case 'name': return form.user_name;
-            case 'city': return form.city;
-            case 'description': return form.description;
-            case 'birth_date': return form.birth_date;
-            case 'sex': return form.sex;
-            default: return '';
+            case 'name':
+                return form.user_name;
+            case 'city':
+                return form.city;
+            case 'description':
+                return form.description;
+            case 'birth_date':
+                return form.birth_date;
+            case 'sex':
+                return form.sex;
+            default:
+                return '';
         }
     };
 
     const handleChange = (value: string) => {
         switch (id) {
-            case 'name': return setUserName(value);
-            case 'city': return setCity(value);
-            case 'description': return setDescription(value);
-            case 'sex': return setSex(value);
+            case 'name':
+                return setUserName(value);
+            case 'city':
+                return setCity(value);
+            case 'description':
+                return setDescription(value);
+            case 'sex':
+                return setSex(value);
         }
     };
 
@@ -67,12 +77,12 @@ const Slide: FC<TContentComponent> = ({
         switch (input.type) {
             case 'string':
                 return (
-                    <Input 
+                    <Input
                         placeholder={input.placeholder}
                         value={getValue()}
                         onChangeText={handleChange}
                     />
-                )
+                );
             case 'longString':
                 return (
                     <Input
@@ -88,13 +98,9 @@ const Slide: FC<TContentComponent> = ({
                     />
                 );
             case 'date':
-                return (
-                    <DateInput />
-                );
+                return <DateInput />;
             case 'select':
-                return (
-                    <SexInput />
-                );
+                return <SexInput />;
             case 'images':
                 return <ImagesInput />;
             default:
@@ -110,7 +116,7 @@ const Slide: FC<TContentComponent> = ({
             {description && (
                 <Text style={styles.description}>{description}</Text>
             )}
-            
+
             {renderInput()}
 
             {
@@ -118,9 +124,9 @@ const Slide: FC<TContentComponent> = ({
                     <Text style={styles.errorMessage}>{errorMessage}</Text>
                 </View>
             }
-            
+
             {nextButton && <NextButton />}
-            
+
             {skipButton && (
                 <Pressable onPress={next}>
                     <Text style={styles.skipButtonText}>Пропустить</Text>
@@ -130,7 +136,9 @@ const Slide: FC<TContentComponent> = ({
     );
 };
 
-const dataCreateProfileContent: TContentComponent[] = JSON.parse(JSON.stringify(data));
+const dataCreateProfileContent: TContentComponent[] = JSON.parse(
+    JSON.stringify(data),
+);
 
 const createProfileBodyComponents = [
     ...dataCreateProfileContent.map((item) => (

@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     Dimensions,
 } from 'react-native';
+import type { GestureResponderEvent } from 'react-native';
 import styles from './style';
 import useImagesStore from '@/src/shared/stores/useImagesStore';
 import { THROTTLE_TIME } from '@/src/shared/config/config';
@@ -24,8 +25,8 @@ const ImageSlider: FC<ImageSliderProps> = ({ images }) => {
     const { setCurrentImageIndex } = useImagesStore((state) => state.actions);
     const flatListRef = useRef<FlatList>(null);
 
-    const handlePress = useThrottle((event: any) => {
-        if (!event?.nativeEvent) return; 
+    const handlePress = useThrottle((event: GestureResponderEvent) => {
+        if (!event?.nativeEvent) return;
 
         const touchX = event.nativeEvent.locationX;
 

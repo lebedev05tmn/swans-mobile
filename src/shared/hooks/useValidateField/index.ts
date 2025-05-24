@@ -1,10 +1,17 @@
-type TValidationRule = {
-    rule: (value: any) => boolean;
+type TValidationRule<T> = {
+    rule: (value: T) => boolean;
     errorMessage: string;
 };
 
 type TValidationRules = {
-    [key: string]: TValidationRule;
+    require: TValidationRule<string>;
+    imageRequire: TValidationRule<number>;
+    onlyLetters: TValidationRule<string>;
+    minLength: TValidationRule<string>;
+    maxLength: TValidationRule<string>;
+    maxDescriptionLength: TValidationRule<string>;
+    minAge: TValidationRule<string | number | Date>;
+    maxAge: TValidationRule<string | number | Date>;
 };
 
 const validationRules: TValidationRules = {
@@ -53,20 +60,22 @@ const validationRules: TValidationRules = {
         rule: (value) => {
             const birthDate = new Date(value);
             const today = new Date();
-            let age = today.getFullYear() - birthDate.getFullYear();
+            const age = today.getFullYear() - birthDate.getFullYear();
             return age <= 100;
         },
         errorMessage: 'Максимальный возраст 100 лет',
-    }
+    },
 };
 
-const useValidateField = (value: string | number | undefined, rules: string[] | undefined) => {
+const useValidateField = (
+    value: string | number | Date | undefined,
+    rules: (keyof typeof validationRules)[] | undefined,
+): string => {
     if (!rules) return '';
 
     for (const ruleKey of rules) {
         const rule = validationRules[ruleKey];
-
-        if (rule && !rule.rule(value)) {
+        if (rule && !rule.rule(value as never)) {
             return rule.errorMessage;
         }
     }

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 'auto',
         marginBottom: 32,
-    }
+    },
 });
 
 export default styles;

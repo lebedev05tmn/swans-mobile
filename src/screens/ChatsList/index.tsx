@@ -1,11 +1,16 @@
-import { Text } from 'react-native';
+//import chatsList from '@/chatsList.json';
+import Title from '@/src/components/chats-list/Title';
+import { ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './style';
+
+//const chats = JSON.stringify(chatsList.data);
 
 const ChatsList = () => {
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Ваши чаты</Text>
+            <Title text="Ваши чаты" />
+            <ActivityIndicator size={'large'} color={'#60A0FF'} />
         </SafeAreaView>
     );
 };

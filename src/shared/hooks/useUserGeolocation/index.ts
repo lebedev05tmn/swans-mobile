@@ -15,8 +15,8 @@ const useUserGeolocation = () => {
     const getGeolocation = async () => {
         const { coords } = await Location.getCurrentPositionAsync();
 
-        return coords
-    }
+        return coords;
+    };
 
     return {
         checkGeolocationPermission,

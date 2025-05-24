@@ -1,52 +1,52 @@
 {
-  "expo": {
-    "name": "SwansApp",
-    "slug": "swans-app",
-    "scheme": "swans",
-    "sdkVersion": "53.0.0",
-    "version": "1.0.0",
-    "userInterfaceStyle": "automatic",
-    "orientation": "portrait",
-    "newArchEnabled": true,
-    "ios": {
-      "infoPlist": {
-        "UIViewControllerBasedStatusBarAppearance": true
-      },
-      "bundleIdentifier": "com.swans.app"
-    },
-    "android": {
-      "package": "com.swans.app"
-    },
-    "plugins": [
-      "expo-localization",
-      "expo-notifications",
-      "expo-dev-client",
-      "expo-router",
-      [
-        "expo-location",
-        {
-          "locationAlwaysAndWhenInUsePermission": "Разрешить доступ к геолокации в фоне?",
-          "locationAlwaysPermission": "Разрешить доступ к геолокации в фоне?",
-          "locationWhenInUsePermission": "Для работы приложения нужен доступ к геолокации"
-        }
-      ],
-      [
-        "expo-image-picker",
-        {
-          "photosPermission": "The app accesses your photos to let you share them with your friends."
-        }
-      ],
-      [
-        "expo-build-properties",
-        {
-          "ios": {
+    "expo": {
+        "name": "SwansApp",
+        "slug": "swans-app",
+        "scheme": "swans",
+        "sdkVersion": "53.0.0",
+        "version": "1.0.0",
+        "userInterfaceStyle": "automatic",
+        "orientation": "portrait",
+        "newArchEnabled": true,
+        "ios": {
             "infoPlist": {
-              "UIViewControllerBasedStatusBarAppearance": true
-            }
-          }
-        }
-      ],
-      "expo-font"
-    ]
-  }
+                "UIViewControllerBasedStatusBarAppearance": true
+            },
+            "bundleIdentifier": "com.swans.app"
+        },
+        "android": {
+            "package": "com.swans.app"
+        },
+        "plugins": [
+            "expo-localization",
+            "expo-notifications",
+            "expo-dev-client",
+            "expo-router",
+            [
+                "expo-location",
+                {
+                    "locationAlwaysAndWhenInUsePermission": "Разрешить доступ к геолокации в фоне?",
+                    "locationAlwaysPermission": "Разрешить доступ к геолокации в фоне?",
+                    "locationWhenInUsePermission": "Для работы приложения нужен доступ к геолокации"
+                }
+            ],
+            [
+                "expo-image-picker",
+                {
+                    "photosPermission": "The app accesses your photos to let you share them with your friends."
+                }
+            ],
+            [
+                "expo-build-properties",
+                {
+                    "ios": {
+                        "infoPlist": {
+                            "UIViewControllerBasedStatusBarAppearance": true
+                        }
+                    }
+                }
+            ],
+            "expo-font"
+        ]
+    }
 }

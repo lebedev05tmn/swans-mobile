@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    container: { 
+    container: {
         flex: 1,
     },
     title: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         marginTop: 12,
         textAlign: 'center',
-    }
+    },
 });
 
 export default styles;

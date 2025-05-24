@@ -3,7 +3,8 @@ import { useFonts } from 'expo-font';
 import LoadingPage from './loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-export default function RootLayout() {
+const RootLayout = () => {
+    /* eslint-disable @typescript-eslint/no-require-imports */
     const [fontsLoaded] = useFonts({
         'MontserratAlternates-Bold': require('@/src/assets/fonts/MontserratAlternates-Bold.ttf'),
         'MontserratAlternates-Medium': require('@/src/assets/fonts/MontserratAlternates-Medium.ttf'),
@@ -32,4 +33,6 @@ export default function RootLayout() {
             />
         </QueryClientProvider>
     );
-}
+};
+
+export default RootLayout;

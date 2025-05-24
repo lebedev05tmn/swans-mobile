@@ -6,7 +6,7 @@ import styles from './style';
 type TUserName = {
     userName: string;
     confirmed: boolean;
-}
+};
 
 const UserName: FC<TUserName> = ({ userName, confirmed }) => {
     return (

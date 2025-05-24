@@ -1,0 +1,44 @@
+{
+    "success": true,
+    "data": [
+      {
+        "chat_id": 0,
+        "user_id": "string",
+        "name": "Константин",
+        "age": 18,
+        "profile_picture": "https://i.ytimg.com/vi/jg8ixdQzrjc/maxresdefault.jpg",
+        "online": true,
+        "verify": true,
+        "unread_count": 20,
+        "last_message_text": "Вау, таких красоток мир еще не видел...",
+        "last_message_time": "2025-05-23T18:53:17.702Z",
+        "locale": "string"
+      },
+      {
+        "chat_id": 1,
+        "user_id": "string",
+        "name": "Евгений",
+        "age": 21,
+        "profile_picture": "https://i.pinimg.com/736x/0f/b8/0d/0fb80d36770a661f42d082220e6fcc2d.jpg",
+        "online": false,
+        "verify": true,
+        "unread_count": 3,
+        "last_message_text": "Дорогая, ты где? Я уже на месте... 30 минут...",
+        "last_message_time": "2025-05-23T18:53:17.702Z",
+        "locale": "string"
+      },
+      {
+        "chat_id": 2,
+        "user_id": "string",
+        "name": "Иван",
+        "age": 20,
+        "profile_picture": "https://i.pinimg.com/736x/df/ca/e5/dfcae5ca733809670f7a4897f304dadc.jpg",
+        "online": false,
+        "verify": false,
+        "unread_count": 0,
+        "last_message_text": "Я Болгарин. Боготворю Мизулину и русский рэп.",
+        "last_message_time": "2025-05-23T18:53:17.702Z",
+        "locale": "string"
+      }
+    ]
+  }

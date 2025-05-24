@@ -10,12 +10,7 @@
             "placeholder": "Имя"
         },
         "nextButton": true,
-        "validationRules": [
-            "require",
-            "onlyLetters",
-            "minLength",
-            "maxLength"
-        ]
+        "validationRules": ["require", "onlyLetters", "minLength", "maxLength"]
     },
     {
         "id": "city",
@@ -28,12 +23,7 @@
             "placeholder": "Город..."
         },
         "nextButton": true,
-        "validationRules": [
-            "require",
-            "onlyLetters",
-            "minLength",
-            "maxLength"
-        ]
+        "validationRules": ["require", "onlyLetters", "minLength", "maxLength"]
     },
     {
         "id": "birth_date",
@@ -44,11 +34,7 @@
             "placeholder": "1999-01-01"
         },
         "nextButton": true,
-        "validationRules": [
-            "require",
-            "minAge",
-            "maxAge"
-        ]
+        "validationRules": ["require", "minAge", "maxAge"]
     },
     {
         "id": "description",
@@ -61,10 +47,7 @@
             "placeholder": "Напиши текст до 120 символов..."
         },
         "nextButton": true,
-        "validationRules": [
-            "require", 
-            "maxDescriptionLength"
-        ],
+        "validationRules": ["require", "maxDescriptionLength"],
         "skipButton": true
     },
     {
@@ -73,10 +56,7 @@
         "description": "Выберите пол",
         "input": {
             "type": "select",
-            "options": [
-                "Мужчина",
-                "Женщина"
-            ]
+            "options": ["Мужчина", "Женщина"]
         },
         "nextButton": false
     },
@@ -87,9 +67,7 @@
             "type": "images"
         },
         "nextButton": true,
-        "textAlign":  "center",
-        "validationRules": [
-            "imageRequire"
-        ]
+        "textAlign": "center",
+        "validationRules": ["imageRequire"]
     }
 ]

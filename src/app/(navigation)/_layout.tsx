@@ -68,7 +68,7 @@ const NavigationLayout = () => {
             }}
         >
             <Tabs.Screen
-                name="likes"
+                name="dating"
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Heart fill={focused ? '#FF4C00' : '#A3A3A3'} />
@@ -94,7 +94,7 @@ const NavigationLayout = () => {
                 name="profile"
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <Profile fill={focused ? '#FF4C00' : '#A3A3A3'} />
+                        <Profile fill={focused ? '#60A0FF' : '#A3A3A3'} />
                     ),
                 }}
             />
@@ -102,7 +102,7 @@ const NavigationLayout = () => {
                 name="settings"
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <Settings fill={focused ? '#FF4C00' : '#A3A3A3'} />
+                        <Settings fill={focused ? '#60A0FF' : '#A3A3A3'} />
                     ),
                 }}
             />

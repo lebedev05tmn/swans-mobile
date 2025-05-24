@@ -1,5 +1,7 @@
 import { Redirect } from 'expo-router';
 
-export default function HomeScreen() {
+const HomeScreen = () => {
     return <Redirect href="/chats" />;
-}
+};
+
+export default HomeScreen;

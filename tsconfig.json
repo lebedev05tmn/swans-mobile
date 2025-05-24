@@ -1,14 +1,14 @@
 {
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    "strict": true,
-    "declaration": true,
-    "jsx": "react-native",
-    "baseUrl": ".", // для корректной работы paths
-    "paths": {
-      "@/*": ["./*"]
+    "extends": "expo/tsconfig.base",
+    "compilerOptions": {
+        "strict": true,
+        "declaration": true,
+        "jsx": "react-native",
+        "baseUrl": ".", // для корректной работы paths
+        "paths": {
+            "@/*": ["./*"]
+        },
+        "typeRoots": ["./declarations", "./node_modules/@types"]
     },
-    "typeRoots": ["./declarations", "./node_modules/@types"]
-  },
-  "include": ["**/*.ts", "**/*.tsx", "types"]
+    "include": ["**/*.ts", "**/*.tsx", "types"]
 }

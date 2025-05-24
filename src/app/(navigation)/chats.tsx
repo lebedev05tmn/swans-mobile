@@ -1,3 +1,3 @@
-import ChatsList from "@/src/screens/ChatsList";
+import ChatsList from '@/src/screens/ChatsList';
 
 export default ChatsList;

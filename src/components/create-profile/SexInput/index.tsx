@@ -36,5 +36,4 @@ const SexInput = () => {
     );
 };
 
-
 export default SexInput;

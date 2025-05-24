@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from 'react-native';
+import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const likes = () => {
@@ -10,5 +10,3 @@ const likes = () => {
 };
 
 export default likes;
-
-const styles = StyleSheet.create({});
