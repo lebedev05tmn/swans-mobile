@@ -20,9 +20,9 @@ const NavigationLayout = () => {
                     position: 'absolute',
                     height: 1,
                     backgroundColor: '#E0E0E0',
-                    width: '88%',
-                    left: '6%',
-                    right: '6%',
+                    width: '93%',
+                    left: '3.5%',
+                    right: '3.5%',
                     bottom: 100,
                     zIndex: 100,
                 }}

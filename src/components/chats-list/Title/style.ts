@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         textAlign: 'center',
         padding: 24,
+        paddingBottom: 12,
     },
 });
 

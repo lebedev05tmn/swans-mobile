@@ -8,7 +8,6 @@
         "go": "expo start --go",
         "android": "expo run:android",
         "ios": "expo run:ios",
-        "web": "expo start --web",
         "debug": "EXPO_DEBUG=true npx expo start --tunnel",
         "prepare": "husky install"
     },

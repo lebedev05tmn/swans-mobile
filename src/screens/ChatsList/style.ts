@@ -6,7 +6,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFFFFF',
-        paddingHorizontal: displayWidth * 0.03,
+    },
+    flatList: {
+        paddingHorizontal: displayWidth * 0.035,
+        gap: 8,
+        paddingVertical: 8,
+    },
+    flatListWrap: {
+        flex: 1,
     },
 });
 
