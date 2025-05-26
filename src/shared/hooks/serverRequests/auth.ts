@@ -16,7 +16,7 @@ export const createUser = async (
     serviceName: string,
 ): Promise<void> => {
     const url = 'https://swans-dating.ru/api/auth/create_user';
-    let response = await fetch(url, {
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -44,11 +44,11 @@ export const createUser = async (
 
 export const getUserByToken = async (): Promise<object | null> => {
     //Проверка есть ли пользователь по сохраненному токену
-    let userData = SecureStore.getItem('user');
+    const userData = SecureStore.getItem('user');
     if (userData) {
         const userDataParsed: AuthResponse = JSON.parse(userData);
         const url = 'https://swans-dating.ru/api/profile/get';
-        let response = await fetch(url, {
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 accept: 'application/json',

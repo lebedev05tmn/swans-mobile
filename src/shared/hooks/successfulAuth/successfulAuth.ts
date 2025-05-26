@@ -5,12 +5,15 @@ export default async function SuccessfulAuth(
     serviceId: string,
     serviceName: string,
 ) {
-    let userProfile = await getUserByToken();
-    if (userProfile) {
-        console.log('Пользователь отправлен в матчмакинг');
-        router.push('/matchmaking');
-    } else {
+    try {
         await createUser(serviceId, serviceName);
         router.push('/create');
+    } catch (e: any) {
+        let userProfile = await getUserByToken();
+        if (userProfile) {
+            router.push('/matchmaking');
+        } else {
+            throw new Error(e);
+        }
     }
 }

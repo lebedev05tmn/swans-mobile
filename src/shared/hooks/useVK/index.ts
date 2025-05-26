@@ -1,14 +1,11 @@
 import { Alert, Linking } from 'react-native';
-import * as AuthSession from 'expo-auth-session';
 import { Buffer } from 'buffer';
 import * as Crypto from 'expo-crypto';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //https://id.vk.com/about/business/go/docs/ru/vkid/latest/vk-id/connection/start-integration/how-auth-works/auth-flow-web#Bez-SDK-s-obmenom-koda-na-bekende
 
 const vkAppId = String(process.env.EXPO_PUBLIC_VK_APP_ID);
-let vkRedirectUri = AuthSession.makeRedirectUri({
-    scheme: 'swans',
-    path: 'continueWithVk',
-});
+const vkRedirectUri = String(process.env.EXPO_PUBLIC_VK_REDIRECT_URL);
 
 type PKCE = {
     code_verifier: string;
@@ -20,6 +17,8 @@ type PKCE = {
 export const handleVKAuth = async () => {
     const { code_verifier, code_challenge, state, scope } =
         await generatePKCE();
+
+    AsyncStorage.setItem('code_verifier', code_verifier);
     const authUrl = buildAuthorizeUrl({ code_challenge, state, scope });
 
     await Linking.openURL(authUrl);
@@ -58,6 +57,8 @@ const generatePKCE = async (): Promise<PKCE> => {
     const code_challenge = await encryptToS256(code_verifier);
     const state = 'state';
     const scope = 'name,email';
+
+    console.log(code_verifier);
 
     return { code_verifier, code_challenge, state, scope };
 };

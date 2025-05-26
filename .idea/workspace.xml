@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb1989d3-8549-47e2-81d5-e25201f0896b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Authorization/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Authorization/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/hooks/useApple/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/useApple/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/hooks/useVK/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/useVK/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="cb1989d3-8549-47e2-81d5-e25201f0896b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,29 +10,29 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2x8pp0q8NxkyC3tec3jkPU6SMeU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/SWA22-email",
-    "last_opened_file_path": "C:/Users/MainAdmUser/Documents/Repositories/swans-fe",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\MainAdmUser\\Documents\\Repositories\\swans-fe\\node_modules\\prettier",
-    "ts.external.directory.path": "C:\\Users\\MainAdmUser\\Documents\\Repositories\\swans-fe\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/SWA22-email&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/MainAdmUser/Documents/Repositories/swans-fe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\MainAdmUser\\Documents\\Repositories\\swans-fe\\node_modules\\prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\MainAdmUser\\Documents\\Repositories\\swans-fe\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -54,6 +48,7 @@
       <option name="presentableId" value="Default" />
       <updated>1747329733669</updated>
       <workItem from="1747329734797" duration="62000" />
+      <workItem from="1747846938437" duration="19000" />
     </task>
     <servers />
   </component>
