@@ -2,6 +2,7 @@ import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import LoadingPage from './loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ModalComponent from '@/src/shared/ui/Modal'
 
 export default function RootLayout() {
     const [fontsLoaded] = useFonts({
@@ -10,6 +11,8 @@ export default function RootLayout() {
         'MontserratAlternates-Regular': require('@/src/assets/fonts/MontserratAlternates-Regular.ttf'),
         'MontserratAlternates-SemiBold': require('@/src/assets/fonts/MontserratAlternates-SemiBold.ttf'),
         'Roboto-Medium': require('@/src/assets/fonts/Roboto-Medium.ttf'),
+        'Roboto-SemiBold': require('@/src/assets/fonts/Roboto-SemiBold.ttf'),
+        'Roboto-Regular': require('@/src/assets/fonts/Roboto-Regular.ttf'),
     });
 
     if (!fontsLoaded) {
@@ -30,6 +33,7 @@ export default function RootLayout() {
                     statusBarStyle: 'dark',
                 }}
             />
+            <ModalComponent />
         </QueryClientProvider>
     );
 }
