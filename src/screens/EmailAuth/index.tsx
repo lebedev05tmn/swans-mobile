@@ -32,16 +32,7 @@ const EmailRegistration: React.FC = () => {
     );
 
     const handleNext = () => {
-        if (isNextButtonDisabled) return;
-        console.log(
-            'handleNext called, currentIndex:',
-            currentIndex,
-            'nextIndex:',
-            nextIndex,
-            'moving to:',
-            nextIndex + 1,
-        );
-        next();
+        if (!isNextButtonDisabled) next();
     };
 
     const handleForgotPasswordPress = () => {
@@ -81,7 +72,7 @@ const EmailRegistration: React.FC = () => {
                     onAnimationComplete={handleAnimationComplete}
                     header={<Header />}
                 >
-                    <InputsContainer />
+                    <InputsContainer /> {/* Проблема с крашами тут */}
                     {step.link && (
                         <Link
                             linkData={step.link}

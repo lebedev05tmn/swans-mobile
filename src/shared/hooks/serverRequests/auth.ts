@@ -1,6 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
-import { Alert } from 'react-native';
 import { Buffer } from 'buffer';
+import { response400, response500 } from './commonResponses';
+import { Alert } from 'react-native';
 
 const CREDENTIALS = String(process.env.EXPO_PUBLIC_CREDENTIALS);
 const credentialsBase64 = Buffer.from(CREDENTIALS).toString('base64');
@@ -28,17 +29,21 @@ export const createUser = async (
             service_name: serviceName,
         }),
     });
-    if (response.ok) {
-        const data = (await response.json()) as AuthResponse;
-        await SecureStore.setItemAsync('user', JSON.stringify(data));
-    } else if (response.status === 403) {
-        getTokenByServiceId(serviceId, serviceName);
-    } else {
-        const errorText = await response.text();
-        console.error(`${response.status}: ${errorText}`);
-        if (response.status === 500) {
-            Alert.alert('Сервис временно недоступен, повторите попытку позже');
-        }
+
+    switch (response.status) {
+        case 200:
+            const data = (await response.json()) as AuthResponse;
+            await SecureStore.setItemAsync('user', JSON.stringify(data));
+            break;
+        case 400:
+            response400(response.json);
+            break;
+        case 403:
+            getTokenByServiceId(serviceId, serviceName);
+            break;
+        case 500:
+            response500();
+            break;
     }
 };
 
@@ -84,6 +89,18 @@ export const getTokenByServiceId = async (
             service_name: serviceName,
         }),
     });
-    const userData = await response.json();
-    await SecureStore.setItemAsync('user', JSON.stringify(userData));
+    switch (response.status) {
+        case 200:
+            const userData = await response.json();
+            await SecureStore.setItemAsync('user', JSON.stringify(userData));
+            break;
+        case 400:
+            response400(response.json());
+        case 404:
+            Alert.alert('Ошибка при получении данных. Повторите попытку');
+            console.error('404');
+            break;
+        case 500:
+            response500();
+    }
 };

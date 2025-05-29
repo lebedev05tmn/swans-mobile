@@ -3,16 +3,20 @@ import { View, Text, Dimensions, BackHandler, Linking } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Button from '../../shared/ui/Button';
 import LogoSVG from '@/src/assets/svg/Loggo.svg';
-
 import { useAuthMethods, AuthMethod } from '../../shared/hooks/useAuthMethod';
 import AuthModal from '../../components/Authorization/Modal';
 import styles from './style';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
+
+type AuthParams = {
+    openModal?: string;
+};
 
 const Authorization = () => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const { authMethods: baseAuthMethods } = useAuthMethods();
+    let { openModal } = useLocalSearchParams<AuthParams>();
 
     const modalAuthMethods = useMemo<AuthMethod[]>(() => {
         return baseAuthMethods.map((method) => {
@@ -48,13 +52,18 @@ const Authorization = () => {
             return false;
         };
 
+        if (openModal === 'true') {
+            setModalVisible(true);
+            openModal = 'false';
+        }
+
         const backHandler = BackHandler.addEventListener(
             'hardwareBackPress',
             backAction,
         );
 
         return () => backHandler.remove();
-    }, [modalVisible]);
+    }, [modalVisible, openModal]);
 
     return (
         <LinearGradient

@@ -34,7 +34,7 @@
             {
                 "name": "code",
                 "placeholder": "Код с почты",
-                "inputMode": "numeric",
+                "inputMode": "num-pad",
                 "valueKey": "code",
                 "editable": true,
                 "maxLength": 6,
