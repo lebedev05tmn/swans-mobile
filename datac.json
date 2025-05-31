@@ -34,7 +34,7 @@
             {
                 "name": "code",
                 "placeholder": "Код с почты",
-                "inputMode": "num-pad",
+                "inputMode": "numeric",
                 "valueKey": "code",
                 "editable": true,
                 "maxLength": 6,
@@ -91,8 +91,8 @@
     },
     {
         "id": "login",
-        "title": "Введите почту",
-        "subtitle": "Используйте актуальную почту,\nна нее прийдет код.",
+        "title": "Логин",
+        "subtitle": "Введите Ваш логин и пароль",
         "fields": [
             {
                 "name": "email",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -13,11 +13,20 @@ import Link from '@/src/components/email/link';
 import NextButton from '@/src/components/email/NextButton';
 import data from '@/datac.json';
 import styles from './style';
+import { emailRegistration } from '@/src/shared/hooks/serverRequests/email';
 
 const EmailRegistration: React.FC = () => {
     const insets = useSafeAreaInsets();
-    const { next, handleForgotPassword, changeCurrentIndex, resetForm } =
-        useEmailAuthStore((state: TEmailAuthStore) => state.actions);
+    const {
+        next,
+        handleForgotPassword,
+        changeCurrentIndex,
+        handleSendCode,
+        handleVerifyCode,
+        disableNextButton,
+        enableNextButton,
+        setErrorMessage,
+    } = useEmailAuthStore((state: TEmailAuthStore) => state.actions);
     const currentIndex = useEmailAuthStore(
         (state: TEmailAuthStore) => state.currentIndex,
     );
@@ -30,35 +39,50 @@ const EmailRegistration: React.FC = () => {
     const isNextButtonDisabled = useEmailAuthStore(
         (state: TEmailAuthStore) => state.isNextButtonDisabled,
     );
+    const verificationCode = useEmailAuthStore(
+        (state: TEmailAuthStore) => state.form.code,
+    );
 
     const handleNext = () => {
         if (!isNextButtonDisabled) next();
     };
 
     const handleForgotPasswordPress = () => {
-        console.log(
-            'handleForgotPassword called, currentIndex:',
-            currentIndex,
-            'moving to:',
-            4,
-        );
         handleForgotPassword();
     };
 
     const handleAnimationComplete = () => {
-        console.log('Animation complete, changing index to:', nextIndex);
         changeCurrentIndex();
-        setTimeout(() => {
-            console.log('UI interactivity enabled');
-        }, 100);
     };
 
     const step = data[currentIndex] || {};
 
-    const isReverseSlide =
-        currentIndex === 3 &&
-        nextIndex === 3 &&
-        data[currentIndex - 1]?.id === 'recoverPassword';
+    useEffect(() => {
+        console.log(`Current index ${currentIndex}`);
+        if (currentIndex === 1) {
+            console.log('Код отправлен');
+            disableNextButton();
+            handleSendCode();
+        }
+    }, [currentIndex]);
+
+    useEffect(() => {
+        const verify = async () => {
+            disableNextButton();
+            console.log('Проверка кода');
+            const response = await handleVerifyCode();
+            console.log(response);
+            if (response) {
+                enableNextButton();
+                setErrorMessage('');
+                next();
+            } else {
+                setErrorMessage('Неверный код');
+            }
+        };
+
+        if (verificationCode.length === 6) verify();
+    }, [verificationCode]);
 
     return (
         <LinearGradient
@@ -72,7 +96,7 @@ const EmailRegistration: React.FC = () => {
                     onAnimationComplete={handleAnimationComplete}
                     header={<Header />}
                 >
-                    <InputsContainer /> {/* Проблема с крашами тут */}
+                    <InputsContainer />
                     {step.link && (
                         <Link
                             linkData={step.link}

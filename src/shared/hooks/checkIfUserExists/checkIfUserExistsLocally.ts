@@ -1,7 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 
 export default function checkIfUserExistsLocally(): boolean {
-    // SecureStore.deleteItemAsync('user'); //Для теста
+    SecureStore.deleteItemAsync('user');
     const user = SecureStore.getItem('user');
     if (user) {
         const userJSON: {
@@ -10,11 +10,7 @@ export default function checkIfUserExistsLocally(): boolean {
             refresh_token: string;
         } = JSON.parse(user);
         console.log(userJSON);
-        return Boolean(
-            userJSON['user_id'] &&
-                userJSON['access_token'] &&
-                userJSON['refresh_token'],
-        );
+        return Boolean(userJSON['access_token'] && userJSON['refresh_token']);
     } else {
         return false;
     }

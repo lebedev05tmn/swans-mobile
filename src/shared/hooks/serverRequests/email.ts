@@ -1,40 +1,44 @@
 import { Buffer } from 'buffer';
 import { response500, response400 } from './commonResponses';
-import { ServerResponse } from 'http';
 import { Alert } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
 
 const CREDENTIALS = String(process.env.EXPO_PUBLIC_CREDENTIALS);
 const credentialsBase64 = Buffer.from(CREDENTIALS).toString('base64');
 
+type EmailRegistrationParams =
+    | { method: 'send_code'; email: string }
+    | { method: 'verify_code'; email: string; code: string }
+    | { method: 'create_user'; email: string; password: string };
+
 export const emailRegistration = async (
-    method: 'send_code' | 'verify_code' | 'create_user',
-    email: string,
-    code?: string,
-    password?: string,
-): Promise<boolean | undefined> => {
+    vars: EmailRegistrationParams,
+): Promise<{ responseCode: number; status: boolean } | undefined> => {
     const url = 'https://swans-dating.ru/api/auth/email_registration';
     let params: {
         email: string;
         code?: string;
         password?: string;
-    } = { email: email };
+    } = { email: vars.email };
 
-    switch (method) {
+    switch (vars.method) {
         case 'verify_code':
-            if (code) {
-                Object.assign(params, { code: code });
+            if (vars.code) {
+                Object.assign(params, { code: vars.code });
             } else {
                 console.error('Code missing');
                 throw new Error('CODE_MISSING');
             }
             break;
         case 'create_user':
-            if (password) {
-                Object.assign(params, { password: password });
+            if (vars.password) {
+                Object.assign(params, { password: vars.password });
             } else {
                 console.error('Password missing');
                 throw new Error('PASSWORD_MISSING');
             }
+            break;
+        case 'send_code':
             break;
     }
 
@@ -47,26 +51,41 @@ export const emailRegistration = async (
         },
         body: JSON.stringify({
             jsonrpc: '2.0',
-            method,
+            method: vars.method,
             params,
             id: String(Date.now()),
         }),
     });
-
     switch (response.status) {
         case 200:
             const ServerResponse = (await response.json()) as {
                 jsonrpc: string;
                 result: {
+                    access_token?: string;
+                    refresh_token?: string;
                     success: boolean;
                 };
                 id: string;
             };
-            return ServerResponse['result']['success'];
-            break;
+            console.log(ServerResponse);
+            if (
+                ServerResponse.result.access_token &&
+                ServerResponse.result.refresh_token
+            ) {
+                await SecureStore.setItemAsync(
+                    'user',
+                    JSON.stringify({
+                        access_token: ServerResponse.result.access_token,
+                        refresh_token: ServerResponse.result.refresh_token,
+                    }),
+                );
+            }
+            return { responseCode: 200, status: ServerResponse.result.success };
         case 400:
             response500();
             break;
+        case 403:
+            return { responseCode: 403, status: false };
         case 500:
             response400(response.json());
             break;
@@ -100,5 +119,6 @@ export const sendNewPassword = async (email: string) => {
             return false;
         case 500:
             response500();
+            break;
     }
 };

@@ -47,30 +47,6 @@ export const createUser = async (
     }
 };
 
-export const getUserByToken = async (): Promise<object | null> => {
-    //Проверка есть ли пользователь по сохраненному токену
-    const userData = SecureStore.getItem('user');
-    if (userData) {
-        const userDataParsed: AuthResponse = JSON.parse(userData);
-        const url = 'https://swans-dating.ru/api/profile/get';
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: `Bearer ${userDataParsed.access_token}`,
-            },
-        });
-        if (response.ok) {
-            return await response.json();
-        } else {
-            console.error(response.status);
-            return null;
-        }
-    } else {
-        return null;
-    }
-};
-
 export const getTokenByServiceId = async (
     serviceId: string,
     serviceName: string,
@@ -91,7 +67,10 @@ export const getTokenByServiceId = async (
     });
     switch (response.status) {
         case 200:
-            const userData = await response.json();
+            const userData = (await response.json()) as {
+                access_token: string;
+                refresh_token: string;
+            };
             await SecureStore.setItemAsync('user', JSON.stringify(userData));
             break;
         case 400:

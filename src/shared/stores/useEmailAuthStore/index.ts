@@ -1,5 +1,8 @@
 import { create } from 'zustand';
 import data from '@/datac.json';
+import { emailRegistration } from '../../hooks/serverRequests/email';
+import { Alert } from 'react-native';
+import NextButton from '@/src/components/email/NextButton';
 
 export type FormData = {
     email: string;
@@ -43,7 +46,14 @@ export type EmailAuthStore = {
             action: 'start' | 'tick' | 'clear',
             duration?: number,
         ) => void;
+        disableNextButton: () => void;
+        enableNextButton: () => void;
         resetForm: () => void;
+        handleSendCode: () => void;
+        handleVerifyCode: () => Promise<boolean>;
+        handleRegistration: () => Promise<
+            { responseCode: number; status: boolean } | undefined
+        >;
     };
 };
 
@@ -74,13 +84,9 @@ const initialState: Omit<EmailAuthStore, 'actions'> = {
 export const useEmailAuthStore = create<TEmailAuthStore>((set, get) => ({
     ...initialState,
     actions: {
-        next: () => {
+        next: async () => {
             const { nextIndex, pages } = get();
             if (nextIndex < pages - 1) {
-                console.log(
-                    'useEmailAuthStore: next called, moving to nextIndex=',
-                    nextIndex + 1,
-                );
                 set({
                     nextIndex: nextIndex + 1,
                     errorMessage: '',
@@ -95,9 +101,6 @@ export const useEmailAuthStore = create<TEmailAuthStore>((set, get) => ({
                     },
                 });
             } else if (nextIndex === pages - 1) {
-                console.log(
-                    'useEmailAuthStore: next called, moving from step 6 to step 4',
-                );
                 set({
                     nextIndex: 3,
                     errorMessage: '',
@@ -111,9 +114,6 @@ export const useEmailAuthStore = create<TEmailAuthStore>((set, get) => ({
             }
         },
         handleForgotPassword: () => {
-            console.log(
-                'useEmailAuthStore: handleForgotPassword called, moving to step 5',
-            );
             set({
                 nextIndex: 4,
                 errorMessage: '',
@@ -140,10 +140,6 @@ export const useEmailAuthStore = create<TEmailAuthStore>((set, get) => ({
         setErrorMessage: (error) => set({ errorMessage: error }),
         changeCurrentIndex: () =>
             set((state) => {
-                console.log(
-                    'useEmailAuthStore: changeCurrentIndex, setting currentIndex=',
-                    state.nextIndex,
-                );
                 return { currentIndex: state.nextIndex };
             }),
         completeInitialRender: () => set({ isInitialRender: false }),
@@ -195,5 +191,48 @@ export const useEmailAuthStore = create<TEmailAuthStore>((set, get) => ({
                 },
                 errorMessage: '',
             }),
+        disableNextButton: () => {
+            set({ isNextButtonDisabled: true });
+        },
+        enableNextButton: () => {
+            set({ isNextButtonDisabled: false });
+        },
+        handleSendCode: async () => {
+            const { email } = get().form;
+            set({ isNextButtonDisabled: true });
+            if (email) {
+                const response = await emailRegistration({
+                    method: 'send_code',
+                    email,
+                });
+                if (response?.status !== true)
+                    Alert.alert('Что-то пошло не так');
+            }
+            set({ isNextButtonDisabled: false });
+        },
+        handleVerifyCode: async () => {
+            const { email, code } = get().form;
+            if (email && code) {
+                return (
+                    (
+                        await emailRegistration({
+                            method: 'verify_code',
+                            email: email,
+                            code: code.replace(/-/g, ''),
+                        })
+                    )?.status ?? false
+                );
+            }
+            return false;
+        },
+        handleRegistration: async () => {
+            const { email, password } = get().form;
+            const response = await emailRegistration({
+                method: 'create_user',
+                email,
+                password,
+            });
+            return response;
+        },
     },
 }));

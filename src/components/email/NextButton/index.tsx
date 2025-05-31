@@ -1,58 +1,85 @@
 import React, { FC } from 'react';
-import { Text } from 'react-native';
+import { Alert, Text } from 'react-native';
 import { ArrowRight } from 'lucide-react-native';
 import Button from '@/src/shared/ui/Button';
-import { useEmailAuthStore, TEmailAuthStore } from '@/src/shared/stores/useEmailAuthStore';
+import {
+    useEmailAuthStore,
+    TEmailAuthStore,
+} from '@/src/shared/stores/useEmailAuthStore';
 import useValidateField from '@/src/shared/hooks/useValidateField';
 import data from '@/datac.json';
 import styles from './style';
+import { router } from 'expo-router';
 
 interface NextButtonProps {
-  onPress: () => void;
+    onPress: () => void;
 }
 
 const NextButton: FC<NextButtonProps> = ({ onPress }) => {
-  const setErrorMessage = useEmailAuthStore((state: TEmailAuthStore) => state.actions.setErrorMessage);
-  const isNextButtonDisabled = useEmailAuthStore((state: TEmailAuthStore) => state.isNextButtonDisabled);
-  const currentIndex = useEmailAuthStore((state: TEmailAuthStore) => state.currentIndex);
-  const form = useEmailAuthStore((state: TEmailAuthStore) => state.form);
+    const { setErrorMessage, handleRegistration, next } = useEmailAuthStore(
+        (state: TEmailAuthStore) => state.actions,
+    );
+    const isNextButtonDisabled = useEmailAuthStore(
+        (state: TEmailAuthStore) => state.isNextButtonDisabled,
+    );
+    const currentIndex = useEmailAuthStore(
+        (state: TEmailAuthStore) => state.currentIndex,
+    );
+    const form = useEmailAuthStore((state: TEmailAuthStore) => state.form);
 
-  const handleClick = () => {
-    const fields = data[currentIndex]?.fields || [];
-    let validationError = '';
+    const handleClick = async () => {
+        const fields = data[currentIndex]?.fields || [];
+        let validationError = '';
 
-    
-    if (currentIndex === 2) {
-      if (form.password !== form.confirmPassword) {
-        validationError = 'Пароли не совпадают';
-      }
-    }
+        if (currentIndex === 2) {
+            if (form.password !== form.confirmPassword) {
+                validationError = 'Пароли не совпадают';
+            } else {
+                const registrationStatus = await handleRegistration();
+                if (registrationStatus) {
+                    if (registrationStatus.responseCode === 200) {
+                        if (registrationStatus.status === true) {
+                            router.push('/matchmaking');
+                        } else {
+                            Alert.alert(
+                                'Срок вашей сессии истек, попробуйте еще раз!',
+                            );
+                            router.navigate('/auth');
+                        }
+                    } else {
+                        Alert.alert('Вы уже зарегистрированы!');
+                        next();
+                    }
+                } else {
+                    validationError = 'Что-то пошло не так, попробуйте еще раз';
+                }
+            }
+        }
 
-   
-    if (!validationError) {
-      for (const field of fields) {
-        const value = form[field.valueKey as keyof typeof form];
-        const rules = field.validationRules || [];
-        validationError = useValidateField(value, rules);
-        if (validationError) break;
-      }
-    }
+        if (!validationError) {
+            for (const field of fields) {
+                const value = form[field.valueKey as keyof typeof form];
+                const rules = field.validationRules || [];
+                validationError = useValidateField(value, rules);
+                if (validationError) break;
+            }
+        }
 
-    setErrorMessage(validationError);
+        setErrorMessage(validationError);
 
-    if (!validationError) onPress();
-  };
+        if (!validationError) onPress();
+    };
 
-  return (
-    <Button
-      style={styles.nextButton}
-      onPress={handleClick}
-      disabled={isNextButtonDisabled}
-    >
-      <Text style={styles.text}>Продолжить</Text>
-      <ArrowRight color={'#404040'} size={18} />
-    </Button>
-  );
+    return (
+        <Button
+            style={styles.nextButton}
+            onPress={handleClick}
+            disabled={isNextButtonDisabled}
+        >
+            <Text style={styles.text}>Продолжить</Text>
+            <ArrowRight color={'#404040'} size={18} />
+        </Button>
+    );
 };
 
 export default NextButton;
