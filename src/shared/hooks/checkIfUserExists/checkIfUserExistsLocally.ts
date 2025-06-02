@@ -1,7 +1,6 @@
 import * as SecureStore from 'expo-secure-store';
 
 export default function checkIfUserExistsLocally(): boolean {
-    SecureStore.deleteItemAsync('user');
     const user = SecureStore.getItem('user');
     if (user) {
         const userJSON: {

@@ -3,6 +3,10 @@ import { TouchableOpacity, Text, StyleProp, TextStyle } from 'react-native';
 import { runOnJS } from 'react-native-reanimated';
 import styles from './style';
 import { router } from 'expo-router';
+import {
+    useEmailAuthStore,
+    TEmailAuthStore,
+} from '@/src/shared/stores/useEmailAuthStore';
 
 interface LinkData {
     text: string;
@@ -28,7 +32,9 @@ const Link: React.FC<LinkProps> = ({
 }) => {
     const [timer, setTimer] = useState(0);
     const [isTimerActive, setIsTimerActive] = useState(false);
-
+    const { handleSendCode } = useEmailAuthStore(
+        (state: TEmailAuthStore) => state.actions,
+    );
     useEffect(() => {
         setTimer(0);
         setIsTimerActive(false);
@@ -69,12 +75,13 @@ const Link: React.FC<LinkProps> = ({
                 runOnJS(onForgotPassword)();
                 break;
             case 'requestCode':
+                if (timer === 0) {
+                    startTimer();
+                    handleSendCode();
+                }
             case 'requestPassword':
                 if (timer === 0) {
                     startTimer();
-                    console.log(
-                        `Link pressed: Таймер запущен для ${linkData.action}`,
-                    );
                 }
                 break;
             default:

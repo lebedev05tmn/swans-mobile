@@ -92,6 +92,42 @@ export const emailRegistration = async (
     }
 };
 
+export const emailLogin = async (email: string, login: string) => {
+    await SecureStore.deleteItemAsync('user');
+    const url = 'https://swans-dating.ru/api/auth/get_tokens';
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json',
+            Authorization: `Basic ${credentialsBase64}`,
+        },
+        body: JSON.stringify({
+            service_user_id: `${email}:${login}`,
+            service_name: 'App',
+        }),
+    });
+    switch (response.status) {
+        case 200:
+            const userData = (await response.json()) as {
+                access_token: string;
+                refresh_token: string;
+            };
+            await SecureStore.setItemAsync('user', JSON.stringify(userData));
+            return true;
+        case 400:
+            response400(await response.json());
+            return false;
+        case 404:
+            Alert.alert('Неверный логин или пароль');
+            console.error('404');
+            return false;
+        case 500:
+            response500();
+            return false;
+    }
+};
+
 export const sendNewPassword = async (email: string) => {
     const url = 'https://swans-dating.ru/api/auth/send_new_password';
 

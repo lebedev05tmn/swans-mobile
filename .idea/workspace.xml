@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb1989d3-8549-47e2-81d5-e25201f0896b" name="Changes" comment="" />
+    <list default="true" id="cb1989d3-8549-47e2-81d5-e25201f0896b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/components/email/NextButton/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/email/NextButton/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/hooks/serverRequests/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/serverRequests/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/hooks/serverRequests/commonResponses.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/serverRequests/commonResponses.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/hooks/serverRequests/email.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/serverRequests/email.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/stores/useEmailAuthStore/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/stores/useEmailAuthStore/index.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +55,7 @@
       <updated>1747329733669</updated>
       <workItem from="1747329734797" duration="62000" />
       <workItem from="1747846938437" duration="19000" />
+      <workItem from="1748880388194" duration="58000" />
     </task>
     <servers />
   </component>

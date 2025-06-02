@@ -61,7 +61,7 @@ export const getTokenByServiceId = async (
             Authorization: `Basic ${credentialsBase64}`,
         },
         body: JSON.stringify({
-            service_id: serviceId,
+            service_user_id: serviceId,
             service_name: serviceName,
         }),
     });
@@ -75,11 +75,13 @@ export const getTokenByServiceId = async (
             break;
         case 400:
             response400(response.json());
+            break;
         case 404:
             Alert.alert('Ошибка при получении данных. Повторите попытку');
             console.error('404');
             break;
         case 500:
             response500();
+            break;
     }
 };

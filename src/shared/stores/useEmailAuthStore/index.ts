@@ -1,8 +1,12 @@
 import { create } from 'zustand';
 import data from '@/datac.json';
-import { emailRegistration } from '../../hooks/serverRequests/email';
+import {
+    emailLogin,
+    emailRegistration,
+} from '../../hooks/serverRequests/email';
 import { Alert } from 'react-native';
 import NextButton from '@/src/components/email/NextButton';
+import { isUtf8 } from 'buffer';
 
 export type FormData = {
     email: string;
@@ -54,14 +58,15 @@ export type EmailAuthStore = {
         handleRegistration: () => Promise<
             { responseCode: number; status: boolean } | undefined
         >;
+        handleLogin: () => Promise<boolean>;
     };
 };
 
 export type TEmailAuthStore = EmailAuthStore;
 
 const initialState: Omit<EmailAuthStore, 'actions'> = {
-    currentIndex: 0,
-    nextIndex: 0,
+    currentIndex: 3,
+    nextIndex: 4,
     pages: data.length,
     form: {
         email: '',
@@ -233,6 +238,11 @@ export const useEmailAuthStore = create<TEmailAuthStore>((set, get) => ({
                 password,
             });
             return response;
+        },
+        handleLogin: async () => {
+            const { email, password } = get().form;
+            const isSuccess = await emailLogin(email, password);
+            return isSuccess ?? false;
         },
     },
 }));

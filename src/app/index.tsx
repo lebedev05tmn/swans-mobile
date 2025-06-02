@@ -8,9 +8,12 @@ import * as SecureStore from 'expo-secure-store';
 export default function HomeScreen() {
     const { metaData, isLoading } = useMetaData();
 
-    // useEffect(() => {
-    //     if (!isLoading) SecureStore.deleteItemAsync('user');
-    // }, [metaData]);
+    useEffect(() => {
+        const deleteUser = async () => {
+            await SecureStore.deleteItemAsync('user');
+        };
+        deleteUser();
+    }, [metaData]);
 
     return isLoading ? (
         <Loading />

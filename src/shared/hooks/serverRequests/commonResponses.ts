@@ -6,7 +6,9 @@ export function response500() {
     throw new Error('SERVER_UNAVAILABLE');
 }
 
-export function response400(serverAnswer: object) {
-    console.error(`400\nInvalid request, server response:\n${serverAnswer}`);
+export async function response400(serverAnswer: object) {
+    console.error(
+        `400\nInvalid request, server response:\n${JSON.stringify(serverAnswer, null, 2)}`,
+    );
     throw new Error('INVALID_REQUEST');
 }

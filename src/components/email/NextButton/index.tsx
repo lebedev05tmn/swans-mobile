@@ -16,9 +16,8 @@ interface NextButtonProps {
 }
 
 const NextButton: FC<NextButtonProps> = ({ onPress }) => {
-    const { setErrorMessage, handleRegistration, next } = useEmailAuthStore(
-        (state: TEmailAuthStore) => state.actions,
-    );
+    const { setErrorMessage, handleRegistration, handleLogin, next } =
+        useEmailAuthStore((state: TEmailAuthStore) => state.actions);
     const isNextButtonDisabled = useEmailAuthStore(
         (state: TEmailAuthStore) => state.isNextButtonDisabled,
     );
@@ -31,29 +30,41 @@ const NextButton: FC<NextButtonProps> = ({ onPress }) => {
         const fields = data[currentIndex]?.fields || [];
         let validationError = '';
 
-        if (currentIndex === 2) {
-            if (form.password !== form.confirmPassword) {
-                validationError = 'Пароли не совпадают';
-            } else {
-                const registrationStatus = await handleRegistration();
-                if (registrationStatus) {
-                    if (registrationStatus.responseCode === 200) {
-                        if (registrationStatus.status === true) {
-                            router.push('/matchmaking');
+        switch (currentIndex) {
+            case 2:
+                if (form.password !== form.confirmPassword) {
+                    validationError = 'Пароли не совпадают';
+                } else {
+                    const registrationStatus = await handleRegistration();
+                    if (registrationStatus) {
+                        if (registrationStatus.responseCode === 200) {
+                            if (registrationStatus.status === true) {
+                                router.push('/matchmaking');
+                            } else {
+                                Alert.alert(
+                                    'Срок вашей сессии истек, попробуйте еще раз!',
+                                );
+                                router.navigate('/auth');
+                            }
                         } else {
-                            Alert.alert(
-                                'Срок вашей сессии истек, попробуйте еще раз!',
-                            );
-                            router.navigate('/auth');
+                            Alert.alert('Вы уже зарегистрированы!');
+                            next();
                         }
                     } else {
-                        Alert.alert('Вы уже зарегистрированы!');
-                        next();
+                        validationError =
+                            'Что-то пошло не так, попробуйте еще раз';
                     }
-                } else {
-                    validationError = 'Что-то пошло не так, попробуйте еще раз';
                 }
-            }
+                break;
+            case 3:
+                if (form.email && form.password) {
+                    const loginStatus = await handleLogin();
+                    loginStatus
+                        ? next()
+                        : (validationError = 'Неверный логин или пароль');
+                } else {
+                    validationError = 'Введите логин и пароль';
+                }
         }
 
         if (!validationError) {
