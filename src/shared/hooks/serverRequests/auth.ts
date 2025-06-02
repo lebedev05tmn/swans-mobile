@@ -15,7 +15,7 @@ type AuthResponse = {
 export const createUser = async (
     serviceId: string,
     serviceName: string,
-): Promise<void> => {
+): Promise<boolean> => {
     const url = 'https://swans-dating.ru/api/auth/create_user';
     const response = await fetch(url, {
         method: 'POST',
@@ -34,23 +34,24 @@ export const createUser = async (
         case 200:
             const data = (await response.json()) as AuthResponse;
             await SecureStore.setItemAsync('user', JSON.stringify(data));
-            break;
+            return true;
         case 400:
-            response400(response.json);
-            break;
-        case 403:
-            getTokenByServiceId(serviceId, serviceName);
-            break;
+            response400(await response.json());
+            return false;
+        case 403: //Если юзер уже зарегистрировался
+            return await getTokenByServiceId(serviceId, serviceName);
         case 500:
             response500();
-            break;
+            return false;
+        default:
+            return false;
     }
 };
 
 export const getTokenByServiceId = async (
     serviceId: string,
     serviceName: string,
-): Promise<void> => {
+): Promise<boolean> => {
     await SecureStore.deleteItemAsync('user');
     const url = 'https://swans-dating.ru/api/auth/get_tokens';
     let response = await fetch(url, {
@@ -72,16 +73,18 @@ export const getTokenByServiceId = async (
                 refresh_token: string;
             };
             await SecureStore.setItemAsync('user', JSON.stringify(userData));
-            break;
+            return true;
         case 400:
             response400(response.json());
-            break;
+            return false;
         case 404:
             Alert.alert('Ошибка при получении данных. Повторите попытку');
             console.error('404');
-            break;
+            return false;
         case 500:
             response500();
-            break;
+            return false;
+        default:
+            return false;
     }
 };
