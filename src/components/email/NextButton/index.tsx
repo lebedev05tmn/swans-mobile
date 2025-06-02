@@ -59,9 +59,11 @@ const NextButton: FC<NextButtonProps> = ({ onPress }) => {
             case 3:
                 if (form.email && form.password) {
                     const loginStatus = await handleLogin();
-                    loginStatus
-                        ? next()
-                        : (validationError = 'Неверный логин или пароль');
+                    if (loginStatus) {
+                        router.push('/matchmaking');
+                    } else {
+                        validationError = 'Неверный логин или пароль';
+                    }
                 } else {
                     validationError = 'Введите логин и пароль';
                 }

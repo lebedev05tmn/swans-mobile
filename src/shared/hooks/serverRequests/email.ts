@@ -104,7 +104,7 @@ export const emailLogin = async (email: string, login: string) => {
         },
         body: JSON.stringify({
             service_user_id: `${email}:${login}`,
-            service_name: 'App',
+            service_name: 'Email',
         }),
     });
     switch (response.status) {
