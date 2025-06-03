@@ -2,6 +2,7 @@ import { Buffer } from 'buffer';
 import { response500, response400 } from './commonResponses';
 import { Alert } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+import { resolvePlugin } from '@babel/core';
 
 const CREDENTIALS = String(process.env.EXPO_PUBLIC_CREDENTIALS);
 const credentialsBase64 = Buffer.from(CREDENTIALS).toString('base64');
@@ -135,7 +136,7 @@ export const sendNewPassword = async (email: string) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            accept: 'application/json',
+            accept: '*/*',
             Authorization: `Basic ${credentialsBase64}`,
         },
         body: JSON.stringify({
@@ -143,18 +144,23 @@ export const sendNewPassword = async (email: string) => {
         }),
     });
 
+    const responseData = await response.json();
+    console.log(responseData);
+
     switch (response.status) {
         case 200:
             return true;
         case 400:
             response400(response.json());
-            break;
+            return false;
         case 404:
             // Функция, которая принимает данный запрос должна создавать надпись ошибки у пользователя, а не струячить алертами
             Alert.alert('Пользователя с такой почтой не существует');
             return false;
         case 500:
             response500();
-            break;
+            return false;
+        default:
+            return false;
     }
 };

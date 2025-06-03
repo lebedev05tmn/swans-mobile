@@ -3,6 +3,7 @@ import data from '@/datac.json';
 import {
     emailLogin,
     emailRegistration,
+    sendNewPassword,
 } from '../../hooks/serverRequests/email';
 import { Alert } from 'react-native';
 import NextButton from '@/src/components/email/NextButton';
@@ -59,14 +60,17 @@ export type EmailAuthStore = {
             { responseCode: number; status: boolean } | undefined
         >;
         handleLogin: () => Promise<boolean>;
+        handleSendNewPassword: () => Promise<boolean>;
+        goToLogin: () => void;
+        goToForgotPassword: () => void;
     };
 };
 
 export type TEmailAuthStore = EmailAuthStore;
 
 const initialState: Omit<EmailAuthStore, 'actions'> = {
-    currentIndex: 3,
-    nextIndex: 4,
+    currentIndex: 0,
+    nextIndex: 0,
     pages: data.length,
     form: {
         email: '',
@@ -243,6 +247,19 @@ export const useEmailAuthStore = create<TEmailAuthStore>((set, get) => ({
             const { email, password } = get().form;
             const isSuccess = await emailLogin(email, password);
             return isSuccess ?? false;
+        },
+        handleSendNewPassword: async () => {
+            const { email } = get().form;
+            const serverResponse = await sendNewPassword(email);
+            return serverResponse;
+        },
+        goToLogin: () => {},
+        goToForgotPassword: () => {
+            set((state) => ({
+                ...state,
+                currentIndex: 4,
+                nextIndex: 5,
+            }));
         },
     },
 }));

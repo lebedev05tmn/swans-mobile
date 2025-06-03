@@ -32,16 +32,12 @@ const Link: React.FC<LinkProps> = ({
 }) => {
     const [timer, setTimer] = useState(0);
     const [isTimerActive, setIsTimerActive] = useState(false);
-    const { handleSendCode } = useEmailAuthStore(
-        (state: TEmailAuthStore) => state.actions,
-    );
+    const { form } = useEmailAuthStore((state: TEmailAuthStore) => state);
+    const { handleSendCode, goToForgotPassword, handleSendNewPassword } =
+        useEmailAuthStore((state: TEmailAuthStore) => state.actions);
     useEffect(() => {
         setTimer(0);
         setIsTimerActive(false);
-        console.log(
-            'Link: Reset timer on step change, currentIndex:',
-            currentIndex,
-        );
     }, [currentIndex]);
 
     useEffect(() => {
@@ -72,16 +68,18 @@ const Link: React.FC<LinkProps> = ({
                 });
                 break;
             case 'forgotPassword':
-                runOnJS(onForgotPassword)();
+                goToForgotPassword();
                 break;
             case 'requestCode':
                 if (timer === 0) {
                     startTimer();
                     handleSendCode();
                 }
+                break;
             case 'requestPassword':
                 if (timer === 0) {
                     startTimer();
+                    handleSendNewPassword();
                 }
                 break;
             default:

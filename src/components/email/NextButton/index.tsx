@@ -10,14 +10,23 @@ import useValidateField from '@/src/shared/hooks/useValidateField';
 import data from '@/datac.json';
 import styles from './style';
 import { router } from 'expo-router';
+import { sendNewPassword } from '@/src/shared/hooks/serverRequests/email';
 
 interface NextButtonProps {
     onPress: () => void;
 }
 
 const NextButton: FC<NextButtonProps> = ({ onPress }) => {
-    const { setErrorMessage, handleRegistration, handleLogin, next } =
-        useEmailAuthStore((state: TEmailAuthStore) => state.actions);
+    const {
+        setErrorMessage,
+        handleRegistration,
+        handleLogin,
+        next,
+        goToLogin,
+        disableNextButton,
+        enableNextButton,
+        handleSendNewPassword,
+    } = useEmailAuthStore((state: TEmailAuthStore) => state.actions);
     const isNextButtonDisabled = useEmailAuthStore(
         (state: TEmailAuthStore) => state.isNextButtonDisabled,
     );
@@ -67,6 +76,21 @@ const NextButton: FC<NextButtonProps> = ({ onPress }) => {
                 } else {
                     validationError = 'Введите логин и пароль';
                 }
+            case 5:
+                disableNextButton();
+                if (form.email) {
+                    const isPasswordSent = await handleSendNewPassword();
+                    if (isPasswordSent) {
+                        goToLogin();
+                    } else {
+                        validationError =
+                            'Пользователя с такой почтой не существует';
+                    }
+                } else {
+                    validationError =
+                        'Введите почту, на которую нужно отправить код';
+                }
+                enableNextButton();
         }
 
         if (!validationError) {

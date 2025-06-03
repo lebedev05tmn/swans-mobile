@@ -114,7 +114,7 @@
         "showNextButton": true,
         "showForgotPasswordLink": true,
         "link": {
-            "text": "Забыл пароль?",
+            "text": "Забыли пароль?",
             "action": "forgotPassword"
         }
     },
@@ -145,15 +145,6 @@
                 "inputMode": "email",
                 "valueKey": "email",
                 "editable": true
-            },
-            {
-                "name": "password",
-                "placeholder": "Пароль с почты",
-                "inputMode": "text",
-                "valueKey": "password",
-                "editable": true,
-                "secureTextEntry": true,
-                "validationRules": ["require", "minLength", "passwordStrength", "passwordComplexity"]
             }
         ],
         "showNextButton": true,
