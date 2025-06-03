@@ -1,5 +1,5 @@
 type TValidationRule = {
-    rule: (value: any) => boolean;
+    rule: (value: any, form?: any) => boolean;
     errorMessage: string;
 };
 
@@ -57,16 +57,40 @@ const validationRules: TValidationRules = {
             return age <= 100;
         },
         errorMessage: 'Максимальный возраст 100 лет',
-    }
+    },
+    emailFormat: {
+        rule: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+        errorMessage: 'Некорректный формат email',
+    },
+    numericOnly: {
+        rule: (value) => /^[0-9-]+$/.test(value),
+        errorMessage: 'Допустимы только цифры и дефис',
+    },
+    exactLength5: {
+        rule: (value) => value.replace('-', '').length === 5,
+        errorMessage: 'Код должен содержать ровно 5 цифр',
+    },
+    minLength8: {
+        rule: (value) => value.length >= 8,
+        errorMessage: 'Пароль должен содержать минимум 8 символов',
+    },
+    passwordComplexity: {
+        rule: (value) => /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(value),
+        errorMessage: 'Пароль должен содержать буквы и цифры',
+    },
+    'matchField:password': {
+        rule: (value, form) => value === form?.password,
+        errorMessage: 'Пароли не совпадают',
+    },
 };
 
-const useValidateField = (value: string | number | undefined, rules: string[] | undefined) => {
+const useValidateField = (value: string | number | undefined, rules: string[] | undefined, form?: any) => {
     if (!rules) return '';
 
     for (const ruleKey of rules) {
         const rule = validationRules[ruleKey];
 
-        if (rule && !rule.rule(value)) {
+        if (rule && !rule.rule(value, form)) {
             return rule.errorMessage;
         }
     }

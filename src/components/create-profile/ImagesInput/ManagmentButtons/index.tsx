@@ -1,14 +1,14 @@
+import { THROTTLE_TIME } from '@/src/shared/config/config';
+import useThrottle from '@/src/shared/hooks/useThrottle';
+import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
+import useImagesStore from '@/src/shared/stores/useImagesStore';
 import Button from '@/src/shared/ui/Button';
-import { Pencil, Plus, Trash2 } from 'lucide-react-native';
+import ButtonWithCounter from '@/src/shared/ui/ButtonWithCounter';
+import * as ImagePicker from 'expo-image-picker';
+import { Plus, RefreshCcw, Trash2 } from 'lucide-react-native';
 import { FC } from 'react';
 import { View } from 'react-native';
 import styles from './style';
-import useCreateProfileStore from '@/src/shared/stores/useCreateProfileStore';
-import useImagesStore from '@/src/shared/stores/useImagesStore';
-import * as ImagePicker from 'expo-image-picker';
-import useThrottle from '@/src/shared/hooks/useThrottle';
-import { THROTTLE_TIME } from '@/src/shared/config/config';
-import ButtonWithCounter from '@/src/shared/ui/ButtonWithCounter';
 
 const ManagmentButtons: FC = () => {
     const { deleteImage, setImage, setErrorMessage, replaceImage } =
@@ -63,12 +63,16 @@ const ManagmentButtons: FC = () => {
                 <Trash2 color={'#FF4E51'} size={30} />
             </Button>
 
-            <ButtonWithCounter onPress={pickImage} maxNumber={4} usedNumber={imagesCounter}>
+            <ButtonWithCounter
+                onPress={pickImage}
+                maxNumber={4}
+                usedNumber={imagesCounter}
+            >
                 <Plus color={'#0066FF'} size={34} />
             </ButtonWithCounter>
 
             <Button style={styles.managmentButton} onPress={editImage}>
-                <Pencil color={'#FFB303'} size={25} />
+                <RefreshCcw color={'#FFB303'} size={25} />
             </Button>
         </View>
     );

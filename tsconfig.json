@@ -3,10 +3,12 @@
   "compilerOptions": {
     "strict": true,
     "declaration": true,
+    "jsx": "react-native",
+    "baseUrl": ".", // для корректной работы paths
     "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
-  }
+      "@/*": ["./*"]
+    },
+    "typeRoots": ["./declarations", "./node_modules/@types"]
+  },
+  "include": ["**/*.ts", "**/*.tsx", "types"]
 }
