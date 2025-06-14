@@ -4,10 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './style';
 import ChatCard from '@/src/components/chats-list/ChatCard';
 import { FlatList, View } from 'react-native';
+import { FC } from 'react';
 
 const chats = chatsList.data;
 
-const ChatsList = () => {
+const ChatsList: FC = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Title text="Ваши чаты" />

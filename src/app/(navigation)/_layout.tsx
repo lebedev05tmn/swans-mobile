@@ -5,12 +5,14 @@ import Settings from '@/src/assets/svg/settingsTab.svg';
 import SwansFill from '@/src/assets/svg/swansTabFill.svg';
 import SwansUnfill from '@/src/assets/svg/swansTabUnfill.svg';
 import { Tabs } from 'expo-router';
-import { Pressable, View } from 'react-native';
+import { Pressable, View, Dimensions } from 'react-native';
 import Animated, {
     useAnimatedStyle,
     useSharedValue,
     withSpring,
 } from 'react-native-reanimated';
+
+const deviceWidth = Dimensions.get('window').width;
 
 const NavigationLayout = () => {
     return (
@@ -20,9 +22,9 @@ const NavigationLayout = () => {
                     position: 'absolute',
                     height: 1,
                     backgroundColor: '#E0E0E0',
-                    width: '93%',
-                    left: '3.5%',
-                    right: '3.5%',
+                    width: deviceWidth * 0.93,
+                    left: deviceWidth * 0.035,
+                    right: deviceWidth * 0.035,
                     bottom: 100,
                     zIndex: 100,
                 }}
@@ -40,7 +42,7 @@ const NavigationLayout = () => {
                         paddingBottom: 20,
                         borderTopWidth: 0,
                         shadowColor: '#FFFFFF',
-                        paddingHorizontal: '6%',
+                        paddingHorizontal: deviceWidth * 0.035,
                     },
                     tabBarButton: (props) => {
                         const scale = useSharedValue(1);

@@ -88,7 +88,7 @@ const Slide: FC<TContentComponent> = ({
                     <Input
                         placeholder={input.placeholder}
                         viewStyle={{
-                            padding: 12,
+                            paddingVertical: 8,
                             height: 96,
                         }}
                         textAlignVertical={'top'}

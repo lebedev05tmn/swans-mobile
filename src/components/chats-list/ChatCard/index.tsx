@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Avatar from './Avatar';
+import Avatar from '@/src/shared/ui/Avatar';
 import Header from './Header';
 import LastMessage from './LastMessage';
 import styles from './style';
@@ -32,7 +32,7 @@ const ChatCard: FC<TChatCard> = ({
     return (
         <Pressable onPress={handlePress}>
             <View style={styles.wrap}>
-                <Avatar online={online} uri={profilePicture} />
+                <Avatar online={online} uri={profilePicture} size={64} />
                 <View style={styles.contentWrap}>
                     <Header name={name} age={age} verify={verify} />
                     <LastMessage

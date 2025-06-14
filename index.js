@@ -1,3 +1,5 @@
+/* eslint-disable */
+import 'react-native-reanimated';
 import { registerRootComponent } from 'expo';
 import { ExpoRoot } from 'expo-router';
 

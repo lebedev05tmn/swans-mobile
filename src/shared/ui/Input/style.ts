@@ -10,15 +10,13 @@ const styles = StyleSheet.create({
         height: 40,
         flexDirection: 'row',
         paddingHorizontal: 12,
-        paddingVertical: 8,
     },
     textInput: {
         width: '100%',
-        height: '100%',
         fontSize: 16,
         lineHeight: 18,
         color: '#000',
-        paddingVertical: 0,
+        padding: 0,
     },
 });
 
