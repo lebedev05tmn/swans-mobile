@@ -1,10 +1,10 @@
 import chatsList from '@/chatsList.json';
+import ChatCard from '@/src/components/chats-list/ChatCard';
 import Title from '@/src/components/chats-list/Title';
+import { FC } from 'react';
+import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './style';
-import ChatCard from '@/src/components/chats-list/ChatCard';
-import { FlatList, View } from 'react-native';
-import { FC } from 'react';
 
 const chats = chatsList.data;
 

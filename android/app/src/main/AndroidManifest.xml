@@ -28,7 +28,6 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="swans"/>
-        <data android:scheme="com.swans.app"/>
         <data android:scheme="exp+swans-app"/>
       </intent-filter>
     </activity>
