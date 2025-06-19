@@ -10,7 +10,9 @@ const Footer = () => {
         <View style={styles.footer}>
             <Paperclip />
             <Input viewStyle={styles.input} />
-            <ArrowUp />
+            <View style={styles.sendMessageButton}>
+                <ArrowUp color={'#FFF'} />
+            </View>
         </View>
     );
 };
