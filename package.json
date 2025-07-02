@@ -9,7 +9,14 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "debug": "EXPO_DEBUG=true npx expo start --tunnel"
+    "debug": "EXPO_DEBUG=true npx expo start --tunnel",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.1.2",
@@ -54,19 +61,22 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@eslint/js": "^9.15.0",
+    "@eslint/js": "^9.26.0",
     "@expo/cli": "^0.22.26",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/react": "~19.0.10",
-    "eslint": "^9.15.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.37.2",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "eslint-plugin-react": "^7.37.5",
+    "husky": "^9.1.7",
+    "jiti": "^2.4.2",
+    "lint-staged": "^16.0.0",
     "patch-package": "^8.0.0",
     "prettier": "^3.4.2",
     "react-native-svg-transformer": "^1.5.0",
     "typescript": "^5.3.3",
-    "typescript-eslint": "^8.16.0"
+    "typescript-eslint": "^8.32.1"
   },
   "private": true
 }
