@@ -3,8 +3,8 @@ import Avatar from '@/src/shared/ui/Avatar';
 import Header from './Header';
 import LastMessage from './LastMessage';
 import styles from './style';
-import { router } from 'expo-router';
 import { Pressable, View } from 'react-native';
+import useChatStore from '@/src/shared/stores/useChatStore';
 
 type TChatCard = {
     name: string;
@@ -25,8 +25,10 @@ const ChatCard: FC<TChatCard> = ({
     unreadCount,
     lastMessage,
 }) => {
+    const { joinChat } = useChatStore().actions;
+
     const handlePress = () => {
-        router.push('/chat');
+        joinChat(3);
     };
 
     return (

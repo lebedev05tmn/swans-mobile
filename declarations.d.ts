@@ -8,5 +8,7 @@ declare module '*.svg' {
 declare namespace NodeJS {
     interface ProcessEnv {
         API_BASE_URL: string;
+        BASE_URL: string;
+        TEST_ACCESS_TOKEN: string;
     }
 }

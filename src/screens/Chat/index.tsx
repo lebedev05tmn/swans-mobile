@@ -10,10 +10,10 @@ import {
     SafeAreaView,
     useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-
 import Header from '@/src/components/chat/Header';
 import Footer from '@/src/components/chat/Footer';
 import styles from './style';
+import useChatStore from '@/src/shared/stores/useChatStore';
 
 if (
     Platform.OS === 'android' &&
@@ -25,6 +25,9 @@ if (
 const Chat: React.FC = () => {
     const [keyboardHeight, setKeyboardHeight] = useState(0);
     const insets = useSafeAreaInsets();
+    const userName = useChatStore((state) => state.metadata.name);
+    const verifyStatus = useChatStore((state) => state.metadata.verify);
+    const onlineStatus = useChatStore((state) => state.metadata.online);
 
     useEffect(() => {
         const showSub = Keyboard.addListener('keyboardDidShow', (e) => {
@@ -50,9 +53,9 @@ const Chat: React.FC = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Header
-                userName="Константин"
-                confirmed
-                online
+                userName={userName ?? 'Аноним'}
+                verified={verifyStatus ?? false}
+                online={onlineStatus ?? false}
                 avatarUri="https://i.pinimg.com/736x/df/ca/e5/dfcae5ca733809670f7a4897f304dadc.jpg"
                 avatarSize={36}
             />

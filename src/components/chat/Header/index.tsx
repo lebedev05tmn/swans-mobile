@@ -7,7 +7,7 @@ import Avatar from '@/src/shared/ui/Avatar';
 
 type THeader = {
     userName: string;
-    confirmed: boolean;
+    verified: boolean;
     online: boolean;
     avatarUri: string;
     avatarSize: number;
@@ -15,7 +15,7 @@ type THeader = {
 
 const Header: FC<THeader> = ({
     userName,
-    confirmed,
+    verified,
     online,
     avatarUri,
     avatarSize,
@@ -23,7 +23,7 @@ const Header: FC<THeader> = ({
     return (
         <View style={styles.header}>
             <BackButton />
-            <UserName userName={userName} confirmed={confirmed} />
+            <UserName userName={userName} verified={verified} />
             <Avatar online={online} uri={avatarUri} size={avatarSize} />
         </View>
     );

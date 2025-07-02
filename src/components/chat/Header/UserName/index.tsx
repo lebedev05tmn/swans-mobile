@@ -5,14 +5,14 @@ import styles from './style';
 
 type TUserName = {
     userName: string;
-    confirmed: boolean;
+    verified: boolean;
 };
 
-const UserName: FC<TUserName> = ({ userName, confirmed }) => {
+const UserName: FC<TUserName> = ({ userName, verified }) => {
     return (
         <View style={styles.wrap}>
             <Text style={styles.userName}>{userName}</Text>
-            {confirmed && <ConfirmedUserIcon />}
+            {verified && <ConfirmedUserIcon />}
         </View>
     );
 };

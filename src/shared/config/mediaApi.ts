@@ -1,4 +1,4 @@
-import { api } from './api';
+import api from './api';
 import * as FileSystem from 'expo-file-system';
 
 export const fetchMediaById = async (id: string) => {
@@ -8,9 +8,6 @@ export const fetchMediaById = async (id: string) => {
 
 export const uploadImage = async (imageUri: string) =>
     FileSystem.uploadAsync(api.defaults.baseURL + '/media/create', imageUri, {
-        headers: {
-            // Auth etc
-        },
         uploadType: FileSystem.FileSystemUploadType.MULTIPART,
         fieldName: 'file',
         mimeType: 'image/png',
@@ -24,7 +21,7 @@ export const uploadMedia = async (file: FormData) => {
         console.log(response);
         return response.data;
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 };
 
