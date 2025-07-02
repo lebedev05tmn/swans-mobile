@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import styles from './style';
 
-type TButton = TouchableOpacityProps & PropsWithChildren;
+export type TButton = TouchableOpacityProps & PropsWithChildren;
 
 const Button: FC<TButton> = ({ children, style, ...props }) => {
     const flattenedStyle = StyleSheet.flatten([styles.button, style]);

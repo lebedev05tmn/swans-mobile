@@ -10,5 +10,5 @@ export default function HomeScreen() {
         if (!isLoading) console.log(metaData);
     }, [metaData])
 
-    return isLoading ? <Loading /> : <Redirect href="/create" />;
+    return isLoading ? <Loading /> : <Redirect href="/chat" />;
 }
