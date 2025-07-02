@@ -64,5 +64,4 @@ const NextButton: FC = () => {
     );
 };
 
-
 export default NextButton;

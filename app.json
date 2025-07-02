@@ -12,7 +12,8 @@
       "infoPlist": {
         "UIViewControllerBasedStatusBarAppearance": true
       },
-      "bundleIdentifier": "com.swans.app"
+      "bundleIdentifier": "com.swans.app",
+      "usesAppleSignIn": true
     },
     "android": {
       "package": "com.swans.app"
@@ -22,6 +23,7 @@
       "expo-notifications",
       "expo-dev-client",
       "expo-router",
+      "expo-apple-authentication",
       [
         "expo-location",
         {

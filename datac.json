@@ -1,0 +1,163 @@
+[
+    {
+        "id": "email",
+        "title": "Введите почту",
+        "subtitle": "Используйте актуальную почту,\nна нее прийдет код.",
+        "fields": [
+            {
+                "name": "email",
+                "placeholder": "example@mail.ru",
+                "inputMode": "email",
+                "valueKey": "email",
+                "editable": true,
+                "validationRules": ["require", "email", "emailFormat"]
+            }
+        ],
+        "showNextButton": true,
+        "link": {
+            "text": "Другой способ входа",
+            "action": "log"
+        }
+    },
+    {
+        "id": "code",
+        "title": "Введите почту",
+        "subtitle": "Используйте актуальную почту,\nна нее прийдет код.",
+        "fields": [
+            {
+                "name": "email",
+                "placeholder": "example@mail.ru",
+                "inputMode": "email",
+                "valueKey": "email",
+                "editable": false
+            },
+            {
+                "name": "code",
+                "placeholder": "Код с почты",
+                "inputMode": "numeric",
+                "valueKey": "code",
+                "editable": true,
+                "maxLength": 6,
+                "validationRules": ["require", "codeLength", "exactLength5"]
+            }
+        ],
+        "showNextButton": true,
+        "timer": {
+            "duration": 60,
+            "text": "Отправить код повторно",
+            "disabledText": "Отправить повторно через {seconds} сек"
+        },
+        "link": {
+            "text": "Запросить повторный код",
+            "disabledText": "Запросить повторный код\n через: {seconds} сек...",
+            "timerDuration": 60,
+            "action": "requestCode"
+        }
+    },
+    {
+        "id": "password",
+        "title": "Введите почту",
+        "subtitle": "Используйте актуальную почту,\nна нее прийдет код.",
+        "fields": [
+            {
+                "name": "email",
+                "placeholder": "example@mail.ru",
+                "inputMode": "email",
+                "valueKey": "email",
+                "editable": false
+            },
+            {
+                "name": "password",
+                "placeholder": "Пароль",
+                "valueKey": "password",
+                "editable": true,
+                "secureTextEntry": true,
+                "validationRules": ["require", "minLength", "passwordStrength", "passwordComplexity"]
+            },
+            {
+                "name": "confirmPassword",
+                "placeholder": "Повторите пароль",
+                "valueKey": "confirmPassword",
+                "editable": true,
+                "secureTextEntry": true,
+                "validationRules": ["require", "matchPassword", "passwordComplexity"]
+            }
+        ],
+        "showNextButton": true,
+        "link": {
+            "text": "Другой способ входа",
+            "action": "log"
+        }
+    },
+    {
+        "id": "login",
+        "title": "Логин",
+        "subtitle": "Введите Ваш логин и пароль",
+        "fields": [
+            {
+                "name": "email",
+                "placeholder": "example@mail.ru",
+                "inputMode": "email",
+                "valueKey": "email",
+                "editable": true,
+                "validationRules": ["require", "emailFormat"]
+            },
+            {
+                "name": "password",
+                "placeholder": "Пароль",
+                "valueKey": "password",
+                "editable": true,
+                "secureTextEntry": true,
+                "validationRules": ["require", "passwordComplexity"]
+            }
+        ],
+        "showNextButton": true,
+        "showForgotPasswordLink": true,
+        "link": {
+            "text": "Забыли пароль?",
+            "action": "forgotPassword"
+        }
+    },
+    {
+        "id": "recover",
+        "title": "Восстановление пароля",
+        "subtitle": "Используйте актуальную почту,\nна нее прийдет код.",
+        "fields": [
+            {
+                "name": "email",
+                "placeholder": "example@mail.ru",
+                "inputMode": "email",
+                "valueKey": "email",
+                "editable": true,
+                "validationRules": ["require", "email", "emailFormat"]
+            }
+        ],
+        "showNextButton": true
+    },
+    {
+        "id": "recoverPassword",
+        "title": "Восстановление пароля",
+        "subtitle": "Используйте актуальную почту,\nна нее прийдет код.",
+        "fields": [
+            {
+                "name": "email",
+                "placeholder": "example@mail.ru",
+                "inputMode": "email",
+                "valueKey": "email",
+                "editable": true
+            }
+        ],
+        "showNextButton": true,
+        "timer": {
+            "duration": 60,
+            "text": "Отправить код повторно",
+            "disabledText": "Отправить повторно через {seconds} сек"
+        },
+        "link": {
+            "text": "Отправить пароль снова",
+            "disabledText": "Запросить повторный пароль через: {seconds} сек...",
+            "timerDuration": 60,
+            "action": "requestPassword"
+        }
+    }
+]
